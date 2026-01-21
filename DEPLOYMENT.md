@@ -1,6 +1,14 @@
-# Deployment Guide: A2UI Renderer
+## ⚡️ One-Liner Deployments (Makefile)
 
-This guide provides step-by-step instructions for deploying the A2UI renderer to production using various cloud providers.
+The project includes a `Makefile` that simplifies deployment to a single command. Ensure you have the respective CLIs installed and authenticated.
+
+| Target | Command | Platform |
+| :--- | :--- | :--- |
+| **Cloud Run** | `make deploy-cloud-run` | Google Cloud (Serverless) |
+| **Firebase** | `make deploy-firebase` | Firebase Hosting |
+| **GKE** | `make deploy-gke` | Google Kubernetes Engine |
+
+---
 
 ## 1. Google Cloud Run (Recommended)
 
