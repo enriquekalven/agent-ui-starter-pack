@@ -7,6 +7,26 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/html"
+          }
+        ]
+      },
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/html"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
