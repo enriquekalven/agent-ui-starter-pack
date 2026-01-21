@@ -15,6 +15,8 @@ This project provides a foundational implementation of the **A2UI protocol**, al
 - **Premium Design System**: Dark-mode aesthetic with glassmorphism, smooth transitions, and professional typography (Inter).
 - **Protocol Ready**: Native support for **A2UI** (Agent-to-User) and **A2A** (Agent-to-Agent) standards.
 
+<img width="1125" height="1119" alt="image" src="https://github.com/user-attachments/assets/16487ada-792c-4421-a079-15de21f7e54d" />
+
 ## 🛠️ Getting Started
 
 You can scaffold a new A2UI project in seconds using `uvx`:
