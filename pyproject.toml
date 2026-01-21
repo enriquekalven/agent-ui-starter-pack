@@ -4,18 +4,46 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agentui-starter-pack"
-version = "0.1.0"
+version = "0.1.1"
 description = "Scaffolding CLI for Agent UI Starter Pack"
 readme = "README.md"
+authors = [
+    { name = "Enrique", email = "enrique@example.com" }
+]
 requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 dependencies = [
     "typer>=0.9.0",
     "rich>=13.0.0",
-    "gitpython>=3.1.0",
+    "GitPython>=3.1.0",
 ]
+
+[project.urls]
+"Homepage" = "https://github.com/enriquekalven/agent-ui-starter-pack"
+"Bug Tracker" = "https://github.com/enriquekalven/agent-ui-starter-pack/issues"
 
 [project.scripts]
 agentui-starter-pack = "agentui_starter_pack.cli.main:app"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/agentui_starter_pack"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/public",
+    "README.md",
+    "A2A_GUIDE.md",
+    "DEPLOYMENT.md",
+    "firebase.json",
+    "Makefile",
+    "Dockerfile",
+    "package.json",
+    "tsconfig.json",
+    "vite.config.ts",
+    "index.html",
+]

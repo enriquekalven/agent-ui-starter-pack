@@ -16,14 +16,19 @@ This project provides a foundational implementation of the **A2UI protocol**, al
 
 ## 🛠️ Getting Started
 
-### ⚡️ Quick Start
-
-You can scaffold a new A2UI project in seconds without installing anything using `uvx`:
+You can scaffold a new A2UI project in seconds without installing anything using `uvx`. Once the package is published to PyPI, the command is simply:
 
 ```bash
-# Create a new project
-uvx --from git+https://github.com/enriquekalven/agent-ui-starter-pack.git agentui-starter-pack create my-ui
+# Basic setup
+uvx agentui-starter-pack create my-ui
+
+# High-fidelity setup with CopilotKit/AGUI
+uvx agentui-starter-pack create my-ui --ui agui --copilotkit
 ```
+
+> [!NOTE]
+> Until the package is published to PyPI, use the `--from` flag to point to the GitHub repository:
+> `uvx --from git+https://github.com/enriquekalven/agent-ui-starter-pack.git agentui-starter-pack create my-ui`
 
 ### Prerequisites
 

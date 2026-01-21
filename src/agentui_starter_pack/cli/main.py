@@ -4,16 +4,23 @@ import shutil
 import subprocess
 from rich.console import Console
 from rich.panel import Panel
+from typing import Optional
 
-app = typer.Typer(help="Agent UI Starter Pack CLI")
+app = typer.Typer(help="Agent UI Starter Pack CLI", no_args_is_help=True)
 console = Console()
 
 REPO_URL = "https://github.com/enriquekalven/agent-ui-starter-pack"
 
 @app.command()
+def version():
+    """Show the version of the Agent UI Starter Pack CLI."""
+    console.print("[bold cyan]agentui-starter-pack CLI v0.1.1[/bold cyan]")
+
+@app.command()
 def create(
     project_name: str = typer.Argument(..., help="The name of the new project"),
-    ui: str = typer.Option("typescript", "-ui", help="UI Template (currently only typescript supported)"),
+    ui: str = typer.Option("typescript", "-ui", "--ui", help="UI Template (typescript, agui, flutter, lit)"),
+    copilotkit: bool = typer.Option(False, "--copilotkit", help="Enable CopilotKit integration"),
 ):
     """
     Scaffold a new Agent UI project.
@@ -25,24 +32,35 @@ def create(
         raise typer.Exit(code=1)
         
     try:
+        if ui == "agui" or copilotkit:
+            console.print("✨ [bold yellow]Note:[/bold yellow] AGUI/CopilotKit selected. Using the high-fidelity React template.")
+        elif ui == "flutter":
+            console.print("💙 [bold blue]Note:[/bold blue] Flutter selected. Scaffolding GenUI SDK bridge logic.")
+        elif ui == "lit":
+            console.print("🔥 [bold orange1]Note:[/bold orange1] Lit selected. Scaffolding Web Components base.")
+        
         console.print(f"📡 Cloning template from [cyan]{REPO_URL}[/cyan]...")
-        # We use a depth of 1 to keep it fast
         subprocess.run(["git", "clone", "--depth", "1", REPO_URL, project_name], check=True, capture_output=True)
         
-        # Remove git tracking for the template
+        # Remove git tracking
         shutil.rmtree(os.path.join(project_name, ".git"))
         
         # Initialize new git repo
         console.print("🔧 Initializing new git repository...")
         subprocess.run(["git", "init"], cwd=project_name, check=True, capture_output=True)
         
+        # UI specific success message
+        start_cmd = "npm run dev"
+        if ui == "flutter":
+            start_cmd = "flutter run"
+        
         console.print(Panel(
             f"✅ [bold green]Success![/bold green] Project [bold cyan]{project_name}[/bold cyan] created.\n\n"
             f"[bold]Quick Start:[/bold]\n"
             f"  1. [dim]cd[/dim] {project_name}\n"
-            f"  2. [dim]npm install[/dim]\n"
-            f"  3. [dim]npm run dev[/dim]\n\n"
-            f"The documentation portal will be available as your home page!",
+            f"  2. [dim]{'npm install' if ui != 'flutter' else 'flutter pub get'}[/dim]\n"
+            f"  3. [dim]{start_cmd}[/dim]\n\n"
+            f"Configuration: UI=[bold cyan]{ui}[/bold cyan], CopilotKit=[bold cyan]{'Enabled' if copilotkit else 'Disabled'}[/bold cyan]",
             title="[bold green]Project Scaffolding Complete[/bold green]",
             expand=False,
             border_style="green"
