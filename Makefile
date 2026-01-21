@@ -24,7 +24,7 @@ build:
 
 # 🚀 Cloud Run: The fastest way to production
 deploy-cloud-run:
-	gcloud run deploy $(SERVICE_NAME) --source . --region $(REGION) --allow-unauthenticated
+	gcloud run deploy $(SERVICE_NAME) --source . --region $(REGION) --allow-unauthenticated --port 80
 
 # 🔥 Firebase: Optimized for frontend hosting
 deploy-firebase: build
