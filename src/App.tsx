@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
 import { A2UISurfaceRenderer } from './a2ui/A2UIRenderer';
 import { DocLayout } from './docs/DocLayout';
 import { DocPage } from './docs/DocPage';
@@ -64,8 +64,8 @@ function Playground() {
 function App() {
   return (
     <Routes>
-      {/* Docs as HomePage */}
-      <Route path="/" element={<DocLayout><DocPage /></DocLayout>}>
+      {/* Docs as HomePage using Outlet pattern */}
+      <Route path="/" element={<DocLayout><Outlet /></DocLayout>}>
         <Route index element={<DocPage />} />
         <Route path="docs/:docId" element={<DocPage />} />
       </Route>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Menu, X, ChevronRight, BookOpen, Terminal, Rocket, Cpu, Layout } from 'lucide-react';
 
 interface DocLayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const DOC_NAV = [
@@ -74,7 +74,7 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
           </div>
         </header>
         <div className="doc-content-wrapper">
-          {children}
+          {children || <Outlet />}
         </div>
       </main>
     </div>
