@@ -7,6 +7,7 @@ const DOC_FILES: Record<string, string> = {
   readme: '/README.md',
   a2a: '/A2A_GUIDE.md',
   deployment: '/DEPLOYMENT.md',
+  'be-integration': '/BE_INTEGRATION_GUIDE.md',
 };
 
 export const DocPage: React.FC = () => {

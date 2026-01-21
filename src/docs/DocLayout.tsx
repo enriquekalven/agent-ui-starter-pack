@@ -9,6 +9,7 @@ interface DocLayoutProps {
 const DOC_NAV = [
   { id: 'readme', label: 'Getting Started', path: '/', icon: <Rocket size={18} /> },
   { id: 'a2a', label: 'A2A Protocol', path: '/docs/a2a', icon: <Cpu size={18} /> },
+  { id: 'be-integration', label: 'Backend Integration', path: '/docs/be-integration', icon: <Terminal size={18} /> },
   { id: 'deployment', label: 'Deployment', path: '/docs/deployment', icon: <Terminal size={18} /> },
 ];
 
@@ -23,7 +24,7 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
         <div className="doc-sidebar-header">
           <Link to="/" className="doc-logo">
             <span className="agent-pulse mini"></span>
-            A2UI Docs
+            Agent UI Starter Pack
           </Link>
           <button className="mobile-toggle" onClick={() => setSidebarOpen(!isSidebarOpen)}>
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
