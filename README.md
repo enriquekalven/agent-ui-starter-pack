@@ -9,14 +9,15 @@ This project provides a foundational implementation of the **A2UI protocol**, al
 ## ✨ Features
 
 - **Zero-Dependency Renderer**: Recursive rendering engine that handles complex A2UI JSON trees without external SDKs.
+- **Visual Analytics**: Built-in support for **StatBars**, **Images**, and **Dynamic Lists** for rich dashboard generation.
+- **Interactive Playground**: A built-in sandbox with **Agent Mode** to simulate real-world AI-driven UI updates.
 - **Multi-Platform Support**: Built-in logic optimized for **React**, **Lit (Web Components)**, and **Flutter (GenUI SDK)**.
 - **Premium Design System**: Dark-mode aesthetic with glassmorphism, smooth transitions, and professional typography (Inter).
 - **Protocol Ready**: Native support for **A2UI** (Agent-to-User) and **A2A** (Agent-to-Agent) standards.
-- **Agent Pulse**: Built-in "Agent Online" status indicator with CSS animations.
 
 ## 🛠️ Getting Started
 
-You can scaffold a new A2UI project in seconds without installing anything using `uvx`. Once the package is published to PyPI, the command is simply:
+You can scaffold a new A2UI project in seconds using `uvx`:
 
 ```bash
 # Basic setup
@@ -25,10 +26,6 @@ uvx agentui-starter-pack create my-ui
 # High-fidelity setup with CopilotKit/AGUI
 uvx agentui-starter-pack create my-ui --ui agui --copilotkit
 ```
-
-> [!NOTE]
-> Until the package is published to PyPI, use the `--from` flag to point to the GitHub repository:
-> `uvx --from git+https://github.com/enriquekalven/agent-ui-starter-pack.git agentui-starter-pack create my-ui`
 
 ### Prerequisites
 
