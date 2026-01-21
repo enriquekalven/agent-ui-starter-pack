@@ -16,12 +16,20 @@ This project provides a foundational implementation of the **A2UI protocol**, al
 
 ## 🛠️ Getting Started
 
+### ⚡️ Quick Start
+
+You can scaffold a new A2UI project in seconds without installing anything using `uvx`:
+
+```bash
+# Create a new project
+uvx --from git+https://github.com/enriquekalven/agent-ui-starter-pack.git agentui-starter-pack create my-ui
+```
+
 ### Prerequisites
 
 - Node.js (v18+)
-- npm
-
-### Installation
+- Python (v3.10+) for the CLI
+- git
 
 ```bash
 # Install dependencies

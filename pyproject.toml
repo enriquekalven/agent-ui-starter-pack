@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agentui-starter-pack"
+version = "0.1.0"
+description = "Scaffolding CLI for Agent UI Starter Pack"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "gitpython>=3.1.0",
+]
+
+[project.scripts]
+agentui-starter-pack = "agentui_starter_pack.cli.main:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentui_starter_pack"]
