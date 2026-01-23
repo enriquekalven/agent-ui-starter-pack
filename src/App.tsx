@@ -209,7 +209,7 @@ function Playground() {
           <button className={mode === 'agent' ? 'active' : ''} onClick={() => setMode('agent')}>Agent Mode</button>
         </div>
         <nav className="header-nav">
-          <Link to="/" className="nav-link">← Back to Docs</Link>
+          <Link to="/docs" className="nav-link">← Back to Docs</Link>
           <ThemeToggle />
           <a href="/docs/be-integration" className="nav-link special">Connect to Agent →</a>
         </nav>
@@ -294,7 +294,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
 
-      <Route path="/docs" element={<DocLayout><Outlet /></DocLayout>}>
+      <Route path="/docs" element={<DocLayout />}>
         <Route index element={<Navigate to="/docs/getting-started" replace />} />
         <Route path=":docId" element={<DocPage />} />
       </Route>

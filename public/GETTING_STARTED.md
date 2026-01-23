@@ -2,6 +2,17 @@
 
 Welcome to the **Agent UI Starter Pack**! This guide will help you set up your environment and launch your first agentic interface.
 
+## 🧩 Demystifying the Agentic Stack
+
+To understand where this starter pack fits, it's important to distinguish between the different layers of the ecosystem:
+
+*   **CopilotKit (The Foundation):** The open-source framework for building AI copilots. It handles the backend logic, LLM streaming, and core state synchronization.
+*   **A2UI (The Specification):** A Google-originated declarative JSON schema. It defines UI components so agents can describe interfaces without writing code.
+*   **AG-UI (The Protocol):** The communication standard for Agent-User Interaction. It ensures agents and UIs speak the same language for human-in-the-loop flows.
+*   **Agent UI (The Implementation):** This starter pack. A high-fidelity, production-ready renderer and playground that brings these standards together into a single, deployable toolkit.
+
+---
+
 ## 🏁 Prerequisites
 
 Before you begin, ensure you have the following installed:

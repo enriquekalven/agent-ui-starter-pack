@@ -247,7 +247,7 @@ export function Home() {
           justify-content: space-between;
           align-items: center;
           padding: 1rem 2.5rem;
-          background: rgba(var(--bg-color), 0.7);
+          background: var(--surface-color);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           position: sticky;
@@ -744,7 +744,22 @@ export function Home() {
           .cta-group { justify-content: center; }
           .hero-visual-container { display: none; }
           .features-grid { grid-template-columns: 1fr; }
+          .comparison-grid { grid-template-columns: 1fr; }
           .hero-title { font-size: 3.5rem; }
+        }
+
+        [data-theme="dark"] .hero-badge { background: rgba(255, 255, 255, 0.05); }
+        [data-theme="dark"] .logo-pill { background: rgba(255, 255, 255, 0.03); }
+        [data-theme="dark"] .hero-visual-glow { 
+          background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%); 
+        }
+        [data-theme="dark"] .comparison-card.highlight h3, 
+        [data-theme="dark"] .comparison-card.highlight p,
+        [data-theme="dark"] .comparison-card.highlight .card-value {
+          color: #0A0A0A;
+        }
+        [data-theme="dark"] .comparison-card.highlight strong {
+          color: #000000;
         }
       `}</style>
     </div>
