@@ -2,8 +2,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Optional
 import uvicorn
+from .cost_control import cost_guard, model_router
 
-app = FastAPI(title="A2UI Backend Agent")
+app = FastAPI(title="A2UI Production Agent Ops")
 
 class A2UIComponent(BaseModel):
     type: str
@@ -34,8 +35,11 @@ def generate_dashboard(query: str) -> A2UISurface:
     )
 
 @app.get("/agent/query")
+@cost_guard(budget_limit=0.10)
 async def chat(q: str):
-    """Simulates an ADK agent generating UI response."""
+    """Simulates an ADK agent generating UI response with cost tracking."""
+    model, reason = model_router(q)
+    print(f"🤖 Routing to {model}: {reason}")
     return generate_dashboard(q)
 
 if __name__ == "__main__":

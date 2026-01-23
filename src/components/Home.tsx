@@ -26,10 +26,10 @@ export function Home() {
             v1.0.0 Now Available
           </div>
           <h1 className="hero-title">
-            The standard for <span className="highlight-text">Agentic Interfaces.</span>
+            Production-Ready <span className="highlight-text">Agent Ops.</span>
           </h1>
           <p className="hero-subtitle">
-            A high-performance toolkit for building and testing AI-driven user experiences. Seamlessly bridge agents and humans with A2UI.
+            The Vercel for Google Cloud Agents. Deploy cost-optimized, secure, and auto-scaling agent infrastructure in seconds.
           </p>
           <div className="cta-group">
             <Link to="/docs/getting-started" className="cta-button primary">
@@ -94,13 +94,13 @@ export function Home() {
           <div className="ecosystem-card full-width">
             <div className="glass-content">
               <div className="text-side">
-                <div className="accent-label">Architecture</div>
-                <h3>Bridging the Gap</h3>
-                <p>Modern AI Agents (LangGraph, CrewAI, AutoGPT) excel at reasoning but struggle to present complex data. A2UI provides a declarative bridge, allowing agents to "think" in JSON and "act" in React components.</p>
+                <div className="accent-label">Agent Optimization</div>
+                <h3>The Intelligence Pipeline</h3>
+                <p>Don't ship wasteful prompts. Our built-in Optimizer audits your agent for token usage, flags cost-saving opportunities like Context Caching, and suggests tool offloading for maximum reliability.</p>
                 <ul className="accent-list">
-                  <li><strong>State Management:</strong> Real-time syncing between agent state and UI.</li>
-                  <li><strong>Multi-Agent Ready:</strong> Orchestrate multiple agents into a unified interface.</li>
-                  <li><strong>Human-in-the-loop:</strong> Native support for approval flows and interactive edits.</li>
+                  <li><strong>Prompt Compression:</strong> Save up to 40% on token costs automatically.</li>
+                  <li><strong>Context Caching:</strong> Detect high-reuse data and enable Gemini Caching.</li>
+                  <li><strong>Cloud Run Native:</strong> Scale to zero and only pay for what your agent uses.</li>
                 </ul>
               </div>
               <div className="visual-side">
@@ -167,10 +167,10 @@ export function Home() {
           </div>
 
           <div className="comparison-card highlight">
-            <div className="card-tag black">STARTER PACK</div>
+            <div className="card-tag black">AGENT OPS</div>
             <h3>Agent UI</h3>
-            <p><strong>The Implementation.</strong> A high-fidelity, production-ready renderer and playground that brings these standards together into a single, deployable toolkit.</p>
-            <div className="card-value">Role: <strong>Speed & Fidelity</strong></div>
+            <p><strong>The Infrastructure.</strong> A production-grade platform for deploying, optimizing, and scaling Google Cloud agents. Built on Cloud Run with native cost guardrails.</p>
+            <div className="card-value">Role: <strong>Scale & Cost</strong></div>
           </div>
         </div>
 
@@ -199,30 +199,30 @@ export function Home() {
       </section>
       <section className="features-section">
         <div className="section-header">
-          <h2 className="section-title">Built for the <span className="gradient-text">Agentic Era</span></h2>
-          <p className="section-subtitle">A2UI provides the building blocks for interfaces that agents can understand and manipulate.</p>
+          <h2 className="section-title">Built for <span className="gradient-text">Production Agent Ops</span></h2>
+          <p className="section-subtitle">A2UI provides the infrastructure for high-scale, cost-effective agent deployments.</p>
         </div>
         <div className="features-grid">
           <div className="feature-card">
             <div className="feature-icon-wrapper blue">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
             </div>
-            <h3>Protocol Standard</h3>
-            <p>Standardized JSON-to-UI rendering for seamless agent-user communication.</p>
+            <h3>Cost Guardrails</h3>
+            <p>Built-in budget monitoring and smart token auditing to prevent expensive LLM runaways.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon-wrapper purple">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
             </div>
-            <h3>GenUI Ready</h3>
-            <p>Easily implement generative UI patterns that adapt to agent intent dynamically.</p>
+            <h3>The Optimizer</h3>
+            <p>Automatically compress prompts and identify Context Caching opportunities in your CI/CD pipeline.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon-wrapper teal">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
             </div>
-            <h3>Developer First</h3>
-            <p>Built-in tools for debugging agent outputs and inspecting the UI state machine.</p>
+            <h3>Cloud Run Native</h3>
+            <p>Vercel-style deployment for GCP. Serverless architecture that scales to zero when not in use.</p>
           </div>
         </div>
       </section>

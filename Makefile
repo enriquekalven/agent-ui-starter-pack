@@ -6,21 +6,33 @@ REGION ?= us-central1
 SERVICE_NAME = agent-ui-starter
 IMAGE_TAG = gcr.io/$(PROJECT_ID)/$(SERVICE_NAME):latest
 
-.PHONY: help dev build deploy-cloud-run deploy-firebase deploy-gke
+.PHONY: help dev build deploy-cloud-run deploy-firebase deploy-gke audit deploy-prod
 
 help:
 	@echo "Available commands:"
 	@echo "  make dev               - Start local development server"
 	@echo "  make build             - Build production assets"
-	@echo "  make deploy-cloud-run  - Deploy to Google Cloud Run (One-liner)"
-	@echo "  make deploy-firebase   - Deploy to Firebase Hosting (One-liner)"
-	@echo "  make deploy-gke        - Deploy to GKE (Build, Push, and Apply)"
+	@echo "  make audit             - Run Agent Optimizer audit on your agent code"
+	@echo "  make deploy-prod       - Deploy to production (Cloud Run + Firebase)"
+	@echo "  make deploy-cloud-run  - Deploy to Google Cloud Run"
+	@echo "  make deploy-firebase   - Deploy to Firebase Hosting"
 
 dev:
 	npm run dev
 
 build:
 	npm run build
+
+# 🔍 The Optimizer: Audit your agent for waste
+audit:
+	@python3 src/backend/optimizer.py src/backend/agent.py
+
+# 🚀 Production: The Vercel-style 1-click deploy
+deploy-prod: audit build
+	@echo "📦 Containerizing and deploying to Cloud Run..."
+	gcloud run deploy $(SERVICE_NAME) --source . --region $(REGION) --allow-unauthenticated --port 80
+	@echo "🔥 Deploying frontend to Firebase..."
+	firebase deploy --only hosting
 
 # 🚀 Cloud Run: The fastest way to production
 deploy-cloud-run:

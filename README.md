@@ -1,14 +1,27 @@
-# Agent UI Starter Pack
+# Agent UI Starter Pack: Production-Ready Agent Ops
 
-[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/enriquekalven/agent-ui-starter-pack)
+The world's first **Agent Ops Platform** for Google Cloud. Moving beyond "Hello World" to cost-optimized, security-hardened, and production-ready agent infrastructure.
 
-A high-performance, zero-dependency A2UI (Agentic-Adaptive User Interface) renderer built with React, TypeScript, and Vite.
+## 🚀 Why This Starter Pack?
 
-![Agent UI Hero](/hero.png)
+Most agent templates give you a chat window and leave you to figure out the rest. We focus on **Day 2 Operations**: Optimization, Cost Control, and Infrastructure. 
 
-## Overview
+*   **Vercel for GCP Agents:** 1-click deployment to Cloud Run with automatic scaling to zero.
+*   **The Optimizer:** Built-in CI/CD for prompt compression and context caching detection.
+*   **Cost Guardrails:** Native budget management and smart token usage auditing.
+*   **Production Stack:** Vertex AI (Gemini 2.0), Cloud Run, Firestore, and Google Cloud Trace out of the box.
 
-The Agent UI Starter Pack provides a foundational implementation of the **A2UI protocol**, allowing AI agents to dynamically generate and update user interfaces using a declarative JSON schema. It is designed to be lightweight, premium, and easy to extend.
+---
+
+## 🏗️ The Production Stack (The Google Cloud Agent Stack)
+
+| Feature | Standard "Starter Pack" | **Agent UI Production Pack** |
+| :--- | :--- | :--- |
+| **Hosting** | Localhost / Vercel | **Cloud Run (Sidecar)** |
+| **Model** | OpenAI Wrapper | **Vertex AI (Gemini 2.0)** |
+| **Memory** | In-memory array | **Firestore / AlloyDB** |
+| **Caching** | None | **Gemini Context Caching** |
+| **Ops** | `print()` statements | **Google Cloud Trace** |
 
 ---
 
@@ -114,7 +127,7 @@ A2UI sits as the critical middleware layer:
 | **CopilotKit** | Framework | Full-stack integration for AI Copilots. |
 | **A2UI** | Specification | Declarative JSON schema for portable UI components. |
 | **AG-UI** | Protocol | State management and human-in-the-loop interaction layers. |
-| **Agent UI** | Solution | This Starter Pack—a high-fidelity implementation of all the above. |
+| **Agent UI** | Platform | **Production Agent Ops.** Cost-optimized, secure, and auto-scaling infrastructure on Google Cloud. |
 
 ---
 
