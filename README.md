@@ -107,6 +107,15 @@ A2UI sits as the critical middleware layer:
 - **AG UI (Agentic UI)**: Integration-ready for [CopilotKit](https://github.com/CopilotKit/CopilotKit) and high-end React surfaces.
 - **Lit Web Components**: Standards-based components for any framework.
 
+### Standard Comparison
+
+| Standard | Role | Core Value |
+| :--- | :--- | :--- |
+| **CopilotKit** | Framework | Full-stack integration for AI Copilots. |
+| **A2UI** | Specification | Declarative JSON schema for portable UI components. |
+| **AG-UI** | Protocol | State management and human-in-the-loop interaction layers. |
+| **Agent UI** | Solution | This Starter Pack—a high-fidelity implementation of all the above. |
+
 ---
 
 ## 🚀 Deployment

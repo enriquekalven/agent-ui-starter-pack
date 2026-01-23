@@ -138,6 +138,65 @@ export function Home() {
         </div>
       </section>
 
+      <section className="comparison-section">
+        <div className="section-header">
+          <h2 className="section-title">The <span className="gradient-text">Agentic Ecosystem</span></h2>
+          <p className="section-subtitle">Clarifying the roles of modern AI interface standards and frameworks.</p>
+        </div>
+
+        <div className="comparison-grid">
+          <div className="comparison-card">
+            <div className="card-tag purple">FRAMEWORK</div>
+            <h3>CopilotKit</h3>
+            <p><strong>The Foundation.</strong> The open-source core for building AI copilots. It handles the backend logic, LLM streaming, and core state synchronization.</p>
+            <div className="card-value">Role: <strong>Infrastructure</strong></div>
+          </div>
+
+          <div className="comparison-card">
+            <div className="card-tag blue">SPECIFICATION</div>
+            <h3>A2UI</h3>
+            <p><strong>The Blueprint.</strong> A Google-originated declarative JSON schema. It defines UI components so agents can describe interfaces without writing code.</p>
+            <div className="card-value">Role: <strong>Schema</strong></div>
+          </div>
+
+          <div className="comparison-card">
+            <div className="card-tag teal">PROTOCOL</div>
+            <h3>AG-UI</h3>
+            <p><strong>The Protocol.</strong> The communication standard for Agent-User Interaction. It ensures agents and UIs speak the same language for human-in-the-loop flows.</p>
+            <div className="card-value">Role: <strong>Communication</strong></div>
+          </div>
+
+          <div className="comparison-card highlight">
+            <div className="card-tag black">STARTER PACK</div>
+            <h3>Agent UI</h3>
+            <p><strong>The Implementation.</strong> A high-fidelity, production-ready renderer and playground that brings these standards together into a single, deployable toolkit.</p>
+            <div className="card-value">Role: <strong>Speed & Fidelity</strong></div>
+          </div>
+        </div>
+
+        <div className="value-prop-banner">
+          <div className="banner-content">
+            <h3>Unified Value Proposition</h3>
+            <div className="banner-grid">
+              <div className="banner-item">
+                <span className="item-number">01</span>
+                <h4>Zero-Code UI</h4>
+                <p>Agents generate full interfaces instantly via JSON, bypassing traditional frontend development cycles.</p>
+              </div>
+              <div className="banner-item">
+                <span className="item-number">02</span>
+                <h4>Cross-Platform</h4>
+                <p>One schema works everywhere. Native support for React, with standard bridges for Mobile and Web Components.</p>
+              </div>
+              <div className="banner-item">
+                <span className="item-number">03</span>
+                <h4>Agent Logic First</h4>
+                <p>Focus on your agent's reasoning. Let the A2UI renderer handle the complex visual manifestation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="features-section">
         <div className="section-header">
           <h2 className="section-title">Built for the <span className="gradient-text">Agentic Era</span></h2>
@@ -530,7 +589,156 @@ export function Home() {
           font-size: 0.9rem;
         }
 
+        .comparison-section {
+          padding: 8rem 4rem;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .comparison-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+          margin-top: 4rem;
+        }
+
+        .comparison-card {
+          padding: 3rem;
+          background: var(--bg-secondary);
+          border: 1px solid var(--border-color);
+          border-radius: var(--radius-xl);
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          transition: all 0.3s ease;
+        }
+
+        .comparison-card:hover {
+          transform: translateY(-5px);
+          border-color: var(--text-primary);
+        }
+
+        .comparison-card.highlight {
+          background: var(--text-primary);
+          color: var(--bg-color);
+          border-color: var(--text-primary);
+        }
+
+        .comparison-card.highlight h3, 
+        .comparison-card.highlight p,
+        .comparison-card.highlight .card-value {
+          color: #FAFAFA;
+        }
+
+        .card-tag {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+          padding: 0.25rem 0.75rem;
+          border-radius: var(--radius-pill);
+          display: inline-block;
+          width: fit-content;
+        }
+
+        .card-tag.purple { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+        .card-tag.blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .card-tag.teal { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .card-tag.black { background: rgba(255, 255, 255, 0.2); color: white; }
+
+        .comparison-card h3 {
+          font-size: 1.75rem;
+          font-weight: 800;
+          margin: 0;
+        }
+
+        .comparison-card p {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: var(--text-secondary);
+          margin: 0;
+        }
+
+        .comparison-card strong {
+          color: var(--text-primary);
+        }
+
+        .comparison-card.highlight strong {
+          color: #FFFFFF;
+        }
+
+        .card-value {
+          margin-top: auto;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+
+        .value-prop-banner {
+          margin-top: 6rem;
+          background: var(--bg-secondary);
+          border: 1px solid var(--border-color);
+          border-radius: var(--radius-xl);
+          padding: 6rem 4rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .value-prop-banner::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(to right, #3b82f6, #8b5cf6, #10b981);
+        }
+
+        .banner-content h3 {
+          font-size: 2.5rem;
+          font-weight: 800;
+          text-align: center;
+          margin-bottom: 4rem;
+          letter-spacing: -0.04em;
+        }
+
+        .banner-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 4rem;
+        }
+
+        .banner-item {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .item-number {
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          font-weight: 800;
+          color: #3b82f6;
+          opacity: 0.5;
+        }
+
+        .banner-item h4 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin: 0;
+        }
+
+        .banner-item p {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: var(--text-secondary);
+          margin: 0;
+        }
+
         @media (max-width: 1024px) {
+          .banner-grid { grid-template-columns: 1fr; gap: 3rem; }
+          .value-prop-banner { padding: 4rem 2rem; }
+          .banner-content h3 { font-size: 2rem; }
           .hero-section { grid-template-columns: 1fr; text-align: center; }
           .hero-subtitle { margin: 0 auto 3rem; }
           .cta-group { justify-content: center; }
