@@ -3,28 +3,24 @@
 This file provides a machine-readable summary of the Agent UI Starter Pack for LLMs and AI Agents.
 
 ## Purpose
-A rapid-development framework for creating agentic interfaces using A2UI and GenUI protocols.
+A rapid-development framework for creating agentic interfaces with built-in **Agent Ops** (Day 2 operations) for Google Cloud.
 
 ## Core Modules
 - Renderer: `src/a2ui/A2UIRenderer.tsx` - Handles JSON-to-UI conversion.
-- Playground: `src/App.tsx` (Playground component) - Interactive testing environment.
-- Documentation: `src/docs/` - System guides and architecture overview.
-- Styling: `src/index.css` - Central design system.
+- Optimizer: `src/backend/optimizer.py` - Interactive CLI for cost & perf audit.
+- Cost Control: `src/backend/cost_control.py` - Middleware for budget guardrails and model routing (Gemini 2.0).
+- Deployment: `setup_gcp.sh` - 1-click GCP infrastructure setup.
 
-## Key Protocols
-1. A2UI (Agent-to-User Interface): Uses a structured JSON schema to define UI elements like Cards, Buttons, and Lists.
-2. GenUI: Support for generative UI patterns.
-3. Web Components: Extensible UI via standard web components.
+## Key Features
+1. **Interactive Optimizer**: Run `make audit` to review and approve/reject cost-saving suggestions (Context Caching, Compression, Routing).
+2. **Standardized Schema**: Native A2UI and AG UI support.
+3. **Cloud Native**: Designed for Cloud Run, Vertex AI, Firestore, and Cloud Trace.
 
 ## Quick Start
-1. Clone repository.
-2. Install dependencies: `npm install`.
-3. Start dev server: `npm run dev`.
-4. Open `/playground` to test A2UI JSON snippets.
-
-## Deployment
-- Frontend: `npm run deploy` (Firebase).
-- Backend: Containerized deployment to Google Cloud Run recommended.
+1. `npm install`
+2. `make audit` - Audit your agent.
+3. `make dev` - Start local environment.
+4. `make deploy-prod` - Full GCP deployment.
 
 ## Connectivity
 The playground can connect to a local ADK agent running on `localhost:8000`.

@@ -7,8 +7,8 @@ The world's first **Agent Ops Platform** for Google Cloud. Moving beyond "Hello 
 Most agent templates give you a chat window and leave you to figure out the rest. We focus on **Day 2 Operations**: Optimization, Cost Control, and Infrastructure. 
 
 *   **Vercel for GCP Agents:** 1-click deployment to Cloud Run with automatic scaling to zero.
-*   **The Optimizer:** Built-in CI/CD for prompt compression and context caching detection.
-*   **Cost Guardrails:** Native budget management and smart token usage auditing.
+*   **The Optimizer:** Built-in CLI and CI/CD for prompt compression, context caching, and smart model routing. Supports interactive `approve/reject` workflows.
+*   **Cost Guardrails:** Python middleware for budget management and turn-based token usage auditing.
 *   **Production Stack:** Vertex AI (Gemini 2.0), Cloud Run, Firestore, and Google Cloud Trace out of the box.
 
 ---
@@ -61,6 +61,26 @@ Standardized Web Components that can be embedded into any framework (Angular, Vu
 ```bash
 uvx agentui-starter-pack create my-ui --ui lit
 ```
+
+---
+
+## 🔍 The Optimizer (Interactive Agent Ops)
+
+Ensuring your agent is cost-efficient is critical for production. The `optimizer.py` CLI audits your agent code and proposes optimizations that you can interactively approve or reject.
+
+```bash
+# Run the audit
+make audit
+```
+
+**What it checks:**
+1.  **Context Caching**: Identifies large static prompts and suggests Gemini Context Caching.
+2.  **Prompt Compression**: Finds redundant tokens in your A2UI blueprints.
+3.  **Model Routing**: Audits routing logic to ensure Gemini 2.0 Flash is used for simple tasks.
+
+**Workflow:**
+The CLI will show a diff of the proposed change and ask:
+`Do you want to apply this optimization? (approve/reject) [approve]:`
 
 ---
 
