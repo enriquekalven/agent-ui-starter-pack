@@ -5,8 +5,11 @@ import { useParams } from 'react-router-dom';
 
 const DOC_FILES: Record<string, string> = {
   readme: '/README.md',
-  a2a: '/A2A_GUIDE.md',
+  'getting-started': '/GETTING_STARTED.md',
+  development: '/DEVELOPMENT.md',
   deployment: '/DEPLOYMENT.md',
+  'cli-commands': '/CLI_COMMANDS.md',
+  a2a: '/A2A_GUIDE.md',
   'be-integration': '/BE_INTEGRATION_GUIDE.md',
 };
 

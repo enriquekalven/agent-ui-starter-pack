@@ -4,6 +4,7 @@ import { A2UISurfaceRenderer } from './a2ui/A2UIRenderer';
 import { DocLayout } from './docs/DocLayout';
 import { DocPage } from './docs/DocPage';
 import { ThemeToggle } from './components/ThemeToggle';
+import { Home } from './components/Home';
 import './index.css';
 
 const SAMPLE_A2UI_SURFACE = {
@@ -217,10 +218,12 @@ function Playground() {
       <div className="playground-main">
         {mode === 'editor' ? (
           <div className="editor-pane">
-            <div className="pane-header">
-              <h3>JSON Blueprint</h3>
-              <button className="random-btn" onClick={generateRandomJson}>Generate Random JSON</button>
-              {error && <span className="error-badge">Invalid JSON</span>}
+            <div className="editor-header">
+              <span className="editor-label">A2UI JSON Blueprint</span>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button className="feature-btn mini" onClick={generateRandomJson}>Random</button>
+                {error && <span className="error-badge">Invalid</span>}
+              </div>
             </div>
             <textarea
               className="json-textarea"
@@ -228,14 +231,11 @@ function Playground() {
               onChange={handleJsonChange}
               spellCheck={false}
             />
-            <div className="editor-footer">
-              <p className="hint">Edit this JSON to see the UI update in real-time.</p>
-            </div>
           </div>
         ) : (
           <div className="agent-pane">
-            <div className="pane-header">
-              <h3>Agent Interaction</h3>
+              <div className="editor-header">
+                <span className="editor-label">Agent Logic Console</span>
             </div>
             <div className="chat-history">
               {messages.length === 0 && <p className="empty-chat">Ask the agent to modify the UI (e.g., "Show me some stats")</p>}
@@ -253,21 +253,19 @@ function Playground() {
                 onChange={(e) => setChatInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               />
-              <button onClick={handleSendMessage}>Send</button>
-            </div>
-            <div className="backend-settings">
-              <label>
-                <input type="checkbox" onChange={(e) => (window as any).USE_REAL_BE = e.target.checked} />
-                Connect to Local ADK Agent (localhost:8000)
-              </label>
+                <button onClick={handleSendMessage}>SEND</button>
             </div>
           </div>
         )}
 
         {/* Live Preview */}
-        <div className="preview-pane">
-          <div className="pane-header">
-            <h3>Live Preview</h3>
+        <div className="live-preview-pane">
+          <div className="preview-header">
+            <span className="editor-label">Adaptive Interface Preview</span>
+            <div className="agent-status" style={{ border: 'none', padding: 0 }}>
+              <span className="agent-pulse"></span>
+              <span className="status-text" style={{ fontSize: '0.7rem' }}>Live</span>
+            </div>
           </div>
           <div className="preview-canvas">
             {error ? (
@@ -279,6 +277,12 @@ function Playground() {
               <A2UISurfaceRenderer surface={surface} />
             )}
           </div>
+          <div className="backend-settings-overlay">
+            <label>
+              <input type="checkbox" onChange={(e) => (window as any).USE_REAL_BE = e.target.checked} />
+              Connect to Local ADK Agent
+            </label>
+          </div>
         </div>
       </div>
     </div>
@@ -288,20 +292,16 @@ function Playground() {
 function App() {
   return (
     <Routes>
-      {/* Docs as HomePage using Outlet pattern */}
-      <Route path="/" element={<DocLayout><Outlet /></DocLayout>}>
-        <Route index element={<DocPage />} />
-        <Route path="docs/:docId" element={<DocPage />} />
+      <Route path="/" element={<Home />} />
+
+      <Route path="/docs" element={<DocLayout><Outlet /></DocLayout>}>
+        <Route index element={<Navigate to="/docs/getting-started" replace />} />
+        <Route path=":docId" element={<DocPage />} />
       </Route>
-      
-      {/* Playground moved to /playground */}
+
       <Route path="/playground" element={<Playground />} />
       
-      {/* Legacy /docs redirect to / */}
-      <Route path="/docs" element={<Navigate to="/" replace />} />
-      
-      {/* Fallback */}
-      <Route path="*" element={<Link to="/">Go Home</Link>} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

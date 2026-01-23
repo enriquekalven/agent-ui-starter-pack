@@ -83,9 +83,10 @@ uvx agentui-starter-pack create my-ui --ui lit
 
 This starter pack supports a unified ecosystem of agentic UI standards:
 
-- **A2UI**: The core protocol for adaptive, JSON-driven interfaces.
-- **GenUI (Generative UI)**: Full support for generative patterns across Web and Flutter.
-- **AG UI (Agentic UI)**: Integration-ready for CopilotKit and high-end React surfaces.
+- **A2UI**: The core protocol for adaptive, JSON-driven interfaces. [Official Repo](https://github.com/google/A2UI)
+- **GenUI (Generative UI)**: Full support for generative patterns across Web and Flutter. [Flutter SDK](https://github.com/a2aproject/adk)
+- **AG UI (Agentic UI)**: Integration-ready for [CopilotKit](https://github.com/CopilotKit/CopilotKit) and high-end React surfaces.
+- **Lit Web Components**: Standards-based components for any framework. [Lit Official](https://lit.dev)
 
 ---
 

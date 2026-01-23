@@ -1,0 +1,31 @@
+# Agent UI Starter Pack - LLM Context
+
+This file provides a machine-readable summary of the Agent UI Starter Pack for LLMs and AI Agents.
+
+## Purpose
+A rapid-development framework for creating agentic interfaces using A2UI and GenUI protocols.
+
+## Core Modules
+- Renderer: `src/a2ui/A2UIRenderer.tsx` - Handles JSON-to-UI conversion.
+- Playground: `src/App.tsx` (Playground component) - Interactive testing environment.
+- Documentation: `src/docs/` - System guides and architecture overview.
+- Styling: `src/index.css` - Central design system.
+
+## Key Protocols
+1. A2UI (Agent-to-User Interface): Uses a structured JSON schema to define UI elements like Cards, Buttons, and Lists.
+2. GenUI: Support for generative UI patterns.
+3. Web Components: Extensible UI via standard web components.
+
+## Quick Start
+1. Clone repository.
+2. Install dependencies: `npm install`.
+3. Start dev server: `npm run dev`.
+4. Open `/playground` to test A2UI JSON snippets.
+
+## Deployment
+- Frontend: `npm run deploy` (Firebase).
+- Backend: Containerized deployment to Google Cloud Run recommended.
+
+## Connectivity
+The playground can connect to a local ADK agent running on `localhost:8000`.
+To enable, toggle "Connect to Local ADK Agent" in the Playground.
