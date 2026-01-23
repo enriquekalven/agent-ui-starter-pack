@@ -10,6 +10,16 @@
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --bg-secondary: #f9fafb;
+  --surface-color: rgba(0, 0, 0, 0.02);
+  --border-color: rgba(0, 0, 0, 0.08);
+  --accent-color: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+}
 body {
   margin: 0;
   background-color: var(--bg-color);
@@ -17,10 +27,18 @@ body {
       radial-gradient(at 0% 0%, hsla(217, 100%, 10%, 1) 0, transparent 50%),
       radial-gradient(at 50% 0%, hsla(220, 100%, 5%, 1) 0, transparent 50%),
       radial-gradient(at 100% 0%, hsla(40, 100%, 5%, 1) 0, transparent 50%);
-    background-attachment: fixed;
+  background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  [data-theme="light"] body {
+    background-image:
+      radial-gradient(at 0% 0%, hsla(217, 100%, 98%, 1) 0, transparent 50%),
+      radial-gradient(at 50% 0%, hsla(220, 100%, 99%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(40, 100%, 98%, 1) 0, transparent 50%);
 }
 
 .a2-surface {
@@ -168,6 +186,27 @@ body {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Theme Toggle */
+.theme-toggle {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-color);
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
 /* Agent Thinking Animation */
 .agent-pulse {
   width: 12px;
@@ -225,14 +264,14 @@ body {
 .doc-layout {
   display: flex;
   min-height: 100vh;
-  background: #0f172a;
-  color: #f1f5f9;
+  background: var(--bg-color);
+    color: var(--text-primary);
 }
 
 .doc-sidebar {
   width: 280px;
-  background: #1e293b;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease;
@@ -247,7 +286,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .doc-logo {
@@ -256,7 +295,7 @@ body {
   gap: 0.75rem;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #38bdf8;
+  color: var(--accent-color);
   text-decoration: none;
 }
 
@@ -279,7 +318,7 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #64748b;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -289,7 +328,7 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.625rem 0.875rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   text-decoration: none;
   border-radius: 0.5rem;
   margin-bottom: 0.25rem;
@@ -297,14 +336,14 @@ body {
 }
 
 .nav-item:hover {
-  background: rgba(56, 189, 248, 0.1);
-  color: #38bdf8;
+  background: var(--surface-color);
+    color: var(--accent-color);
 }
 
 .nav-item.active {
-  background: rgba(56, 189, 248, 0.2);
-  color: #38bdf8;
-  border-left: 2px solid #38bdf8;
+  background: var(--accent-glow);
+    color: var(--accent-color);
+    border-left: 2px solid var(--accent-color);
 }
 
 .nav-item .chevron {
@@ -320,12 +359,15 @@ body {
 
 .doc-header {
   padding: 1rem 2rem;
-  background: rgba(15, 23, 42, 0.8);
+  background: var(--bg-color);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 90;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .breadcrumb {
@@ -333,11 +375,11 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 .breadcrumb a {
-  color: #38bdf8;
+  color: var(--accent-color);
   text-decoration: none;
 }
 
@@ -365,8 +407,8 @@ body {
   font-size: 2.25rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
-  color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.75rem;
 }
 
@@ -375,7 +417,7 @@ body {
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .markdown-body p {
@@ -402,8 +444,8 @@ body {
 .markdown-body code {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.9em;
-  background: rgba(56, 189, 248, 0.1);
-  color: #38bdf8;
+  background: var(--accent-glow);
+    color: var(--accent-color);
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
 }

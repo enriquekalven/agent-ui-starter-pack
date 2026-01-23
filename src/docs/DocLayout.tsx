@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Menu, X, ChevronRight, BookOpen, Terminal, Rocket, Cpu, Layout } from 'lucide-react';
 
+import { ThemeToggle } from '../components/ThemeToggle';
+
 interface DocLayoutProps {
   children?: React.ReactNode;
 }
@@ -72,6 +74,9 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
             <Link to="/">Home</Link>
             <ChevronRight size={14} />
             <span>Docs</span>
+          </div>
+          <div style={{ marginLeft: 'auto' }}>
+            <ThemeToggle />
           </div>
         </header>
         <div className="doc-content-wrapper">

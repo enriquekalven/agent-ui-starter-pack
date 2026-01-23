@@ -6,17 +6,68 @@ A high-performance, zero-dependency A2UI (Agentic-Adaptive User Interface) rende
 
 ![Agent UI Hero](/hero.png)
 
-## 🚀 Overview
+## Overview
 
-This project provides a foundational implementation of the **A2UI protocol**, allowing AI agents to dynamically generate and update user interfaces using a declarative JSON schema. It is designed to be lightweight, premium, and easy to extend.
+The Agent UI Starter Pack provides a foundational implementation of the **A2UI protocol**, allowing AI agents to dynamically generate and update user interfaces using a declarative JSON schema. It is designed to be lightweight, premium, and easy to extend.
 
-## ✨ Unified Agent UI Ecosystem
+---
 
-This starter pack is designed to support the leading agentic UI standards:
+## Usage
 
-- **A2UI (Agent-to-User Interface)**: The core protocol for adaptive, JSON-driven interfaces.
-- **GenUI (Generative UI)**: Full support for generative patterns across Web and Flutter.
-- **AG UI (Agentic UI)**: Integration-ready for CopilotKit and high-end React agent surfaces.
+You can use the CLI directly without installation using `uvx`.
+
+```bash
+# General Command Structure
+uvx agentui-starter-pack create <project-name> [OPTIONS]
+```
+
+## Quick Start
+
+Select the implementation standard that matches your tech stack:
+
+### A2UI Standard (React + Vite)
+The default template, optimized for performance and zero-dependency rendering.
+```bash
+uvx agentui-starter-pack create my-ui
+```
+
+### AG UI (High-Fidelity React)
+Uses the **AG UI** standard (CopilotKit) for high-end React implementations with streaming pipes.
+```bash
+uvx agentui-starter-pack create my-ui --ui agui
+```
+
+### GenUI SDK (Flutter)
+Scaffolds the project with the **GenUI SDK bridge**, ideal for cross-platform mobile and web apps.
+```bash
+uvx agentui-starter-pack create my-ui --ui flutter
+```
+
+### Web Components (Lit)
+Standardized Web Components that can be embedded into any framework (Angular, Vue, etc).
+```bash
+uvx agentui-starter-pack create my-ui --ui lit
+```
+
+---
+
+## Prerequisites
+
+- **Node.js**: v18 or higher
+- **Python**: v3.10 or higher (for the CLI)
+- **Git**: Installed and configured
+
+---
+
+## Parameters
+
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `project_name` | Argument | — | The name of the new project directory |
+| `--ui` | Option | `a2ui` | UI Template flavor (`a2ui`, `agui`, `flutter`, `lit`) |
+| `--copilotkit` | Flag | `false` | Enable extra CopilotKit features for AG UI |
+
+---
 
 ## ✨ Features
 
@@ -26,46 +77,21 @@ This starter pack is designed to support the leading agentic UI standards:
 - **Premium Design System**: Dark-mode aesthetic with glassmorphism, smooth transitions, and professional typography (Inter).
 - **Protocol Ready**: Native support for **A2UI** (Agent-to-User) and **A2A** (Agent-to-Agent) standards.
 
-## 🛠️ Getting Started
+---
 
+## 🏗️ Architecture & Ecosystem
 
-```bash
-# Standard Setup (A2UI / React / Vite)
-uvx agentui-starter-pack create my-ui
+This starter pack supports a unified ecosystem of agentic UI standards:
 
-# High-Fidelity Setup (AG UI / CopilotKit)
-uvx agentui-starter-pack create my-ui --ui agui
+- **A2UI**: The core protocol for adaptive, JSON-driven interfaces.
+- **GenUI (Generative UI)**: Full support for generative patterns across Web and Flutter.
+- **AG UI (Agentic UI)**: Integration-ready for CopilotKit and high-end React surfaces.
 
-# GenUI SDK (Flutter / Cross-Platform)
-uvx agentui-starter-pack create my-ui --ui flutter
-
-# Web Components (Lit / Zero-Dependency)
-uvx agentui-starter-pack create my-ui --ui lit
-```
-
-### Prerequisites
-
-- Node.js (v18+)
-- Python (v3.10+) for the CLI
-- git
-
-```bash
-# Install dependencies
-npm install
-```
-
-### Development
-
-```bash
-# Start the Vite development server
-npm run dev
-```
-
-The application will be available at `http://localhost:8888`.
+---
 
 ## 🚀 Deployment
 
-The project includes one-line deployment commands via the `Makefile`.
+One-liner deployment commands are provided via the included `Makefile`.
 
 | Platform | Command |
 | :--- | :--- |
@@ -73,24 +99,17 @@ The project includes one-line deployment commands via the `Makefile`.
 | **Firebase** | `make deploy-firebase` |
 | **GKE** | `make deploy-gke` |
 
-For more options and configuration details, see the [Deployment Guide](./DEPLOYMENT.md).
+For advanced configuration, see the [Deployment Guide](./DEPLOYMENT.md).
 
-## 🏗️ Architecture & Frameworks
+---
 
-### Web Components (Lit)
-A2UI's core repository is built with **Lit**. For the "Full Control" path, you can use the native Lit renderer to create standard Web Components that work in any framework (including Angular).
+## 📡 Protocol Standards
 
-### Flutter (GenUI SDK)
-A2UI is designed for developers building custom surfaces across Web, Mobile, and **Flutter**. The **GenUI SDK** pattern allows for "Native-First" rendering where the agent sends blueprints that are realized using high-performance Flutter widgets.
+### A2A Protocol
+The **Agent-to-Agent (A2A)** protocol enables agents to communicate over a network. See the [A2A_GUIDE.md](./A2A_GUIDE.md) for multi-agent orchestration.
 
-### AG UI (CopilotKit)
-For high-end React implementations, we recommend **CopilotKit** (formerly AG UI). It provides a full-stack starter designed for A2A and A2UI, handling the streaming "pipes" so you can focus on building beautiful surfaces.
-
-## 📡 A2A Protocol
-The **Agent-to-Agent (A2A)** protocol enables agents to communicate over a network. See the [A2A_GUIDE.md](./A2A_GUIDE.md) for details on exposing agents as services and orchestrating multi-agent systems.
-
-## 📜 A2UI Protocol
-The renderer expects an `A2UISurface` object with the following structure:
+### A2UI Schema
+The renderer expects an `A2UISurface` object:
 
 ```json
 {
@@ -103,12 +122,14 @@ The renderer expects an `A2UISurface` object with the following structure:
     {
       "type": "Card",
       "props": { "title": "System Meta" },
-      "children": [...]
+      "children": []
     }
   ]
 }
 ```
 
-## 📄 License
+---
+
+## License
 
 MIT

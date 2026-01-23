@@ -3,6 +3,7 @@ import { Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
 import { A2UISurfaceRenderer } from './a2ui/A2UIRenderer';
 import { DocLayout } from './docs/DocLayout';
 import { DocPage } from './docs/DocPage';
+import { ThemeToggle } from './components/ThemeToggle';
 import './index.css';
 
 const SAMPLE_A2UI_SURFACE = {
@@ -208,6 +209,7 @@ function Playground() {
         </div>
         <nav className="header-nav">
           <Link to="/" className="nav-link">← Back to Docs</Link>
+          <ThemeToggle />
           <a href="/docs/be-integration" className="nav-link special">Connect to Agent →</a>
         </nav>
       </header>
