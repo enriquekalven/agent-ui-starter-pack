@@ -10,6 +10,36 @@ The project includes a `Makefile` that simplifies deployment to a single command
 
 ---
 
+## 🏗️ Scaffolding Options
+
+You can scaffold specialized versions of the Agent UI using `uvx`. Select the implementation standard that matches your tech stack:
+
+### A2UI (Standard React)
+The default template, optimized for performance and zero-dependency rendering.
+```bash
+uvx agentui-starter-pack create my-app
+```
+
+### AG UI (High-Fidelity)
+Uses **CopilotKit** for a full-stack React implementation with pre-built streaming pipes.
+```bash
+uvx agentui-starter-pack create my-app --ui agui --copilotkit
+```
+
+### GenUI SDK (Flutter)
+Scaffolds the project with the **GenUI SDK bridge**, ideal for cross-platform mobile and web apps.
+```bash
+uvx agentui-starter-pack create my-app --ui flutter
+```
+
+### Lit (Web Components)
+Standardized Web Components that can be embedded into any framework (Angular, Vue, etc).
+```bash
+uvx agentui-starter-pack create my-app --ui lit
+```
+
+---
+
 ## 1. Google Cloud Run (Recommended)
 
 Cloud Run is the best platform for serving the A2UI renderer as it offers serverless scaling and zero-config TLS.

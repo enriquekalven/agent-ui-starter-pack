@@ -1,27 +1,47 @@
 # Agent UI Starter Pack
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/enriquekalven/agent-ui-starter-pack)
+
 A high-performance, zero-dependency A2UI (Agentic-Adaptive User Interface) renderer built with React, TypeScript, and Vite.
+
+![Agent UI Hero](/hero.png)
 
 ## 🚀 Overview
 
 This project provides a foundational implementation of the **A2UI protocol**, allowing AI agents to dynamically generate and update user interfaces using a declarative JSON schema. It is designed to be lightweight, premium, and easy to extend.
 
+## ✨ Unified Agent UI Ecosystem
+
+This starter pack is designed to support the leading agentic UI standards:
+
+- **A2UI (Agent-to-User Interface)**: The core protocol for adaptive, JSON-driven interfaces.
+- **GenUI (Generative UI)**: Full support for generative patterns across Web and Flutter.
+- **AG UI (Agentic UI)**: Integration-ready for CopilotKit and high-end React agent surfaces.
+
 ## ✨ Features
 
 - **Zero-Dependency Renderer**: Recursive rendering engine that handles complex A2UI JSON trees without external SDKs.
-- **Multi-Platform Support**: Built-in logic optimized for **React**, **Lit (Web Components)**, and **Flutter (GenUI SDK)**.
+- **Visual Analytics**: Built-in support for **StatBars**, **Images**, and **Dynamic Lists** for rich dashboard generation.
+- **Interactive Playground**: A built-in sandbox with **Agent Mode** to simulate real-world AI-driven UI updates.
 - **Premium Design System**: Dark-mode aesthetic with glassmorphism, smooth transitions, and professional typography (Inter).
 - **Protocol Ready**: Native support for **A2UI** (Agent-to-User) and **A2A** (Agent-to-Agent) standards.
-- **Agent Pulse**: Built-in "Agent Online" status indicator with CSS animations.
 
 ## 🛠️ Getting Started
+
+
+```bash
+# Basic setup
+uvx agentui-starter-pack create my-ui
+
+# High-fidelity setup with CopilotKit/AGUI
+uvx agentui-starter-pack create my-ui --ui agui --copilotkit
+```
 
 ### Prerequisites
 
 - Node.js (v18+)
-- npm
-
-### Installation
+- Python (v3.10+) for the CLI
+- git
 
 ```bash
 # Install dependencies
@@ -35,7 +55,7 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`.
+The application will be available at `http://localhost:8888`.
 
 ## 🚀 Deployment
 

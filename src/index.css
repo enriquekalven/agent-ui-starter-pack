@@ -1,5 +1,6 @@
 :root {
   --bg-color: #0d0e12;
+  --bg-secondary: #13151a;
   --surface-color: rgba(255, 255, 255, 0.05);
   --border-color: rgba(255, 255, 255, 0.1);
   --accent-color: #3b82f6;
@@ -12,6 +13,11 @@
 body {
   margin: 0;
   background-color: var(--bg-color);
+  background-image:
+      radial-gradient(at 0% 0%, hsla(217, 100%, 10%, 1) 0, transparent 50%),
+      radial-gradient(at 50% 0%, hsla(220, 100%, 5%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(40, 100%, 5%, 1) 0, transparent 50%);
+    background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
@@ -377,6 +383,13 @@ body {
   color: #94a3b8;
 }
 
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1.5rem 0;
+  display: block;
+}
 .markdown-body pre {
   background: #0f172a;
   padding: 1.25rem;
