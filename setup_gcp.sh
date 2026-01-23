@@ -60,11 +60,19 @@ python3 src/backend/optimizer.py src/backend/agent.py --auto-approve
 
 # 8. Deploy to Cloud Run
 echo "⚡ Deploying Production Agent Ops Stack..."
+# Cloud Run --source looks for 'Dockerfile'. Swap temporarily.
+mv Dockerfile Dockerfile.frontend
+cp Dockerfile.backend Dockerfile
+
 gcloud run deploy agent-ops-backend \
     --source . \
     --region us-central1 \
     --allow-unauthenticated \
     --quiet
+
+# Swap back
+mv Dockerfile Dockerfile.backend
+mv Dockerfile.frontend Dockerfile
 
 echo ""
 echo "🎉 AGENT OPS SETUP COMPLETE!"

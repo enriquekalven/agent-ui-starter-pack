@@ -8,7 +8,7 @@ export function Home() {
       <header className="home-header">
         <div className="logo-section">
           <span className="agent-pulse"></span>
-          <span className="logo-text">Agent UI Starter</span>
+          <span className="logo-text">AgentOps Starter Pack</span>
         </div>
         <nav className="home-nav">
           <Link to="/docs" className="nav-item">Documentation</Link>
@@ -26,10 +26,10 @@ export function Home() {
             v1.0.0 Now Available
           </div>
           <h1 className="hero-title">
-            Production-Ready <span className="highlight-text">Agent Ops.</span>
+            The Agent Ops <span className="highlight-text">Control Plane.</span>
           </h1>
           <p className="hero-subtitle">
-            The Vercel for Google Cloud Agents. Deploy cost-optimized, secure, and auto-scaling agent infrastructure in seconds.
+            The "Cockpit" for Google Cloud Agents. 1-click deployment for Shadow Mode, Semantic Caching, Red Team Audits, and Real-time Debugging.
           </p>
           <div className="cta-group">
             <Link to="/docs/getting-started" className="cta-button primary">
@@ -92,22 +92,74 @@ export function Home() {
 
         <div className="ecosystem-grid">
           <div className="ecosystem-card full-width">
-            <div className="glass-content">
+            <div className="glass-content story-mode">
               <div className="text-side">
-                <div className="accent-label">Agent Optimization</div>
-                <h3>The Intelligence Pipeline</h3>
-                <p>Don't ship wasteful prompts. Our built-in Optimizer audits your agent for token usage, flags cost-saving opportunities like Context Caching, and suggests tool offloading for maximum reliability.</p>
-                <ul className="accent-list">
-                  <li><strong>Prompt Compression:</strong> Save up to 40% on token costs automatically.</li>
-                  <li><strong>Context Caching:</strong> Detect high-reuse data and enable Gemini Caching.</li>
-                  <li><strong>Cloud Run Native:</strong> Scale to zero and only pay for what your agent uses.</li>
-                </ul>
+                <div className="accent-label">The Evolution</div>
+                <h3>The Agentic Trinity</h3>
+                <p>A production-grade agent requires a synchronized stack of three distinct technologies. We've built the "Cockpit" to master them all.</p>
+
+                <div className="pillar-timeline">
+                  <div className="pillar">
+                    <div className="pillar-dot"></div>
+                    <div className="pillar-info">
+                      <div className="flex items-center gap-2">
+                        <strong>Day 0: The Engine</strong>
+                        <span className="platform-tag">Agent Starter Pack</span>
+                      </div>
+                      <p>Focus on intelligence. Reasoning engine, toolsets, and GCloud tracing functionality.</p>
+                    </div>
+                  </div>
+                  <div className="pillar">
+                    <div className="pillar-dot"></div>
+                    <div className="pillar-info">
+                      <div className="flex items-center gap-2">
+                        <strong>Day 1: The Face</strong>
+                        <span className="platform-tag">Agent UI Starter</span>
+                      </div>
+                      <p>Focus on experience. Generative A2UI surfaces and adaptive component rendering.</p>
+                    </div>
+                  </div>
+                  <div className="pillar active">
+                    <div className="pillar-dot highlighted"></div>
+                    <div className="pillar-info">
+                      <div className="flex items-center gap-2">
+                        <strong style={{ color: 'var(--primary-color)' }}>Day 2: The Cockpit</strong>
+                        <span className="platform-tag active">AgentOps Starter Pack</span>
+                      </div>
+                      <p>Focus on operations. Shadow Mode, Semantic Caching, and Security hardening.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="visual-side">
-                <img src="/diagrams/agentic-stack.png" alt="Agentic Stack Architecture" className="ecosystem-img" />
+
+              <div className="visual-side trinity-diagram-container">
+                <div className="trinity-visual">
+                  <div className="trinity-center-logo">
+                    <span className="agent-pulse large"></span>
+                  </div>
+                  <div className="trinity-node core">
+                    <div className="node-icon">⚙️</div>
+                    <span>Intelligence</span>
+                  </div>
+                  <div className="trinity-node ui">
+                    <div className="node-icon">🎭</div>
+                    <span>Presentation</span>
+                  </div>
+                  <div className="trinity-node ops active-node">
+                    <div className="node-icon">🕹️</div>
+                    <span>Operations</span>
+                  </div>
+
+                  <svg className="trinity-lines" viewBox="0 0 300 300">
+                    <line x1="150" y1="60" x2="60" y2="220" stroke="var(--border-color)" strokeWidth="2" strokeDasharray="4 4" />
+                    <line x1="60" y1="220" x2="240" y2="220" stroke="var(--border-color)" strokeWidth="2" strokeDasharray="4 4" />
+                    <line x1="240" y1="220" x2="150" y2="60" stroke="var(--primary-color)" strokeWidth="3" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
           <div className="ecosystem-card reverse full-width">
             <div className="glass-content">
@@ -134,7 +186,6 @@ export function Home() {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
@@ -167,10 +218,10 @@ export function Home() {
           </div>
 
           <div className="comparison-card highlight">
-            <div className="card-tag black">AGENT OPS</div>
-            <h3>Agent UI</h3>
-            <p><strong>The Infrastructure.</strong> A production-grade platform for deploying, optimizing, and scaling Google Cloud agents. Built on Cloud Run with native cost guardrails.</p>
-            <div className="card-value">Role: <strong>Scale & Cost</strong></div>
+            <div className="card-tag black">YOU ARE HERE</div>
+            <h3>AgentOps Starter Pack</h3>
+            <p><strong>The Cockpit.</strong> The 1-click deployment for Day 2 Operations. It manages Shadow Mode traffic, Hive Mind Caching, and Security Audits for your agents.</p>
+            <div className="card-value">Role: <strong>Control & Governance</strong></div>
           </div>
         </div>
 
@@ -231,13 +282,213 @@ export function Home() {
         <div className="footer-content">
           <div className="footer-logo">
             <span className="agent-pulse"></span>
-            <span>Agent UI Starter</span>
+            <span>AgentOps Starter Pack</span>
           </div>
           <p>© 2026 Agentic Systems Inc. All rights reserved.</p>
         </div>
       </footer>
 
       <style>{`
+        /* Story Mode & Pillar Timeline */
+        .glass-content.story-mode {
+          display: flex;
+          gap: 3rem;
+          padding: 4rem;
+        }
+        .pillar-timeline {
+          margin-top: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          position: relative;
+        }
+        .pillar-timeline::before {
+          content: '';
+          position: absolute;
+          left: 7px;
+          top: 10px;
+          bottom: 10px;
+          width: 2px;
+          background: var(--border-color);
+        }
+        .pillar {
+          display: flex;
+          gap: 1.5rem;
+          position: relative;
+        }
+        .pillar-dot {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: var(--surface-color);
+          border: 2px solid var(--border-color);
+          z-index: 2;
+          margin-top: 4px;
+        }
+        .pillar-dot.highlighted {
+          border-color: var(--primary-color);
+          background: var(--primary-color);
+          box-shadow: 0 0 15px var(--primary-color);
+        }
+        .pillar-info strong {
+          display: block;
+          font-size: 1rem;
+          margin-bottom: 0.25rem;
+        }
+        .pillar-info span {
+          font-size: 0.75rem;
+          color: var(--primary-color);
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+        .pillar-info p {
+          font-size: 0.85rem;
+          opacity: 0.7;
+          margin-top: 0.5rem;
+        }
+        .pillar.active .pillar-info strong {
+          color: var(--primary-color);
+        }
+
+        .platform-tag {
+          font-size: 0.6rem;
+          background: var(--border-color);
+          padding: 0.2rem 0.5rem;
+          border-radius: 4px;
+          font-weight: 800;
+          opacity: 0.6;
+        }
+        .platform-tag.active {
+          background: rgba(var(--primary-color-rgb), 0.1);
+          color: var(--primary-color);
+          opacity: 1;
+        }
+
+        /* Trinity Visual */
+        .visual-side.trinity-diagram-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          perspective: 1000px;
+        }
+        .trinity-visual {
+          position: relative;
+          width: 300px;
+          height: 300px;
+        }
+        .trinity-center-logo {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+        }
+        .agent-pulse.large {
+          width: 50px;
+          height: 50px;
+          background: var(--primary-color);
+        }
+        .trinity-node {
+          position: absolute;
+          padding: 0.75rem 1rem;
+          background: var(--surface-color);
+          border: 1px solid var(--border-color);
+          border-radius: 1rem;
+          font-weight: 800;
+          font-size: 0.8rem;
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+          transition: all 0.3s ease;
+        }
+        .node-icon { font-size: 1.25rem; }
+        .trinity-node.core { top: 0; left: 50%; transform: translateX(-50%); }
+        .trinity-node.ui { bottom: 0; left: 0; }
+        .trinity-node.ops { bottom: 0; right: 0; }
+        .trinity-node.active-node {
+          border-color: var(--primary-color);
+          background: var(--bg-color);
+          box-shadow: 0 15px 35px rgba(var(--primary-color-rgb), 0.2);
+          transform: scale(1.1) translateY(-10px);
+        }
+        .trinity-node.ops.active-node {
+           bottom: 10px;
+           right: -10px;
+        }
+
+        .trinity-lines {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+        }
+
+        /* Existing Styles */
+        .trinity-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+          margin-top: 2.5rem;
+        }
+        .trinity-item {
+          background: rgba(var(--bg-color-rgb), 0.3);
+          border: 1px solid var(--border-color);
+          padding: 1.5rem;
+          border-radius: 1rem;
+          transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .trinity-item.active {
+          border-color: var(--primary-color);
+          background: rgba(var(--primary-color-rgb), 0.05);
+          box-shadow: 0 10px 30px rgba(var(--primary-color-rgb), 0.1);
+        }
+        .trinity-icon {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--surface-color);
+          border-radius: 1rem;
+          border: 1px solid var(--border-color);
+        }
+        .trinity-item h4 {
+          font-size: 1rem;
+          font-weight: 800;
+          margin: 0;
+          line-height: 1.2;
+        }
+        .trinity-sub {
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: var(--primary-color);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 0.75rem;
+          display: block;
+        }
+        .trinity-item p {
+          font-size: 0.8rem;
+          color: var(--text-secondary);
+          line-height: 1.4;
+          margin: 0;
+        }
+        .trinity-item:hover {
+          transform: translateY(-5px);
+          border-color: var(--primary-color);
+        }
+
         .home-container {
           min-height: 100vh;
         }
