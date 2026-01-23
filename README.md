@@ -79,14 +79,33 @@ uvx agentui-starter-pack create my-ui --ui lit
 
 ---
 
-## 🏗️ Architecture & Ecosystem
+## 🏗️ The Agentic Ecosystem
 
-This starter pack supports a unified ecosystem of agentic UI standards:
+Agent UI Starter Pack is more than just a renderer—it is the bridge between the logic-heavy world of Agent Frameworks and the visual world of Modern Frontend.
+
+### The Agentic Stack
+![Agentic Stack](/diagrams/agentic-stack.png)
+
+A2UI sits as the critical middleware layer:
+1.  **Agent Brain**: Frameworks like LangGraph, CrewAI, or Google ADK reason and plan.
+2.  **A2UI Gateway**: The agent outputs a structured JSON Blueprint instead of raw text.
+3.  **A2UI Renderer**: This starter pack interprets the blueprint and manifests a high-fidelity React interface in real-time.
+
+### Value Proposition: From Text to Interface
+![Value Proposition](/diagrams/value-proposition.png)
+
+*   **Move Beyond Chat**: Don't trap your users in a chat bubble. Provide full application surfaces that adapt to the agent's current task.
+*   **Standardized Schema**: Use the Google-originated A2UI standard to ensure your UI is portable across Web, Mobile (Flutter), and Desktop.
+*   **Production Ready**: Built-in support for Multi-Agent orchestration, human-in-the-loop approvals, and complex data visualization.
+
+---
+
+## 🏗️ Architecture & Standards
 
 - **A2UI**: The core protocol for adaptive, JSON-driven interfaces. [Official Repo](https://github.com/google/A2UI)
-- **GenUI (Generative UI)**: Full support for generative patterns across Web and Flutter. [Flutter SDK](https://github.com/a2aproject/adk)
+- **GenUI (Generative UI)**: Full support for generative patterns across Web and Flutter.
 - **AG UI (Agentic UI)**: Integration-ready for [CopilotKit](https://github.com/CopilotKit/CopilotKit) and high-end React surfaces.
-- **Lit Web Components**: Standards-based components for any framework. [Lit Official](https://lit.dev)
+- **Lit Web Components**: Standards-based components for any framework.
 
 ---
 

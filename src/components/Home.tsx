@@ -84,6 +84,60 @@ export function Home() {
         </div>
       </main>
 
+      <section className="ecosystem-section">
+        <div className="section-header">
+          <h2 className="section-title">The <span className="gradient-text">Agentic Stack</span></h2>
+          <p className="section-subtitle">A2UI is the critical missing layer between LLM reasoning and structured human interaction.</p>
+        </div>
+
+        <div className="ecosystem-grid">
+          <div className="ecosystem-card full-width">
+            <div className="glass-content">
+              <div className="text-side">
+                <div className="accent-label">Architecture</div>
+                <h3>Bridging the Gap</h3>
+                <p>Modern AI Agents (LangGraph, CrewAI, AutoGPT) excel at reasoning but struggle to present complex data. A2UI provides a declarative bridge, allowing agents to "think" in JSON and "act" in React components.</p>
+                <ul className="accent-list">
+                  <li><strong>State Management:</strong> Real-time syncing between agent state and UI.</li>
+                  <li><strong>Multi-Agent Ready:</strong> Orchestrate multiple agents into a unified interface.</li>
+                  <li><strong>Human-in-the-loop:</strong> Native support for approval flows and interactive edits.</li>
+                </ul>
+              </div>
+              <div className="visual-side">
+                <img src="/diagrams/agentic-stack.png" alt="Agentic Stack Architecture" className="ecosystem-img" />
+              </div>
+            </div>
+          </div>
+
+          <div className="ecosystem-card reverse full-width">
+            <div className="glass-content">
+              <div className="visual-side">
+                <img src="/diagrams/value-proposition.png" alt="A2UI Value Proposition" className="ecosystem-img" />
+              </div>
+              <div className="text-side">
+                <div className="accent-label">Value Proposition</div>
+                <h3>From Text to Interface</h3>
+                <p>Stop forcing your users to read walls of text. Move from chat-only outputs to full-fledged application surfaces that change based on what the agent is doing.</p>
+                <div className="value-stats">
+                  <div className="value-stat">
+                    <h4>85%</h4>
+                    <p>Faster Time-to-UI</p>
+                  </div>
+                  <div className="value-stat">
+                    <h4>100%</h4>
+                    <p>Standardized Schema</p>
+                  </div>
+                  <div className="value-stat">
+                    <h4>v1.0</h4>
+                    <p>Google Open Standard</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="features-section">
         <div className="section-header">
           <h2 className="section-title">Built for the <span className="gradient-text">Agentic Era</span></h2>
