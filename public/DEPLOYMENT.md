@@ -1,42 +1,31 @@
-# Deployment: Shipping the Optimized Agent Stack
+# Deployment: Shipping the Agent UI Starter Pack
 
-The **Optimized Agent Stack** is designed for high-fidelity, cost-optimized deployment on **Google Cloud**.
+The **Agent UI Starter Pack** is designed for high-fidelity deployment on **Google Cloud**.
 
-## ⚡️ 1-Click Operations (The Cockpit)
+## ⚡️ 1-Click Deployment
 
-The built-in `Makefile` handles the entire production deployment flow.
+The built-in `Makefile` handles the production deployment flow.
 
 | Target | Command | Platform |
 | :--- | :--- | :--- |
-| **Full Stack** | `make deploy-prod` | Cloud Run (Engine) + Firebase (Face) |
-| **The Engine** | `make deploy-cloud-run` | Google Cloud Run (Backend) |
-| **The Face** | `make deploy-firebase` | Firebase Hosting (Frontend) |
+| **Full Stack** | `make deploy-prod` | Cloud Run (API) + Firebase (UI) |
+| **The Engine** | `make deploy-engine` | Vertex AI Agent Engine |
+| **The API** | `make deploy-cloud-run` | Google Cloud Run (Backend) |
+| **The UI** | `make deploy-firebase` | Firebase Hosting (Frontend) |
 
 ---
 
-## 1. Initial GCP Setup
+## 1. Google Cloud Run (The API Bridge)
 
-Before your first deployment, run the setup script to configure your project, enable APIs, and create the Artifact Registry repo.
-
-```bash
-chmod +x setup_gcp.sh
-./setup_gcp.sh
-```
-
----
-
-## 2. Google Cloud Run (The Engine)
-
-The backend agent is served via Cloud Run, offering serverless scaling and native integration with **Vertex AI** and **Cloud Trace**.
+The backend bridge/API is served via Cloud Run, offering serverless scaling and native integration with vertex AI.
 
 ### Manual Deployment Steps
 ```bash
 # Set your project
 gcloud config set project YOUR_PROJECT_ID
 
-# Deploy the backend (Engine)
-# The setup_gcp.sh script handles this, but here is the manual command:
-gcloud run deploy agent-ops-backend \
+# Deploy the backend
+gcloud run deploy agent-ui-engine \
   --source . \
   --dockerfile Dockerfile.backend \
   --region us-central1 \
@@ -45,41 +34,34 @@ gcloud run deploy agent-ops-backend \
 
 ---
 
-## 3. Firebase Hosting (The Face)
+## 2. Firebase Hosting (The UI)
 
 Firebase is used for hosting the static A2UI renderer assets. This ensures your users get the fastest possible bundle delivery.
 
 ### Deployment Steps
 ```bash
-# Set up hosting target (one-time)
-firebase target:apply hosting agent-ui agent-cockpit
+# Set up hosting
+firebase use YOUR_PROJECT_ID
 
 # Build and Deploy
 npm run build
-firebase deploy --only hosting:agent-ui
+firebase deploy --only hosting
 ```
 
 ---
 
 ## 🏗️ Scaffolding New Projects
 
-You can use the **Optimized Agent Stack** CLI to scaffold new specialized projects:
+You can use the CLI to scaffold new specialized projects:
 
 ```bash
-# Standard React Template
+# Standard A2UI Template
 uvx agent-starter-pack create my-app
-
-# High-End AG-UI (CopilotKit)
-uvx agent-starter-pack create my-app --ui agui
-
-# Mobile Integration (Flutter)
-uvx agent-starter-pack create my-app --ui flutter
 ```
 
 ---
 
-## 🛡️ CI/CD & Security
+## 🛡️ Observability
 
-*   **GitHub Actions**: Integrated with `make red-team` to prevent unsafe code from reaching production.
-*   **Shadow Mode**: Configured during deployment to allow safe v1/v2 traffic splitting.
-*   **Observability**: **Google Cloud Trace** is pre-configured to track "Thought Chains" from the frontend into the backend agent.
+*   **Google Cloud Trace**: Pre-configured to track requests from the frontend into the backend agent.
+*   **Logging**: All agent generated A2UI payloads are logged for easier debugging and refinement.

@@ -1,8 +1,8 @@
 # Backend Engine Integration Guide
 
-This guide explains how to connect your **Optimized Agent Stack** to a live backend agent powered by **ADK (Agent Development Kit)** and **Vertex AI Agent Engine**.
+This guide explains how to connect your **Agent UI Starter Pack** to a live backend agent powered by **ADK (Agent Development Kit)** and **Vertex AI Agent Engine**.
 
-## 🏗️ Architecture: The Engine (Day 0)
+## 🏗️ Architecture: The Engine
 
 The A2UI flow typically follows this pattern:
 1. **User Input**: Client sends a message to the Agent.
@@ -53,31 +53,21 @@ To send A2UI from an ADK agent, use the `A2UISurface` model provided in `src/bac
 from .agent import A2UISurface, A2UIComponent
 
 # 1. Define your tool
-async def generate_mcp_report(query: str):
+async def generate_report(query: str):
     return A2UISurface(
-        surfaceId="mcp-report",
+        surfaceId="report",
         content=[
-            A2UIComponent(type="Text", props={"text": "⚡ MCP Health", "variant": "h1"}),
-            A2UIComponent(type="Card", props={"title": "Connectivity Status"})
+            A2UIComponent(type="Text", props={"text": "⚡ Report Title", "variant": "h1"}),
+            A2UIComponent(type="Card", props={"title": "Status"})
         ]
     )
-```
-
-### Tool Usage Optimization (MCP Hub)
-Instead of using fragmented Tool APIs, the **Optimized Agent Stack** recommends using the **MCP Hub**:
-
-```python
-from .ops.mcp_hub import global_mcp_hub
-
-# Execute tools via standardized MCP protocol
-result = await global_mcp_hub.execute_tool("search", {"q": query})
 ```
 
 ---
 
 ## 🚀 Deployment to Google Cloud
 
-When you are ready to ship the **Engine**, use the **Cockpit** deployment command:
+When you are ready to ship the **Engine**, use the deployment command:
 
 ```bash
 make deploy-prod

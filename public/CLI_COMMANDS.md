@@ -1,65 +1,56 @@
-# Optimized Agent Stack: CLI & Cockpit Reference
+# Agent UI Starter Pack: CLI Reference
 
-The **Optimized Agent Stack** provides a comprehensive set of tools for both building (Scaffolding) and managing (Operations) AI agents.
+The **Agent UI Starter Pack** provides specialized tools for building high-fidelity Agent-Driven interfaces and optimized backend engines.
 
-## 1. Scaffolding (Day 0)
+## 1. Scaffolding
 
-Use `uvx` to create new projects without local installation:
+Use `uvx` to create new projects without local installation.
 
-### `create`
-Scaffold a new project with a specific UI flavor.
+### 🎭 `agent-ui-starter-pack` (The Face) - *Primary Tool*
+Scaffold a high-fidelity frontend component. 
+**App-ification Logic**: Projects created with this command are automatically configured to use the **A2UI Playground** as the home route (`/`), making it a standalone dashboard out of the box.
+
 ```bash
-uvx agent-starter-pack create my-agent --ui a2ui
+uvx agent-ui-starter-pack create my-ui-project --template a2ui
+```
+
+### ⚙️ `agent-starter-pack` (The Engine)
+Scaffold the backend agent engine for managed runtimes.
+```bash
+uvx agent-starter-pack create my-agent-project
 ```
 
 ---
 
-## 2. The Cockpit: Agent Operations (Makefile)
+## 2. One-Click Stack Deployment
 
-Use the included `Makefile` for Day 2 production management.
+The `agent-ui-starter-pack` CLI is designed to ship the entire experience (The Face + The Engine) in a single flow.
 
-### `make audit`
-Runs the **Interactive Agent Optimizer**.
-*   **Scanning**: Scans `agent.py` for cost/perf waste.
-*   **Proposals**: Suggests Gemini Context Caching, Prompt Compression, and MCP Migration.
-*   **Approval**: Interactive `approve/reject` workflow.
+### `deploy`
+Deploys the UI to **Firebase Hosting** and the Agent Engine to **Google Cloud Run** (on behalf of the user).
 
-### `make red-team`
-Unleashes a security audit against your agent.
-*   **Adversarial Eval**: Prompt injection, PII extraction, and jailbreak simulation.
-*   **Safety Lock**: Fails deployment if vulnerabilities are found.
-
-### `make dev`
-Starts the local development stack (Vite frontend + FastAPI backend).
 ```bash
+uvx agent-ui-starter-pack deploy --project [YOUR_PROJECT_ID]
+```
+
+**What it does:**
+1.  **Engine Deployment**: Containerizes and ships `src/backend/agent.py` to Cloud Run.
+2.  **Face Build**: Compiles the React/A2UI frontend.
+3.  **Face Deployment**: Ships the static assets to Firebase Hosting.
+
+---
+
+## 🛠️ 3. Integrated Operations (Makefile)
+The `Makefile` provides a unified interface for developers working within this repository.
+
+### Local Development
+```bash
+# Start the Vite + FastAPI development environment
 make dev
 ```
 
-### `make deploy-prod`
-The "Golden Path" to production.
-1.  **Optimization**: Runs a fresh audit.
-2.  **Build**: Compiles the React frontend.
-3.  **Engine**: Deploys the backend to **Google Cloud Run**.
-4.  **Face**: Deploys the frontend to **Firebase Hosting**.
-
----
-
-## 3. Operations Dashboard (Cockpit UI)
-
-Navigate to `/ops` on your deployed or local instance to access the **Control Plane**.
-
-*   **Shadow Mode Router**: Compare v1 vs v2 responses in real-time.
-*   **Flight Recorder**: Step-through visual scrubber for agent thought chains.
-*   **Semantic Cache Stats**: Real-time visualization of cost savings from the "Hive Mind" cache.
-*   **MCP Hub Status**: Monitor the health of standardized tool connections.
-
----
-
-## 4. Google Cloud Setup
-
-To initialize the environment for the first time, use the setup script:
+### Full Stack Deployment
 ```bash
-chmod +x setup_gcp.sh
-./setup_gcp.sh
+# Build assets and deploy the entire Face + Engine ecosystem
+make deploy-prod
 ```
-This configures Artifact Registry, enables APIs, and runs the initial security evaluation.

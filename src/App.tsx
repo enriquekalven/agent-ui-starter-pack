@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
-import { Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import { Activity } from 'lucide-react';
 import { A2UISurfaceRenderer } from './a2ui/A2UIRenderer';
 import { DocLayout } from './docs/DocLayout';
 import { DocPage } from './docs/DocPage';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Home } from './components/Home';
-import { OpsDashboard } from './components/OpsDashboard';
+import OpsDashboard from './components/OpsDashboard';
 import './index.css';
+
+const SparkleIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sparkle-avatar">
+    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+    <path d="M5 3v4" /><path d="M3 5h4" /><path d="M19 17v4" /><path d="M17 19h4" />
+  </svg>
+);
+
+const SendIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="22" y1="2" x2="11" y2="13" />
+    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+  </svg>
+);
 
 const SAMPLE_A2UI_SURFACE = {
   surfaceId: 'welcome-surface',
@@ -101,195 +115,129 @@ const RANDOM_TEMPLATES = [
   }
 ];
 
-function Playground() {
-  const [jsonText, setJsonText] = useState(JSON.stringify(SAMPLE_A2UI_SURFACE, null, 2));
-  const [surface, setSurface] = useState(SAMPLE_A2UI_SURFACE);
-  const [error, setError] = useState<string | null>(null);
-  const [mode, setMode] = useState<'editor' | 'agent'>('editor');
+function A2UICockpit() {
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
+  const [isThinking, setIsThinking] = useState(false);
 
-  const handleJsonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newText = e.target.value;
-    setJsonText(newText);
+  const handleSendMessage = async (text = chatInput) => {
+    const inputToUse = typeof text === 'string' ? text : chatInput;
+    if (!inputToUse.trim()) return;
+
+    const newMsg = { role: 'user', text: inputToUse };
+    setMessages(prev => [...prev, newMsg]);
+    setChatInput('');
+    setIsThinking(true);
+
     try {
-      const parsed = JSON.parse(newText);
-      setSurface(parsed);
-      setError(null);
-    } catch (err: any) {
-      setError(err.message);
+      const res = await fetch('http://localhost:8000/agent/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: inputToUse, history: messages.slice(-5) })
+      });
+
+      const result = await res.json();
+      const agentMsg = {
+        role: 'agent',
+        text: result.text,
+        surface: result.surface,
+        source: result.source
+      };
+      setMessages(prev => [...prev, agentMsg]);
+    } catch (err) {
+      setMessages(prev => [...prev, {
+        role: 'agent',
+        text: "Error: Could not connect to the Agent Engine. Please ensure the backend is running on port 8000."
+      }]);
+    } finally {
+      setIsThinking(false);
     }
   };
 
-  const generateRandomJson = () => {
-    const template = RANDOM_TEMPLATES[Math.floor(Math.random() * RANDOM_TEMPLATES.length)];
-    setSurface(template.json as any);
-    setJsonText(JSON.stringify(template.json, null, 2));
-    setError(null);
-  };
-
-  const handleSendMessage = () => {
-    if (!chatInput.trim()) return;
-    
-    const newMsg = { role: 'user', text: chatInput };
-    setMessages([...messages, newMsg]);
-    setChatInput('');
-
-    // Simulate agent response
-    setTimeout(async () => {
-      const lowerInput = chatInput.toLowerCase();
-      let responseText = "I've updated your view based on your request.";
-      let newSurface = { ...surface };
-
-      if ((window as any).USE_REAL_BE) {
-        try {
-          const res = await fetch(`http://localhost:8000/agent/query?q=${encodeURIComponent(chatInput)}`);
-          if (res.ok) {
-            newSurface = await res.json();
-            responseText = "Received live A2UI from your ADK agent.";
-          }
-        } catch (err) {
-          responseText = "Error connecting to local backend at port 8000. Is the agent running?";
-        }
-      } else {
-        if (lowerInput.includes('chart') || lowerInput.includes('stats') || lowerInput.includes('metrics')) {
-          responseText = "📊 I've generated a real-time system health report with visual diagnostics.";
-          newSurface = {
-            surfaceId: 'system-report',
-            content: [
-              { type: 'Text', props: { text: '⚡ Infrastructure Health Metrics', variant: 'h1' } },
-              { 
-                type: 'Card', 
-                props: { title: 'Live Performance 📈' }, 
-                children: [
-                  { type: 'StatBar', props: { label: 'Network Load', value: 45, color: '#3b82f6' } },
-                  { type: 'StatBar', props: { label: 'CPU Usage', value: 12, color: '#10b981' } },
-                  { type: 'StatBar', props: { label: 'Memory Reserved', value: 72, color: '#f59e0b' } },
-                  { type: 'List', props: { items: ['Pod-A: ✅ Ready', 'Pod-B: ✅ Ready', 'Pod-C: 🔄 Scaling'] } }
-                ]
-              },
-              {
-                type: 'Card',
-                props: { title: 'Node Status 🏢' },
-                children: [
-                  { type: 'Image', props: { src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=400', alt: 'Server', caption: 'Primary Cluster Node' } },
-                  { type: 'Text', props: { text: 'All systems operational in us-central1.', variant: 'body' } }
-                ]
-              }
-            ]
-          } as any;
-        } else if (lowerInput.includes('dark') || lowerInput.includes('theme')) {
-          responseText = "🌙 Switching to dark mode patterns.";
-        } else {
-          responseText = `🤖 I understand you want to: ${chatInput}. I've updated the canvas.`;
-          newSurface = {
-            ...surface,
-            content: [
-              ...surface.content,
-              { type: 'Card', props: { title: 'Dynamic Response ✨' }, children: [{ type: 'Text', props: { text: `Simulated response for: ${chatInput}`, variant: 'body' }}]}
-            ]
-          };
-        }
-      }
-      
-      const agentMsg = { role: 'agent', text: responseText };
-      setMessages(prev => [...prev, agentMsg]);
-      setSurface(newSurface);
-      setJsonText(JSON.stringify(newSurface, null, 2));
-    }, 1000);
-  };
-
   return (
-    <div className="playground-container">
-      <header className="app-header">
-        <div className="agent-status">
-          <span className="agent-pulse"></span>
-          <span className="status-text">Optimized Agent Stack</span>
+    <div className="cockpit-layout">
+      <aside className="cockpit-sidebar">
+        <div className="sidebar-brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 800, fontSize: '1.25rem' }}>
+          <SparkleIcon />
+          <span>Agent Cockpit</span>
         </div>
-        <div className="mode-toggle">
-          <button className={mode === 'editor' ? 'active' : ''} onClick={() => setMode('editor')}>Editor</button>
-          <button className={mode === 'agent' ? 'active' : ''} onClick={() => setMode('agent')}>Agent Mode</button>
-        </div>
-        <nav className="header-nav">
-          <Link to="/docs" className="nav-link">← Back to Docs</Link>
-          <Link to="/ops" className="nav-link special-alt" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <Activity size={14} /> The Cockpit
+
+        <div style={{ flex: 1, marginTop: '2rem' }}>
+          <p className="a2-body" style={{ fontSize: '0.8rem', opacity: 0.6 }}>SYSTEM LOGS</p>
+          <Link to="/ops" className="nav-item">
+            <Activity size={16} /> Observability Console
           </Link>
+          <Link to="/docs" className="nav-item">
+            ← Back to Documentation
+          </Link>
+        </div>
+
+        <div className="sidebar-footer" style={{ padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
           <ThemeToggle />
-          <a href="/docs/be-integration" className="nav-link special">Connect to Agent →</a>
-        </nav>
-      </header>
-      
-      <div className="playground-main">
-        {mode === 'editor' ? (
-          <div className="editor-pane">
-            <div className="editor-header">
-              <span className="editor-label">A2UI JSON Blueprint</span>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <button className="feature-btn mini" onClick={generateRandomJson}>Random</button>
-                {error && <span className="error-badge">Invalid</span>}
-              </div>
-            </div>
-            <textarea
-              className="json-textarea"
-              value={jsonText}
-              onChange={handleJsonChange}
-              spellCheck={false}
-            />
-          </div>
-        ) : (
-          <div className="agent-pane">
-              <div className="editor-header">
-                <span className="editor-label">Agent Logic Console</span>
-            </div>
-            <div className="chat-history">
-              {messages.length === 0 && <p className="empty-chat">Ask the agent to modify the UI (e.g., "Show me some stats")</p>}
-              {messages.map((m, i) => (
-                <div key={i} className={`chat-message ${m.role}`}>
-                  <div className="msg-bubble">{m.text}</div>
-                </div>
-              ))}
-            </div>
-            <div className="chat-input-area">
-              <input 
-                type="text" 
-                placeholder="Talk to the agent..." 
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-              />
-                <button onClick={handleSendMessage}>SEND</button>
-            </div>
+        </div>
+      </aside>
+
+      <main className="cockpit-main">
+        {isThinking && (
+          <div className="status-badge">
+            <span className="agent-pulse"></span>
+            <span>Orchestrating...</span>
           </div>
         )}
 
-        {/* Live Preview */}
-        <div className="live-preview-pane">
-          <div className="preview-header">
-            <span className="editor-label">Adaptive Interface Preview</span>
-            <div className="agent-status" style={{ border: 'none', padding: 0 }}>
-              <span className="agent-pulse"></span>
-              <span className="status-text" style={{ fontSize: '0.7rem' }}>Live</span>
-            </div>
-          </div>
-          <div className="preview-canvas">
-            {error ? (
-              <div className="parse-error">
-                <p>Error parsing A2UI JSON:</p>
-                <code>{error}</code>
+        <div className="cockpit-chat-area">
+          <div className="chat-container-inner">
+            {messages.length === 0 && (
+              <div style={{ textAlign: 'center', marginTop: '10vh', opacity: 0.6 }}>
+                <SparkleIcon size={32} />
+                <h2 style={{ marginTop: '1.5rem', fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.04em' }}>How can I assist?</h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>Ask me about strategy, metrics, or workflows.</p>
               </div>
-            ) : (
-              <A2UISurfaceRenderer surface={surface} />
             )}
-          </div>
-          <div className="backend-settings-overlay">
-            <label>
-              <input type="checkbox" onChange={(e) => (window as any).USE_REAL_BE = e.target.checked} />
-              Connect to Local ADK Agent
-            </label>
+
+            {messages.map((m, i) => (
+              <div key={i} className={`chat-bubble-container ${m.role}`}>
+                {m.role === 'agent' && <SparkleIcon />}
+                <div className="msg-content" style={{ flex: 1 }}>
+                  <div className="msg-bubble">{m.text}</div>
+                  {m.surface && (
+                    <div className="a2-surface-inline" style={{ marginTop: '2rem' }}>
+                      <A2UISurfaceRenderer surface={m.surface} />
+                      {m.source && (
+                        <div className="surface-attribution">
+                          <span>Source: <strong>{m.source.provider}</strong></span>
+                          <span>•</span>
+                          <a href={m.source.url} target="_blank" rel="noreferrer" style={{ color: '#4285f4', textDecoration: 'none' }}>
+                            {m.source.title} ↗
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+
+        <div className="cockpit-input-container">
+          <div className="cockpit-input-box">
+            <input
+              type="text" 
+              placeholder="Message your agent..."
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+            />
+            <button className="send-btn" onClick={() => handleSendMessage()}>
+              <SendIcon />
+            </button>
+          </div>
+          <p style={{ textAlign: 'center', fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '1rem' }}>
+            Agent UI Starter Pack • Production-Grade Orchestration
+          </p>
+        </div>
+      </main>
     </div>
   );
 }
@@ -304,7 +252,7 @@ function App() {
         <Route path=":docId" element={<DocPage />} />
       </Route>
 
-      <Route path="/playground" element={<Playground />} />
+      <Route path="/playground" element={<A2UICockpit />} />
       <Route path="/ops" element={<OpsDashboard />} />
       
       <Route path="*" element={<Navigate to="/" replace />} />

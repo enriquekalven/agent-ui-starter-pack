@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { Menu, X, ChevronRight, BookOpen, Terminal, Rocket, Cpu, Layout, Activity, ShieldCheck } from 'lucide-react';
+import { Menu, X, ChevronRight, BookOpen, Terminal, Rocket, Cpu, Layout } from 'lucide-react';
 
 import { ThemeToggle } from '../components/ThemeToggle';
 
@@ -10,35 +10,20 @@ interface DocLayoutProps {
 
 const PILLAR_NAV = [
   {
-    title: 'The Engine (Day 0)',
+    title: 'The Vision',
     items: [
-      { id: 'story', label: 'The Trinity Vision', path: '/docs/story', icon: <BookOpen size={18} /> },
-      { id: 'getting-started', label: 'Backend Setup', path: '/docs/getting-started', icon: <Cpu size={18} /> },
-      { id: 'be-integration', label: 'ADK Integration', path: '/docs/be-integration', icon: <Terminal size={18} /> },
+      { id: 'getting-started', label: 'Overview & Architecture', path: '/docs/getting-started', icon: <Rocket size={18} /> },
+      { id: 'a2a', label: 'The A2UI Protocol', path: '/docs/a2a', icon: <BookOpen size={18} /> },
     ]
   },
   {
-    title: 'The Face (Day 1)',
+    title: 'The Implementation',
     items: [
-      { id: 'development', label: 'UI Development', path: '/docs/development', icon: <Layout size={18} /> },
-      { id: 'a2a', label: 'A2UI Protocol', path: '/docs/a2a', icon: <BookOpen size={18} /> },
-    ]
-  },
-  {
-    title: 'The Cockpit (Day 2)',
-    items: [
-      { id: 'ops', label: 'The Cockpit', path: '/ops', icon: <Activity size={18} /> },
-      { id: 'cli-commands', label: 'Optimizer CLI', path: '/docs/cli-commands', icon: <Terminal size={18} /> },
-      { id: 'deployment', label: 'Cloud Deployment', path: '/docs/deployment', icon: <Rocket size={18} /> },
+      { id: 'be-integration', label: 'The Brain (Backend)', path: '/docs/be-integration', icon: <Terminal size={18} /> },
+      { id: 'development', label: 'The Face (Frontend)', path: '/docs/development', icon: <Layout size={18} /> },
+      { id: 'cli-commands', label: 'CLI Reference', path: '/docs/cli-commands', icon: <Cpu size={18} /> },
     ]
   }
-];
-
-const EXTERNAL_LINKS = [
-  { label: 'AG UI (A2UI Official)', url: 'https://github.com/google/A2UI', icon: <Layout size={18} /> },
-  { label: 'CopilotKit (AG UI High-End)', url: 'https://github.com/CopilotKit/CopilotKit', icon: <Rocket size={18} /> },
-  { label: 'GenUI Flutter SDK', url: 'https://github.com/a2aproject/adk', icon: <Cpu size={18} /> },
-  { label: 'Lit Web Components', url: 'https://lit.dev/', icon: <Layout size={18} /> },
 ];
 
 export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
@@ -52,7 +37,7 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
         <div className="doc-sidebar-header">
           <Link to="/" className="doc-logo">
             <span className="agent-pulse mini"></span>
-            Optimized Agent Stack
+            Agent UI Starter Pack
           </Link>
           <button className="mobile-toggle" onClick={() => setSidebarOpen(!isSidebarOpen)}>
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
@@ -60,6 +45,22 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
         </div>
         
         <nav className="doc-nav">
+          <div className="nav-group">
+            <div className="nav-group-title">The Lab (Interactive)</div>
+            <Link to="/playground" className="nav-item special-accent" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span className="agent-pulse mini"></span>
+              <span>Interactive Cockpit</span>
+            </Link>
+            <Link to="/ops" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Terminal size={18} />
+              <span>Ops Console</span>
+            </Link>
+            <a href="https://pypi.org/project/agent-starter-pack/" target="_blank" rel="noopener noreferrer" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Cpu size={18} />
+              <span>PyPI Package</span>
+            </a>
+          </div>
+
           {PILLAR_NAV.map((group) => (
             <div className="nav-group" key={group.title}>
               <div className="nav-group-title">{group.title}</div>
@@ -71,19 +72,10 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
                 >
                   {item.icon}
                   <span>{item.label}</span>
-                  <ChevronRight size={14} className="chevron" />
                 </Link>
               ))}
             </div>
           ))}
-
-          <div className="nav-group">
-            <div className="nav-group-title">Interactive</div>
-            <Link to="/playground" className="nav-item">
-              <Layout size={18} />
-              <span>A2UI Playground</span>
-            </Link>
-          </div>
 
           <div className="nav-group">
             <div className="nav-group-title">Resources</div>

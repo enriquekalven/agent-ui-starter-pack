@@ -1,101 +1,76 @@
-# The Optimized Agent Stack for Google Cloud (A2UI)
+# Agent UI Starter Pack (A2UI)
 
-### Infrastructure gives you the pipes. We give you the Intelligence.
+### High-Fidelity Agent-Driven User Interfaces for Google Cloud.
 
-The **Optimized Agent Stack** is the professional distribution for application developers building on Gemini. While the [official Google Cloud Agent Starter Pack](https://github.com/GoogleCloudPlatform/generative-ai/tree/main/gemini/agent-starter-pack) focus on infrastructure (VPCs, IAM, Terraform), we focus on the **Application Layer**: State synchronization, Cost Control, Security Audits, and Premium UX.
+The **Agent UI Starter Pack** is a professional distribution for developers building high-fidelity AI applications on Gemini. We focus on the **Application Layer**: A2UI Protocol integration, State synchronization, and Premium UX.
 
----
-
-## 🏗️ The Agentic Trinity
-
-A production-grade agent requires three synchronized pillars. We've built the ultimate 1-click ecosystem to handle them all.
-
-### 1. ⚙️ The Engine (Day 0)
-**Role: The Brain.** Focuses on internal reasoning, tool execution, and state management.
-*   **Powered by**: Python ADK, Reasoning Engine (Vertex AI).
-*   **Feature**: Native Google Cloud Trace & Logging integration.
-
-### 2. 🎭 The Face (Day 1)
-**Role: The Experience.** Focuses on how the agent manifests to the user. Moving away from chat-bubbles to adaptive surfaces.
-*   **Powered by**: React, A2UI Standard, GenUI.
-*   **Feature**: Dynamic A2UI Renderer and Adaptive Component Library.
-
-### 3. 🕹️ The Cockpit (Day 2)
-**Role: The Governance.** Found in **AgentOps Starter Pack**. Focuses on safety, scale, and profitability.
-*   **Powered by**: Shadow Router, Hive Mind Cache, Red Team Evaluation.
-*   **Viral Hook**: "The only starter pack that hacks itself so your users can't."
+![Agent UI Value Proposition](/diagrams/value-proposition.png)
 
 ---
 
-## 🚀 The Blue Ocean Opportunity
+## 🏗️ Core Pillars
 
-We win by solving the features that application developers care about, not just sysadmins.
+### 🎭 The Face (Front End) - *Primary Focus*
+**Role: The Experience.** Adaptive surfaces that change based on what the agent is doing.
+*   **CLI**: `agent-ui-starter-pack`
+*   **Powered by**: React, Vite, A2UI Protocol.
+*   **Feature**: Dynamic A2UI Renderer and a library of high-fidelity components.
 
-| Feature | Standard "Starter Pack" | **The Optimized Agent Stack** |
-| :--- | :--- | :--- |
-| **Frontend Layer** | Generic / None | **A2UI + State Sync Native** |
-| **Cost Control** | "Dumb Pipes" | **Semantic Cache (40% Savings)** |
-| **Assurance** | Staging Apps | **Shadow Mode Deployment** |
-| **Connectivity** | REST Callbacks | **MCP Tool Hub Native** |
-| **Optimization** | Manual Audit | **Interactive Agent Linter** |
-
----
-
-## 🔥 Key "Cockpit" Features
-
-### 🕵️ Shadow Mode Deployment
-**The Confidence Builder.** Traffic is sent to your production agent (v1), while asynchronously sending the same request to an experimental version (v2) in the background. Compare responses side-by-side in the Ops Dashboard before promoting.
-
-### 🧠 The "Hive Mind" Semantic Cache
-**Cut costs by 40%.** Drop-in middleware that checks a Vector Store (Memorystore/AlloyDB AI) before calling the LLM. If a similar question was asked recently, it returns the cached answer in 0.1s.
-
-### 🚩 "Red Team" CI/CD Audit
-**The Self-Hacking Starter Pack.** A pre-deployment security check that unleashes an aggressive LLM to try and jailbreak your agent or extract PII. If it succeeds, the deployment fails.
-
-### 📟 "The Black Box" Flight Recorder
-**Debug like a Video Game.** A visual replay tool in the `/ops` dashboard that records the entire chain of thought, tool inputs/outputs, and state changes. Scrub through executions to find exactly where logic failed.
-
-### 🛠️ MCP Tool Hub (Optimization)
-**Unified Tool Connectivity.** Standardize your agent's connection to external data using the **Model Context Protocol (MCP)**. Our built-in auditor detects legacy, high-latency Tool APIs and recommends 1-click migrations to MCP tools.
+### ⚙️ The Engine (Agent)
+**Role: The Brain.** Internal reasoning and tool execution.
+*   **CLI**: `agent-starter-pack`
+*   **Powered by**: Python, Vertex AI SDK, ADK.
+*   **Feature**: Native integration with Agent Engine for managed runtimes.
 
 ---
 
-## 🛠️ Usage
+## 🚀 Key Features
+
+### 💎 A2UI Protocol Native
+The entire stack is built on the **Agent-Driven User Interface (A2UI)** protocol. Your agent doesn't just send text; it sends structured JSON that manifests as premium UI components (Timelines, Trophies, Quizzes) in real-time.
+
+### 🔄 State Synchronization
+Seamlessly sync agent reasoning steps with frontend state. Build "Human-in-the-loop" workflows where the user can inspect and refine agent actions before they finalize.
+
+![Agentic Stack Architecture](/diagrams/agentic-stack.png)
+
+---
+
+## 🛠️ Usage (Prescribed Examples)
 
 ### Scaffolding
-Use the CLI directly without installation:
+Create a new project in seconds using our specialized CLIs:
+
+**To create the High-Fidelity Front End:**
 ```bash
-uvx agent-starter-pack create <project-name>
+uvx agent-ui-starter-pack create my-ui-project
 ```
 
-### Operations (The Cockpit)
-Built-in `Makefile` commands for Day 2 management:
+**To create the Agent Engine (Backend):**
 ```bash
-make audit      # Run the Interactive Agent Optimizer
-make red-team   # Unleash security self-hacking
-make dev        # Start local dev stack (Vite + FastAPI)
-make deploy-prod # 1-click deploy to Cloud Run + Firebase
+uvx agent-starter-pack create my-backend-agent
+```
+
+### Local Development
+Start the integrated Vite + API bridge:
+```bash
+make dev
+```
+
+### Production Deployment
+Deploy the full stack to Google Cloud:
+```bash
+make deploy-prod
 ```
 
 ---
 
-## 🔍 The Optimizer (Interactive Agent Ops)
+## 📁 Repository Structure
 
-The `optimizer.py` CLI audits your agent code and proposes optimizations that you can interactively approve or reject.
-
-**What it checks:**
-1.  **Context Caching**: Identifies large static prompts and suggests Gemini Context Caching.
-2.  **Prompt Compression**: Finds redundant tokens in your A2UI blueprints.
-3.  **Model Routing**: Audits routing logic to ensure Gemini 2.0 Flash is used for simple tasks.
-4.  **MCP Migration**: Suggests moving legacy Tool APIs to the MCP Hub.
-
----
-
-## 🏗️ Architecture & Standards
-
-- **A2UI**: The core protocol for adaptive, JSON-driven interfaces.
-- **AG-UI**: State management and human-in-the-loop interaction layers.
-- **Optimized Agent Stack**: The production platform for scale and cost.
+- `/src/a2ui`: Core A2UI rendering logic and base components.
+- `/src/backend`: The agent engine logic and API bridge.
+- `/src/components`: Premium UI building blocks.
+- `/docs`: Detailed integration guides and protocol specifications.
 
 ---
 

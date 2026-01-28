@@ -1,39 +1,63 @@
-# Getting Started: The Agentic Trinity
+# Getting Started with Agent UI Starter Pack
 
-Welcome to the **Optimized Agent Stack**. This guide will take you from zero to a production-ready agent in three phases.
+Welcome to the **Agent UI Starter Pack**. This guide will take you from zero to a production-grade Agent UI in four steps.
 
-## Phase 0: The Engine (Backend)
-1.  **Initialize the Environment**:
-    ```bash
-    chmod +x setup_gcp.sh
-    ./setup_gcp.sh
-    ```
-2.  **Understand `agent.py`**:
-    Open `src/backend/agent.py`. This is where your agent's reasoning lives. It uses the **ADK** (Agent Development Kit) to communicate with Gemini.
+## Why A2UI? 
 
-## Phase 1: The Face (Frontend)
+Standard chatbots are limited by the "Wall of Text"—they talk a lot but can't "do" much visually. This starter pack solves this by providing a framework where the agent synthesizes the **User Interface** itself. 
+
+By getting started with this pack, you are bypassing the 3-week "infrastructure grind" (Auth, JSON Parsing, Component Mapping) and jumping straight to the **Experience Layer**.
+
+---
+
+## Step 1: Scaffolding your Project
+
+Use our specialized CLIs to create your workspace. **The Face (Frontend)** is our primary component for high-fidelity A2UI rendering.
+
+### Scaffolding the Front End (The Face)
+```bash
+uvx agent-ui-starter-pack create my-ui-app
+```
+
+### Scaffolding the Agent Engine (The Brain)
+```bash
+uvx agent-starter-pack create my-agent-engine
+```
+
+---
+
+## Step 2: Architecture Overview
+
+The Agent UI Starter Pack uses a decoupled architecture to ensure the fastest possible rendering and state synchronization.
+
+![Agentic Stack Architecture](/diagrams/agentic-stack.png)
+
+*Diagram: The flow between Agent reasoning, the A2UI Bridge, and the High-Fidelity Renderer.*
+
+---
+
+## Step 3: Development & Playground
+
 1.  **Launch the Development Stack**:
     ```bash
     make dev
     ```
 2.  **The Playground**:
-    Navigate to `localhost:5173/playground`. Here you can hand-craft A2UI blueprints or test real agent logic by selecting "ADK Backend".
-
-## Phase 2: The Cockpit (Operations)
-Once your agent is running, you need to manage it.
-
-1.  **Optimization**:
-    Run `make audit` to see how the **Interactive Optimizer** can save you up to 40% on token costs.
-2.  **Security**:
-    Run `make red-team` to simulate white-hat attacks against your agent.
-3.  **Governance**:
-    Open the **Ops Dashboard** at `localhost:5173/ops` to monitor Shadow Mode comparisons and the Flight Recorder.
+    Navigate to `localhost:5173/playground`. Here you can hand-craft A2UI blueprints or test real agent logic by selecting "Agent Engine".
 
 ---
 
-## Deployment
-When you are ready for production:
+## Step 4: Deployment
+
+When you are ready for production, use the unified deployment command:
 ```bash
+# Deploys both the Face (Firebase) and the Engine (Cloud Run)
 make deploy-prod
 ```
-This 1-click command optimizes your code, builds the assets, and deploys everything to **Google Cloud (Cloud Run + Firebase)**.
+
+---
+
+## 🔗 Resources
+- [Detailed CLI Reference](./CLI_COMMANDS.md)
+- [Backend Integration Guide](./BE_INTEGRATION_GUIDE.md)
+- [A2UI Deployment Guide](./DEPLOYMENT.md)

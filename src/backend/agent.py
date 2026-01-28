@@ -1,77 +1,106 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 import uvicorn
-import asyncio
-from .cost_control import cost_guard, model_router
-from .cache.semantic_cache import hive_mind, global_cache
-from .shadow.router import ShadowRouter
-from .ops.mcp_hub import global_mcp_hub
+import os
+import time
+import json
+import logging
 
-app = FastAPI(title="Optimized Agent Stack")
+from .intelligence import IntelligenceOrchestrator
+from .auth_manager import AuthManager
 
-class A2UIComponent(BaseModel):
-    type: str
-    props: dict
-    children: Optional[List['A2UIComponent']] = None
+# Setup Logging (Observability Pattern)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-class A2UISurface(BaseModel):
-    surfaceId: str
-    content: List[A2UIComponent]
+# Real-time Message Log for Developer Debugging
+LOG_FILE = "agent-interaction-log.json"
 
-# --- Core Intelligence Logic ---
+app = FastAPI(title="Agent UI Cockpit Engine")
 
-async def agent_v1_logic(query: str, context: dict = None) -> A2UISurface:
-    """Production Agent (v1) - Reliable & Fast."""
-    # Simulate MCP tool usage
-    if "search" in query.lower():
-        await global_mcp_hub.execute_tool("search", {"q": query})
-    return generate_dashboard(query, version="v1-stable")
+# Enable CORS for frontend development
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-async def agent_v2_logic(query: str, context: dict = None) -> A2UISurface:
-    """Experimental Agent (v2) - High Reasoning/Shadow Mode."""
-    # Simulate slightly different behavior or better reasoning
-    await asyncio.sleep(0.5) # Simulate Pro model latency
-    return generate_dashboard(query, version="v2-shadow-pro")
+orchestrator = IntelligenceOrchestrator()
+auth = AuthManager()
 
-# --- Helper Generators ---
+class ChatMessage(BaseModel):
+    role: str
+    text: str
 
-def generate_dashboard(query: str, version: str) -> A2UISurface:
-    return A2UISurface(
-        surfaceId="dynamic-response",
-        content=[
-            A2UIComponent(
-                type="Text", 
-                props={"text": f"Agent {version} Response for: {query}", "variant": "h1"}
-            ),
-            A2UIComponent(
-                type="Card",
-                props={"title": f"Intelligence Loop ({version})"},
-                children=[
-                    A2UIComponent(type="Text", props={"text": f"This response was generated using {version} with Day 2 Ops integration.", "variant": "body"})
-                ]
-            )
-        ]
-    )
+class ChatRequest(BaseModel):
+    query: str
+    history: Optional[List[ChatMessage]] = []
 
-# --- Shadow Router Instance ---
-shadow_router = ShadowRouter(v1_func=agent_v1_logic, v2_func=agent_v2_logic)
+def log_interaction(direction: str, data: Any):
+    """Observability: Logs all agent traffic to a JSON file for local debugging."""
+    try:
+        log_entry = {
+            "timestamp": time.time(),
+            "direction": direction,
+            "data": data
+        }
+        with open(LOG_FILE, "a") as f:
+            f.write(json.dumps(log_entry) + "\n")
+    except:
+        pass
 
-@app.get("/agent/query")
-@cost_guard(budget_limit=0.10)
-@hive_mind(cache=global_cache) # Viral Idea #2: Semantic Caching
-async def chat(q: str):
+@app.get("/health")
+async def health():
+    return {"status": "healthy", "project": auth.get_project_id()}
+
+@app.get("/agent/logs")
+async def get_logs():
+    """Retrieve the latest interaction logs for debugging."""
+    if not os.path.exists(LOG_FILE):
+        return []
+    try:
+        with open(LOG_FILE, "r") as f:
+            lines = f.readlines()
+            return [json.loads(line) for line in lines[-50:]]  # Return last 50
+    except:
+        return []
+
+@app.post("/agent/debug/reset")
+async def reset_debug():
+    """Resets the debug log file."""
+    try:
+        if os.path.exists(LOG_FILE):
+            os.remove(LOG_FILE)
+        return {"status": "reset"}
+    except:
+        return {"status": "error"}
+
+@app.post("/agent/query")
+async def chat(request: ChatRequest):
     """
-    Simulates a production agent with Shadow Mode, Semantic Caching, and Cost Control.
+    The Main Entry Point.
+    Implements the 'Bridge Agent' pattern: Intent Detection -> A2UI Surface.
     """
-    # Viral Idea #1: Shadow Mode Deployment
-    # This calls Production and Shadow in parallel, logging comparisons.
-    result = await shadow_router.route(q)
+    logger.info(f"Query received: {request.query}")
     
-    print(f"🕵️  Trace Logged: {result['trace_id']} | Latency: {result['latency']:.2f}s")
-    return result["response"]
+    # Log incoming request
+    log_interaction("CLIENT_TO_SERVER", request.dict())
+    
+    # Process through the Intelligence Orchestrator
+    # Convert history to simpler list of dicts for the orchestrator
+    history_dicts = [m.dict() for m in request.history] if request.history else []
+    
+    result = await orchestrator.process_query(request.query, history_dicts)
+    
+    # Log outgoing response
+    log_interaction("SERVER_TO_CLIENT", result)
+    
+    return result
 
 if __name__ == "__main__":
-    import os
     port = int(os.environ.get("PORT", 8000))
+    logger.info(f"🚀 Starting Agent Cockpit Engine on port {port}")
     uvicorn.run(app, host="0.0.0.0", port=port)
