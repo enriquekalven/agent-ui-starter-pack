@@ -44,11 +44,27 @@ export function Home() {
             </Link>
           </div>
           <div className="hero-meta">
-            <p>Powering the next generation of <strong>Agentic Apps</strong>.</p>
+            <p>The universal bridge for <strong>Agentic Ecosystems</strong>.</p>
             <div className="hero-logos">
               <span className="logo-pill">Open Source</span>
-              <a href="https://a2ui.org" target="_blank" rel="noopener noreferrer" className="logo-pill link">A2UI.org</a>
-              <a href="https://copilotkit.ai" target="_blank" rel="noopener noreferrer" className="logo-pill link">CopilotKit.ai</a>
+              <a href="https://a2ui.org" target="_blank" rel="noopener noreferrer" className="logo-pill link">
+                <img src="https://a2ui.org/favicon.ico" alt="A2UI" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
+                A2UI Standard
+              </a>
+              <a href="https://copilotkit.ai" target="_blank" rel="noopener noreferrer" className="logo-pill link">
+                <img src="https://www.copilotkit.ai/favicon.ico" alt="CopilotKit" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
+                CopilotKit.ai
+              </a>
+              <span className="logo-pill">
+                <img src="https://www.vectorlogo.zone/logos/lit/lit-icon.svg" alt="Lit" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
+                Lit
+              </span>
+              <span className="logo-pill">
+                <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="Flutter" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
+                Flutter
+              </span>
+              <span className="logo-pill">A2A Protocol</span>
+              <span className="logo-pill">AG UI</span>
             </div>
           </div>
         </div>
@@ -102,6 +118,52 @@ export function Home() {
           </div>
         </div>
       </main>
+
+      <section className="ecosystem-marquee-section" style={{ padding: '3rem 2rem', background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '2.5rem', opacity: 0.5 }}>
+            Native Integration & Support
+          </p>
+          <div className="marquee-wrapper" style={{ display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style={{ width: '20px' }} alt="Vertex AI" />
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>Vertex AI</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <img src="https://www.vectorlogo.zone/logos/lit/lit-icon.svg" style={{ width: '20px' }} alt="Lit" />
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>Lit</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" style={{ width: '20px' }} alt="Flutter" />
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>Flutter</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <img src="https://www.vectorlogo.zone/logos/openai/openai-icon.svg" style={{ width: '20px' }} alt="OpenAI" />
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>OpenAI AgentKit</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <div style={{ width: '20px', height: '20px', background: 'var(--accent-color)', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--bg-color)', fontSize: '10px', fontWeight: 900 }}>A2</div>
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>A2A Protocol</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <div style={{ width: '20px', height: '20px', background: '#ff4b4b', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 900 }}>C</div>
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>CrewAI</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <div style={{ width: '20px', height: '20px', background: '#3b82f6', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 900 }}>LG</div>
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>LangGraph</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <img src="https://www.copilotkit.ai/favicon.ico" style={{ width: '20px' }} alt="CopilotKit" />
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>CopilotKit.ai</span>
+            </div>
+            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
+              <div style={{ width: '20px', height: '20px', background: '#10b981', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 900 }}>AG</div>
+              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>AG UI</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="speed-banner" style={{ padding: '4rem 2rem', background: 'var(--accent-color)', color: 'var(--bg-color)', textAlign: 'center' }}>
         <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem' }}>Skip the 3-Week Infrastructure Grind.</h2>
