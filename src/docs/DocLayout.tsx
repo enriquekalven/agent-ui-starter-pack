@@ -55,7 +55,7 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
               <Terminal size={18} />
               <span>Ops Console</span>
             </Link>
-            <a href="https://pypi.org/project/agent-starter-pack/" target="_blank" rel="noopener noreferrer" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <a href="https://pypi.org/project/agentui-starter-pack/" target="_blank" rel="noopener noreferrer" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Cpu size={18} />
               <span>PyPI Package</span>
             </a>

@@ -17,7 +17,7 @@ export function Home() {
             <a href="https://github.com/enriquekalven/agent-ui-starter-pack" target="_blank" rel="noopener noreferrer" className="nav-item">GitHub</a>
             <iframe src="https://ghbtns.com/github-btn.html?user=enriquekalven&repo=agent-ui-starter-pack&type=star&count=true&size=small" frameBorder="0" scrolling="0" width="80" height="20" title="GitHub Stars"></iframe>
           </div>
-          <a href="https://pypi.org/project/agent-starter-pack/" target="_blank" rel="noopener noreferrer" className="nav-item">PyPI</a>
+          <a href="https://pypi.org/project/agentui-starter-pack/" target="_blank" rel="noopener noreferrer" className="nav-item">PyPI</a>
           <ThemeToggle />
           <Link to="/docs/getting-started" className="nav-cta">Get Started</Link>
         </nav>
