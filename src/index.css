@@ -36,6 +36,39 @@
   --vignette-color: radial-gradient(circle at 50% 50%, transparent 40%, rgba(66, 133, 244, 0.05) 100%);
 }
 
+/* --- THEME: Executive Glass --- */
+[data-skin="executive"] {
+  --bg-color: #fcfcfd;
+  --surface-color: rgba(255, 255, 255, 0.8);
+  --border-color: rgba(0, 0, 0, 0.05);
+  --accent-color: #6366f1;
+  --radius-xl: 40px;
+  --font-family: 'Outfit', sans-serif;
+}
+
+[data-skin="executive"] .a2-card {
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+}
+
+/* --- THEME: Dark Ops (Terminal style) --- */
+[data-skin="dark-ops"] {
+  --bg-color: #050505;
+  --bg-secondary: #0a0a0a;
+  --surface-color: #000;
+  --border-color: #33ff3322;
+  --accent-color: #33ff33;
+  --text-primary: #33ff33;
+  --text-secondary: #33ff33aa;
+  --font-family: 'JetBrains Mono', monospace;
+  --radius-xl: 0;
+}
+
+[data-skin="dark-ops"] .a2-card {
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 0 20px rgba(51, 255, 51, 0.1);
+}
 body {
   margin: 0;
   background-color: var(--bg-color);

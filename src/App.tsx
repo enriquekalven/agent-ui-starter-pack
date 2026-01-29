@@ -119,6 +119,11 @@ function A2UICockpit() {
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
   const [isThinking, setIsThinking] = useState(false);
+  const [skin, setSkin] = useState('standard');
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-skin', skin);
+  }, [skin]);
 
   const handleSendMessage = async (text = chatInput) => {
     const inputToUse = typeof text === 'string' ? text : chatInput;
@@ -163,7 +168,14 @@ function A2UICockpit() {
         </div>
 
         <div style={{ flex: 1, marginTop: '2rem' }}>
-          <p className="a2-body" style={{ fontSize: '0.8rem', opacity: 0.6 }}>SYSTEM LOGS</p>
+          <p className="a2-body" style={{ fontSize: '0.8rem', opacity: 0.6 }}>AGENT SKINS</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '1rem' }}>
+            <button className={`feature-btn ${skin === 'standard' ? 'active' : ''}`} onClick={() => setSkin('standard')}>Standard Glass</button>
+            <button className={`feature-btn ${skin === 'executive' ? 'active' : ''}`} onClick={() => setSkin('executive')}>Premium Executive</button>
+            <button className={`feature-btn ${skin === 'dark-ops' ? 'active' : ''}`} onClick={() => setSkin('dark-ops')}>Terminal Ops</button>
+          </div>
+
+          <p className="a2-body" style={{ fontSize: '0.8rem', opacity: 0.6, marginTop: '2.5rem' }}>SYSTEM LOGS</p>
           <Link to="/ops" className="nav-item">
             <Activity size={16} /> Observability Console
           </Link>

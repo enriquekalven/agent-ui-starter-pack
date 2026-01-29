@@ -42,16 +42,20 @@ def create(
             shutil.rmtree(git_dir)
         
         # --- Project Transformation (App-ification) ---
-        console.print("🛠️  Configuring project as a standalone A2UI Cockpit (Premium)...")
+        console.print(f"🛠️  Configuring project as a standalone A2UI Cockpit ({template.capitalize()})...")
         app_tsx_path = os.path.join(project_name, "src", "App.tsx")
         if os.path.exists(app_tsx_path):
             with open(app_tsx_path, "r") as f:
                 content = f.read()
             
             # Swap Home and PremiumPlayground routes
-            # We want / to be PremiumPlayground
-            content = content.replace('<Route path="/" element={<Home />} />', '<Route path="/" element={<PremiumPlayground />} />')
-            content = content.replace('<Route path="/premium" element={<PremiumPlayground />} />', '<Route path="/landing" element={<Home />} />')
+            content = content.replace('<Route path="/" element={<Home />} />', '<Route path="/" element={<A2UICockpit />} />')
+            
+            # Inject default skin based on template choice
+            if template == "executive":
+                content = content.replace("const [skin, setSkin] = useState('standard');", "const [skin, setSkin] = useState('executive');")
+            elif template == "dark-ops":
+                content = content.replace("const [skin, setSkin] = useState('standard');", "const [skin, setSkin] = useState('dark-ops');")
             
             with open(app_tsx_path, "w") as f:
                 f.write(content)
