@@ -172,6 +172,12 @@ function A2UICockpit() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '1rem' }}>
             <button className={`feature-btn ${skin === 'standard' ? 'active' : ''}`} onClick={() => setSkin('standard')}>Standard Glass</button>
             <button className={`feature-btn ${skin === 'executive' ? 'active' : ''}`} onClick={() => setSkin('executive')}>Premium Executive</button>
+            <button className={`feature-btn ${skin === 'googley-light' ? 'active' : ''}`} onClick={() => setSkin('googley-light')}>
+              <span style={{ color: '#1a73e8', fontWeight: 900, marginRight: '6px' }}>G</span> Googley Light
+            </button>
+            <button className={`feature-btn ${skin === 'gcloud-console' ? 'active' : ''}`} onClick={() => setSkin('gcloud-console')}>
+              <span style={{ color: '#4285f4', fontWeight: 900, marginRight: '6px' }}>☁️</span> GCloud Console
+            </button>
             <button className={`feature-btn ${skin === 'dark-ops' ? 'active' : ''}`} onClick={() => setSkin('dark-ops')}>Terminal Ops</button>
           </div>
 
