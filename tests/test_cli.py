@@ -55,3 +55,8 @@ def test_scaffolding(app_to_test, cmd_name, project_name):
         assert os.path.exists(project_name)
         # Cleanup
         shutil.rmtree(project_name)
+def test_project_structure():
+    assert os.path.exists("setup.sh")
+    assert os.path.exists(".env.example")
+    assert os.path.exists("Makefile")
+    assert os.path.exists("package.json")

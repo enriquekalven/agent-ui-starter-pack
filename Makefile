@@ -11,7 +11,9 @@ IMAGE_TAG = $(REGION)-docker.pkg.dev/$(PROJECT_ID)/agent-repo/$(SERVICE_NAME):la
 help:
 	@echo "Agent UI Starter Pack - Deployment Commands"
 	@echo "Available commands:"
-	@echo "  make dev               - Start local development server"
+	@echo "  make setup             - Install dependencies (Node + Python venv)"
+	@echo "  make dev               - Start Frontend only (8888)"
+	@echo "  make dev-full          - Start Frontend (8888) + Backend (8000)"
 	@echo "  make test              - Run CLI unit tests"
 	@echo "  make build             - Build production assets"
 	@echo "  make deploy-prod       - Deploy full stack (Cloud Run + Firebase)"
@@ -21,6 +23,13 @@ help:
 
 dev:
 	npm run dev
+
+dev-full:
+	npm run dev-full
+
+setup:
+	chmod +x setup.sh
+	./setup.sh
 
 test:
 	PYTHONPATH=src pytest tests/test_cli.py

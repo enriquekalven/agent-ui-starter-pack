@@ -146,7 +146,8 @@ function A2UICockpit() {
         role: 'agent',
         text: result.text,
         surface: result.surface,
-        source: result.source
+        source: result.source,
+        status: result.status
       };
       setMessages(prev => [...prev, agentMsg]);
     } catch (err) {
@@ -214,7 +215,17 @@ function A2UICockpit() {
             )}
 
             {messages.map((m, i) => (
-              <div key={i} className={`chat-bubble-container ${m.role}`}>
+              <React.Fragment key={i}>
+                {m.role === 'agent' && m.status === 'warning' && (
+                  <div className="warning-banner">
+                    <Activity size={20} />
+                    <div style={{ flex: 1 }}>
+                      <strong>System Warning</strong>
+                      <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>{m.text.split(' (Internal Error:')[0]}</div>
+                    </div>
+                  </div>
+                )}
+                <div className={`chat-bubble-container ${m.role}`}>
                 {m.role === 'agent' && <SparkleIcon />}
                 <div className="msg-content" style={{ flex: 1 }}>
                   <div className="msg-bubble">{m.text}</div>
@@ -234,6 +245,7 @@ function A2UICockpit() {
                   )}
                 </div>
               </div>
+              </React.Fragment>
             ))}
           </div>
         </div>

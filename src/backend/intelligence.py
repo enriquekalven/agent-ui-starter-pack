@@ -22,7 +22,7 @@ class IntelligenceOrchestrator:
     Handles Intent Detection, Response Generation, and A2UI Surface Factory.
     """
     def __init__(self):
-        self.model_name = os.environ.get("GENAI_MODEL", "gemini-1.5-flash")
+        self.model_name = os.environ.get("GENAI_MODEL", "gemini-2.0-flash")
         self.project_id = auth.get_project_id()
         self.location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
         self._initialized = False
@@ -91,13 +91,23 @@ Respond ONLY with a valid JSON object.
             }
             
         except Exception as e:
-            logger.error(f"Intelligence processing failed: {e}")
+            error_msg = str(e)
+            logger.error(f"Intelligence processing failed: {error_msg}")
+            
+            # Surface specific cloud errors
+            ui_message = "Running in fallback mode."
+            if "403" in error_msg or "Billing" in error_msg:
+                ui_message = "⚠️ Cloud Billing Error: Please check your Google Cloud project billing status."
+            elif "404" in error_msg or "not found" in error_msg.lower():
+                ui_message = f"⚠️ Model Not Found: The model '{self.model_name}' is not available in {self.location}."
+            
             # Fallback to hardcoded mock
             return {
                 "intent": "general",
-                "text": f"Running in fallback mode. Error: {str(e)}",
+                "text": f"{ui_message} (Internal Error: {error_msg})",
                 "surface": self.get_mock_surface(query),
-                "source": get_source_attribution("default")
+                "source": get_source_attribution("default"),
+                "status": "warning"
             }
 
     def generate_a2ui_for_intent(self, intent: str, context: str) -> Dict[str, Any]:

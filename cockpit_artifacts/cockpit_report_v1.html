@@ -1,0 +1,492 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>AgentOps Audit: QUICK SAFE-BUILD</title>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap');
+                body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1e293b; max-width: 1000px; margin: 0 auto; padding: 60px 40px; background: #f1f5f9; }
+                .report-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+                header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; border-bottom: 2px solid #f1f5f9; padding-bottom: 30px; }
+                .mascot-container { text-align: center; background: #fff; border: 1px solid #e2e8f0; padding: 10px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+                .mascot { width: 80px; height: 80px; border-radius: 12px; object-fit: contain; }
+                .mascot-name { font-size: 0.6rem; font-weight: 800; color: #3b82f6; text-transform: uppercase; margin-top: 5px; letter-spacing: 0.1em; }
+                h1 { color: #0f172a; margin: 0; font-size: 2.25rem; letter-spacing: -0.025em; font-weight: 900; }
+                h2 { color: #0f172a; margin-top: 48px; font-size: 1.25rem; display: flex; align-items: center; gap: 12px; font-weight: 800; border-left: 4px solid #3b82f6; padding-left: 15px; text-transform: uppercase; letter-spacing: 0.05em; }
+                .status-badge { display: inline-block; padding: 6px 16px; border-radius: 999px; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; margin-top: 10px; }
+                .pass { background: #dcfce7; color: #166534; }
+                .fail { background: #fee2e2; color: #991b1b; }
+                table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 24px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+                th, td { text-align: left; padding: 16px; border-bottom: 1px solid #e2e8f0; }
+                th { background: #f8fafc; font-weight: 700; color: #64748b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+                .action-table th { background: #eff6ff; color: #1e40af; }
+                .source-table th { background: #f0f9ff; color: #0369a1; }
+                code { font-family: 'JetBrains Mono', monospace; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+                pre { background: #0f172a; color: #e2e8f0; padding: 24px; border-radius: 16px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 16px; border: 1px solid #1e293b; }
+                .source-link { color: #3b82f6; text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; }
+                .source-link:hover { border-bottom-color: #3b82f6; }
+                .footer { margin-top: 40px; text-align: center; color: #94a3b8; font-size: 0.8rem; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+            </style>
+        </head>
+        <body>
+            <div class="report-card">
+                <header>
+                    <div>
+                        <h1>🕹️ AgentOps: agent-ui-starter-pack</h1>
+                        <p style="color: #64748b; margin: 8px 0 0 0; font-weight: 500;">Type: QUICK SAFE-BUILD</p>
+                        <span class="status-badge fail">
+                            FAILED
+                        </span>
+                    </div>
+                    <div class="mascot-container">
+                        <img src="public/kokpi_branded.jpg" class="mascot" alt="Kokpi">
+                        <div class="mascot-name">KOKPI APPROVED</div>
+                    </div>
+                </header>
+
+                <p style="font-size: 0.875rem; color: #64748b;">
+                    <strong>Timestamp</strong>: 2026-02-06 12:27:23<br>
+                    <strong>Total Duration</strong>: 4.52s
+                </p>
+
+                <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 24px; border-radius: 16px; margin-bottom: 32px;">
+                    <h2 style="margin-top: 0; border: none; padding: 0; color: #9d174d;">👔 Executive Risk Scorecard</h2>
+                    <p style="margin-bottom: 0; font-weight: 500;">
+                        **Risk Alert**: 3 governance gates REJECTED (including Token Optimization, Red Team Security (Full)). Remediation estimated to take 2-4 hours. Production deployment currently BLOCKED.
+                    </p>
+                </div>
+
+                <div class="filter-controls" style="margin-bottom: 24px; display: flex; gap: 10px;">
+                    <button onclick="filterActions('all')" style="padding: 8px 16px; border-radius: 8px; border: 1px solid #e2e8f0; cursor: pointer; background: #fff;">Show All</button>
+                    <button onclick="filterActions('security')" style="padding: 8px 16px; border-radius: 8px; border: 1px solid #fee2e2; cursor: pointer; color: #991b1b; background: #fff;">Security Breaches</button>
+                    <button onclick="filterActions('optimization')" style="padding: 8px 16px; border-radius: 8px; border: 1px solid #dcfce7; cursor: pointer; color: #166534; background: #fff;">Optimizations</button>
+                </div>
+
+                <h2>🧑‍💼 SME Persona Approvals</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SME Persona</th>
+                            <th>Module</th>
+                            <th>Verdict</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                <tr>
+                    <td>⚖️ Governance & Compliance SME</td>
+                    <td>Policy Enforcement</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                    <td><code>0.17s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>📜 Legal & Transparency SME</td>
+                    <td>Evidence Packing Audit</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                    <td><code>0.17s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>🏛️ Principal Platform Engineer (Polyglot)</td>
+                    <td>Architecture Review</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                    <td><code>0.19s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>💰 FinOps Principal Architect</td>
+                    <td>Token Optimization</td>
+                    <td><span class="status-badge fail">REJECTED</span></td>
+                    <td><code>0.2s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>🚩 Red Team Principal (White-Hat)</td>
+                    <td>Red Team Security (Full)</td>
+                    <td><span class="status-badge fail">REJECTED</span></td>
+                    <td><code>0.26s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>🚀 SRE & Performance Principal</td>
+                    <td>Load Test (Baseline)</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                    <td><code>0.3s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>🔐 SecOps Principal</td>
+                    <td>Secret Scanner</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                    <td><code>0.33s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>🎭 UX/UI Principal Designer (A2UI Specialist)</td>
+                    <td>Face Auditor</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                    <td><code>0.32s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>🛡️ QA & Reliability Principal (Node/Python/Go)</td>
+                    <td>Reliability (Quick)</td>
+                    <td><span class="status-badge fail">REJECTED</span></td>
+                    <td><code>0.58s</code></td>
+                </tr>
+            
+                <tr>
+                    <td>🧗 AI Quality SME</td>
+                    <td>Quality Hill Climbing</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                    <td><code>2.0s</code></td>
+                </tr>
+            
+                    </tbody>
+                </table>
+        
+                <h2>🛠️ Developer Action Plan</h2>
+                <table class="action-table" id="actionTable">
+                    <thead>
+                        <tr>
+                            <th>Location (File:Line)</th>
+                            <th>Issue Detected</th>
+                            <th>Recommended Implementation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr class="action-row architecture">
+                            <td><code>codebase</code></td>
+                            <td>Architecture Gap: Runtime</td>
+                            <td style="color: #059669; font-weight: 600;">Optimizes performance for high-frequency API calls.</td>
+                        </tr>
+                    
+                        <tr class="action-row security">
+                            <td><code>codebase</code></td>
+                            <td>Architecture Gap: Security</td>
+                            <td style="color: #059669; font-weight: 600;">Hardens the Express/Hono server against common attacks.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>codebase</code></td>
+                            <td>Architecture Gap: Types</td>
+                            <td style="color: #059669; font-weight: 600;">Ensures type-safety across the agent-tool boundary.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>codebase</code></td>
+                            <td>Architecture Gap: Runtime</td>
+                            <td style="color: #059669; font-weight: 600;">Optimizes performance for high-frequency API calls.</td>
+                        </tr>
+                    
+                        <tr class="action-row security">
+                            <td><code>codebase</code></td>
+                            <td>Architecture Gap: Security</td>
+                            <td style="color: #059669; font-weight: 600;">Hardens the Express/Hono server against common attacks.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>codebase</code></td>
+                            <td>Architecture Gap: Types</td>
+                            <td style="color: #059669; font-weight: 600;">Ensures type-safety across the agent-tool boundary.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>vite.config.ts:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>public/App.tsx:1</code></td>
+                            <td>Missing Branding (Logo) or SEO Metadata (OG/Description)</td>
+                            <td style="color: #059669; font-weight: 600;">Add meta tags (og:image, description) and project logo.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/App.tsx:1</code></td>
+                            <td>Missing Branding (Logo) or SEO Metadata (OG/Description)</td>
+                            <td style="color: #059669; font-weight: 600;">Add meta tags (og:image, description) and project logo.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/main.tsx:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/a2ui/components/index.tsx:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/a2ui/components/index.tsx:1</code></td>
+                            <td>Missing Branding (Logo) or SEO Metadata (OG/Description)</td>
+                            <td style="color: #059669; font-weight: 600;">Add meta tags (og:image, description) and project logo.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/a2ui/components/lit-component-example.ts:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/docs/DocPage.tsx:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/docs/DocPage.tsx:1</code></td>
+                            <td>Missing Legal Disclaimer or Privacy Policy link</td>
+                            <td style="color: #059669; font-weight: 600;">Add a footer link to the mandatory Privacy Policy / TOS.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/docs/DocLayout.tsx:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/docs/DocLayout.tsx:1</code></td>
+                            <td>Missing Legal Disclaimer or Privacy Policy link</td>
+                            <td style="color: #059669; font-weight: 600;">Add a footer link to the mandatory Privacy Policy / TOS.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/components/OpsDashboard.tsx:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    
+                        <tr class="action-row architecture">
+                            <td><code>src/components/ThemeToggle.tsx:1</code></td>
+                            <td>Missing 'surfaceId' mapping</td>
+                            <td style="color: #059669; font-weight: 600;">Add 'surfaceId' prop to the root component or exported interface.</td>
+                        </tr>
+                    </tbody></table>
+                <h2>📜 Evidence Bridge: Research & Citations</h2>
+                <table class="source-table">
+                    <thead>
+                        <tr>
+                            <th>Knowledge Pillar</th>
+                            <th>SDK/Pattern Citation</th>
+                            <th>Evidence & Best Practice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td style="font-weight: 700;">Declarative Guardrails</td>
+                            <td><a href="https://cloud.google.com/architecture/framework/security" class="source-link" target="_blank">View Citation &rarr;</a></td>
+                            <td style="font-size: 0.85rem; color: #475569;">Google Cloud Governance Best Practices: Input Sanitization & Tool HITL</td>
+                        </tr>
+                    </tbody></table>
+                <h2>🔍 Audit Evidence</h2>
+        <h3>Policy Enforcement</h3><pre>SOURCE: Declarative Guardrails | https://cloud.google.com/architecture/framework/security | Google Cloud Governance Best Practices: Input Sanitization & Tool HITL
+Caught Expected Violation: GOVERNANCE - Input contains forbidden topic: 'medical advice'.
+</pre><h3>Evidence Packing Audit</h3><pre>╭────────────────────────────────────────────────────╮
+│ 🏛️ NODEJS / TYPESCRIPT ENGINE: STATIC DESIGN AUDIT │
+│ Mode: Architectural Intent Analysis                │
+╰────────────────────────────────────────────────────╯
+Detected Framework: NodeJS / TypeScript Engine
+Evaluating agent design against NodeJS / TypeScript Engine Production Standards...
+
+⚠️ Credential Gap Detected: Bypassing Semantic LLM Reasoning.
+🔄 SME Persona degrading to 'Regex-Only' structural mode...
+
+ACTION: codebase | Architecture Gap: Runtime | Optimizes performance for high-frequency API calls.
+ACTION: codebase | Architecture Gap: Security | Hardens the Express/Hono server against common attacks.
+ACTION: codebase | Architecture Gap: Types | Ensures type-safety across the agent-tool boundary.
+                                                  🏗️ NodeJS / TypeScript Engine                                                   
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Design Check                                                ┃ Status ┃ Rationale                                               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Runtime: Using Bun or Node 20+ for native fetch?            │  FAIL  │ Optimizes performance for high-frequency API calls.     │
+│ Security: Is Helmet middleware active in the Face API?      │  FAIL  │ Hardens the Express/Hono server against common attacks. │
+│ Types: Are Zod/Pydantic-like schemas used for tool outputs? │  FAIL  │ Ensures type-safety across the agent-tool boundary.     │
+└─────────────────────────────────────────────────────────────┴────────┴─────────────────────────────────────────────────────────┘
+
+
+📊 Review Score: 0/100
+⚠️ Review Complete with warnings. Your agent has gaps in best practices. See results above.
+</pre><h3>Architecture Review</h3><pre>╭────────────────────────────────────────────────────╮
+│ 🏛️ NODEJS / TYPESCRIPT ENGINE: STATIC DESIGN AUDIT │
+│ Mode: Architectural Intent Analysis                │
+╰────────────────────────────────────────────────────╯
+Detected Framework: NodeJS / TypeScript Engine
+Evaluating agent design against NodeJS / TypeScript Engine Production Standards...
+
+⚠️ Credential Gap Detected: Bypassing Semantic LLM Reasoning.
+🔄 SME Persona degrading to 'Regex-Only' structural mode...
+
+ACTION: codebase | Architecture Gap: Runtime | Optimizes performance for high-frequency API calls.
+ACTION: codebase | Architecture Gap: Security | Hardens the Express/Hono server against common attacks.
+ACTION: codebase | Architecture Gap: Types | Ensures type-safety across the agent-tool boundary.
+                                                  🏗️ NodeJS / TypeScript Engine                                                   
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Design Check                                                ┃ Status ┃ Rationale                                               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Runtime: Using Bun or Node 20+ for native fetch?            │  FAIL  │ Optimizes performance for high-frequency API calls.     │
+│ Security: Is Helmet middleware active in the Face API?      │  FAIL  │ Hardens the Express/Hono server against common attacks. │
+│ Types: Are Zod/Pydantic-like schemas used for tool outputs? │  FAIL  │ Ensures type-safety across the agent-tool boundary.     │
+└─────────────────────────────────────────────────────────────┴────────┴─────────────────────────────────────────────────────────┘
+
+
+📊 Review Score: 0/100
+⚠️ Review Complete with warnings. Your agent has gaps in best practices. See results above.
+</pre><h3>Token Optimization</h3><pre>╭───────────────────────────────────╮
+│ 🔍 GCP AGENT OPS: OPTIMIZER AUDIT │
+╰───────────────────────────────────╯
+❌ Error: Path ./agent.py not found.
+
+</pre><h3>Red Team Security (Full)</h3><pre>╭───────────────────────────────────────────────╮
+│ 🚩 RED TEAM EVALUATION: SELF-HACK INITIALIZED │
+╰───────────────────────────────────────────────╯
+
+╭────────────────────────────────────────────────────────────────────────────────────────────────── Traceback (most recent call last) ──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ /Users/enriq/.cache/uv/archive-v0/rJNnYab77pJzUh_rHE05N/lib/python3.12/site-packages/agent_ops_cockpit/eval/red_team.py:45 in audit                                                                                                   │
+│                                                                                                                                                                                                                                       │
+│    42 │                                                                                        ╭────── locals ──────╮                                                                                                                 │
+│    43 │   # If it's a directory, try to find the agent entry point                             │ agent_path = '.'   │                                                                                                                 │
+│    44 │   if os.path.isdir(agent_path):                                                        │       live = False │                                                                                                                 │
+│ ❱  45 │   │   from agent_ops_cockpit.ops.orchestrator import detect_entry_point                │        sim = False │                                                                                                                 │
+│    46 │   │   agent_path = detect_entry_point(agent_path)                                      ╰────────────────────╯                                                                                                                 │
+│    47 │                                                                                                                                                                                                                               │
+│    48 │   console.print(f"Targeting: [yellow]{agent_path}[/yellow]")                                                                                                                                                                  │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+ImportError: cannot import name 'detect_entry_point' from 'agent_ops_cockpit.ops.orchestrator' (/Users/enriq/.cache/uv/archive-v0/rJNnYab77pJzUh_rHE05N/lib/python3.12/site-packages/agent_ops_cockpit/ops/orchestrator.py)
+</pre><h3>Load Test (Baseline)</h3><pre>🚀 Starting load test on http://localhost:8000/agent/query?q=healthcheck
+Total Requests: 50 | Concurrency: 5
+
+  Executing requests... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+
+
+        📊 Agentic Performance & Load Summary        
+┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Metric           ┃ Value          ┃ SLA Threshold ┃
+┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ Total Requests   │ 50             │ -             │
+│ Throughput (RPS) │ 15764.41 req/s │ > 5.0         │
+│ Success Rate     │ 0.0%           │ > 99%         │
+│ Avg Latency      │ 0.003s         │ < 2.0s        │
+│ Est. TTFT        │ 0.001s         │ < 0.5s        │
+│ p90 Latency      │ 0.025s         │ < 3.5s        │
+│ Total Errors     │ 50             │ 0             │
+└──────────────────┴────────────────┴───────────────┘
+</pre><h3>Secret Scanner</h3><pre>╭──────────────────────────────────────────────╮
+│ 🔍 SECRET SCANNER: CREDENTIAL LEAK DETECTION │
+╰──────────────────────────────────────────────╯
+✅ PASS: No hardcoded credentials detected in matched patterns.
+</pre><h3>Face Auditor</h3><pre>╭──────────────────────────────────────╮
+│ 🎭 FACE AUDITOR: A2UI COMPONENT SCAN │
+╰──────────────────────────────────────╯
+Scanning directory: .
+📝 Scanned 13 frontend files.
+
+🛠️  DEVELOPER ACTIONS REQUIRED:
+ACTION: vite.config.ts:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+ACTION: public/App.tsx:1 | Missing Branding (Logo) or SEO Metadata (OG/Description) | Add meta tags (og:image, description) and project logo.
+ACTION: src/App.tsx:1 | Missing Branding (Logo) or SEO Metadata (OG/Description) | Add meta tags (og:image, description) and project logo.
+ACTION: src/main.tsx:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+ACTION: src/a2ui/components/index.tsx:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+ACTION: src/a2ui/components/index.tsx:1 | Missing Branding (Logo) or SEO Metadata (OG/Description) | Add meta tags (og:image, description) and project logo.
+ACTION: src/a2ui/components/lit-component-example.ts:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+ACTION: src/docs/DocPage.tsx:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+ACTION: src/docs/DocPage.tsx:1 | Missing Legal Disclaimer or Privacy Policy link | Add a footer link to the mandatory Privacy Policy / TOS.
+ACTION: src/docs/DocLayout.tsx:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+ACTION: src/docs/DocLayout.tsx:1 | Missing Legal Disclaimer or Privacy Policy link | Add a footer link to the mandatory Privacy Policy / TOS.
+ACTION: src/components/OpsDashboard.tsx:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+ACTION: src/components/ThemeToggle.tsx:1 | Missing 'surfaceId' mapping | Add 'surfaceId' prop to the root component or exported interface.
+
+
+                                                                             🔍 A2UI Audit Findings                                                                              
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ File:Line                                      ┃ Issue                                                    ┃ Recommended Fix                                                   ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ vite.config.ts:1                               │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+│ public/App.tsx:1                               │ Missing Branding (Logo) or SEO Metadata (OG/Description) │ Add meta tags (og:image, description) and project logo.           │
+│ src/App.tsx:1                                  │ Missing Branding (Logo) or SEO Metadata (OG/Description) │ Add meta tags (og:image, description) and project logo.           │
+│ src/main.tsx:1                                 │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+│ src/a2ui/components/index.tsx:1                │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+│ src/a2ui/components/index.tsx:1                │ Missing Branding (Logo) or SEO Metadata (OG/Description) │ Add meta tags (og:image, description) and project logo.           │
+│ src/a2ui/components/lit-component-example.ts:1 │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+│ src/docs/DocPage.tsx:1                         │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+│ src/docs/DocPage.tsx:1                         │ Missing Legal Disclaimer or Privacy Policy link          │ Add a footer link to the mandatory Privacy Policy / TOS.          │
+│ src/docs/DocLayout.tsx:1                       │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+│ src/docs/DocLayout.tsx:1                       │ Missing Legal Disclaimer or Privacy Policy link          │ Add a footer link to the mandatory Privacy Policy / TOS.          │
+│ src/components/OpsDashboard.tsx:1              │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+│ src/components/ThemeToggle.tsx:1               │ Missing 'surfaceId' mapping                              │ Add 'surfaceId' prop to the root component or exported interface. │
+└────────────────────────────────────────────────┴──────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────┘
+
+⚠️  Recommendation: Your 'Face' layer has fragmented A2UI surface mappings.
+💡 Use the A2UI Registry to unify how your agent logic triggers visual surfaces.
+</pre><h3>Reliability (Quick)</h3><pre>╭──────────────────────────────╮
+│ 🛡️ RELIABILITY AUDIT (QUICK) │
+╰──────────────────────────────╯
+📦 Detected TS/JS project. Running 'npm test' in ....
+📈 Verifying Regression Suite Coverage...
+                   🛡️ Reliability Status (TypeScript/JS)                    
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Check                      ┃ Status   ┃ Details                          ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ TypeScript/JS Unit Tests   │ FAILED   │ 0 lines of output                │
+│ Contract Compliance (A2UI) │ VERIFIED │ Verified Engine-to-Face protocol │
+│ Regression Golden Set      │ FOUND    │ 50 baseline scenarios active     │
+└────────────────────────────┴──────────┴──────────────────────────────────┘
+
+❌ Unit test failures detected. Fix them before production deployment.
+```
+
+```
+
+</pre><h3>Quality Hill Climbing</h3><pre>╭────────────────────────────────────────────────────────────────╮
+│ 🧗 QUALITY HILL CLIMBING: ADK EVALUATION SUITE                 │
+│ Iteratively optimizing for Response Match & Tool Trajectory... │
+╰────────────────────────────────────────────────────────────────╯
+
+🎯 Target Quality (90.0%) Reached at Iteration 6!
+⠹ Iteration 6: Optimizing Prompt Variant... ━━━━━━━━━━━━━━━━━━━━━━━━                  60%
+   📈 Hill Climbing Optimization History   
+┏━━━━━━┳━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Iter ┃ Score ┃   Status   ┃ Improvement ┃
+┡━━━━━━╇━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│  1   │ 86.0% │  IMPROVED  │      +11.0% │
+│  2   │ 89.1% │  IMPROVED  │       +3.2% │
+│  3   │ 85.2% │ REGRESSION │       -3.9% │
+│  4   │ 85.6% │ REGRESSION │       -3.6% │
+│  5   │ 88.2% │ REGRESSION │       -1.0% │
+│  6   │ 90.8% │  IMPROVED  │       +1.7% │
+└──────┴───────┴────────────┴─────────────┘
+
+✅ SUCCESS: High-fidelity agent stabilized at 90.8%.
+🚀 Final blueprint is ready for deployment.
+</pre>
+                <div class="footer">
+                    Generated by AgentOps Cockpit Orchestrator v0.9.8. 
+                    <br>Ensuring safe-build standards for multi-cloud agentic ecosystems.
+                </div>
+            </div>
+            <script>
+                function filterActions(type) {
+                    const rows = document.querySelectorAll('.action-row');
+                    rows.forEach(row => {
+                        if (type === 'all' || row.classList.contains(type)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                }
+            </script>
+        </body>
+        </html>
+        

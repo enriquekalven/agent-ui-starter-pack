@@ -1,0 +1,440 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "AgentOps Cockpit",
+          "informationUri": "https://agent-cockpit.web.app",
+          "version": "1.1.1",
+          "rules": [
+            {
+              "id": "architecture_gap:_runtime",
+              "shortDescription": {
+                "text": "Architecture Gap: Runtime"
+              },
+              "helpUri": "https://agent-cockpit.web.app/docs",
+              "properties": {
+                "category": "Agentic Governance"
+              }
+            },
+            {
+              "id": "architecture_gap:_security",
+              "shortDescription": {
+                "text": "Architecture Gap: Security"
+              },
+              "helpUri": "https://agent-cockpit.web.app/docs",
+              "properties": {
+                "category": "Agentic Governance"
+              }
+            },
+            {
+              "id": "architecture_gap:_types",
+              "shortDescription": {
+                "text": "Architecture Gap: Types"
+              },
+              "helpUri": "https://agent-cockpit.web.app/docs",
+              "properties": {
+                "category": "Agentic Governance"
+              }
+            },
+            {
+              "id": "missing_'surfaceid'_mapping",
+              "shortDescription": {
+                "text": "Missing 'surfaceId' mapping"
+              },
+              "helpUri": "https://agent-cockpit.web.app/docs",
+              "properties": {
+                "category": "Agentic Governance"
+              }
+            },
+            {
+              "id": "missing_branding_(logo)_or_seo_metadata_(og/description)",
+              "shortDescription": {
+                "text": "Missing Branding (Logo) or SEO Metadata (OG/Description)"
+              },
+              "helpUri": "https://agent-cockpit.web.app/docs",
+              "properties": {
+                "category": "Agentic Governance"
+              }
+            },
+            {
+              "id": "missing_legal_disclaimer_or_privacy_policy_link",
+              "shortDescription": {
+                "text": "Missing Legal Disclaimer or Privacy Policy link"
+              },
+              "helpUri": "https://agent-cockpit.web.app/docs",
+              "properties": {
+                "category": "Agentic Governance"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "architecture_gap:_runtime",
+          "level": "warning",
+          "message": {
+            "text": "Architecture Gap: Runtime: Optimizes performance for high-frequency API calls."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "codebase"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "architecture_gap:_security",
+          "level": "error",
+          "message": {
+            "text": "Architecture Gap: Security: Hardens the Express/Hono server against common attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "codebase"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "architecture_gap:_types",
+          "level": "warning",
+          "message": {
+            "text": "Architecture Gap: Types: Ensures type-safety across the agent-tool boundary."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "codebase"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "architecture_gap:_runtime",
+          "level": "warning",
+          "message": {
+            "text": "Architecture Gap: Runtime: Optimizes performance for high-frequency API calls."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "codebase"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "architecture_gap:_security",
+          "level": "error",
+          "message": {
+            "text": "Architecture Gap: Security: Hardens the Express/Hono server against common attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "codebase"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "architecture_gap:_types",
+          "level": "warning",
+          "message": {
+            "text": "Architecture Gap: Types: Ensures type-safety across the agent-tool boundary."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "codebase"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "vite.config.ts"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_branding_(logo)_or_seo_metadata_(og/description)",
+          "level": "warning",
+          "message": {
+            "text": "Missing Branding (Logo) or SEO Metadata (OG/Description): Add meta tags (og:image, description) and project logo."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "public/App.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_branding_(logo)_or_seo_metadata_(og/description)",
+          "level": "warning",
+          "message": {
+            "text": "Missing Branding (Logo) or SEO Metadata (OG/Description): Add meta tags (og:image, description) and project logo."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/App.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/a2ui/components/index.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_branding_(logo)_or_seo_metadata_(og/description)",
+          "level": "warning",
+          "message": {
+            "text": "Missing Branding (Logo) or SEO Metadata (OG/Description): Add meta tags (og:image, description) and project logo."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/a2ui/components/index.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/a2ui/components/lit-component-example.ts"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/docs/DocPage.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_legal_disclaimer_or_privacy_policy_link",
+          "level": "warning",
+          "message": {
+            "text": "Missing Legal Disclaimer or Privacy Policy link: Add a footer link to the mandatory Privacy Policy / TOS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/docs/DocPage.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/docs/DocLayout.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_legal_disclaimer_or_privacy_policy_link",
+          "level": "warning",
+          "message": {
+            "text": "Missing Legal Disclaimer or Privacy Policy link: Add a footer link to the mandatory Privacy Policy / TOS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/docs/DocLayout.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/components/OpsDashboard.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "missing_'surfaceid'_mapping",
+          "level": "warning",
+          "message": {
+            "text": "Missing 'surfaceId' mapping: Add 'surfaceId' prop to the root component or exported interface."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/components/ThemeToggle.tsx"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
