@@ -112,33 +112,69 @@ Respond ONLY with a valid JSON object.
 
     def generate_a2ui_for_intent(self, intent: str, context: str) -> Dict[str, Any]:
         """
-        Surface Factory: Maps intents to high-fidelity A2UI components.
-        This is the 'Graceful Degradation' fallback pattern.
+        Surface Factory: Maps intents to premium high-fidelity A2UI components.
+        Updated for Cockpit v2.0.2 with Metric, Visual, and Grid support.
         """
         if intent == "analytics":
             return {
                 "surfaceId": "analytics-view",
                 "content": [
-                    {"type": "Text", "props": {"text": f"Analytics: {context}", "variant": "h2"}},
-                    {"type": "StatBar", "props": {"label": "Performance Index", "value": 85, "color": "#3b82f6"}},
-                    {"type": "StatBar", "props": {"label": "Growth Rate", "value": 12, "color": "#10b981"}}
+                    {"type": "Text", "props": {"text": f"Strategic Analytics: {context}", "variant": "h2"}},
+                    {
+                        "type": "Grid", "props": {"cols": 3},
+                        "children": [
+                            {"type": "Metric", "props": {"label": "Efficiency", "value": "92.4%", "trend": "2.1%", "trendUp": True}},
+                            {"type": "Metric", "props": {"label": "ROI Velocity", "value": "12.4x", "trend": "v1.8", "trendUp": True}},
+                            {"type": "Metric", "props": {"label": "Latent Drift", "value": "8ms", "trend": "Optimized", "trendUp": True}}
+                        ]
+                    },
+                    {
+                        "type": "Card", "props": {"title": "Growth Trajectory", "icon": "performance"},
+                        "children": [
+                            {
+                                "type": "Visual", 
+                                "props": {
+                                    "type": "trend", 
+                                    "data": {
+                                        "points": [
+                                            {"name": "Q1", "value": 12}, {"name": "Q2", "value": 34}, 
+                                            {"name": "Q3", "value": 56}, {"name": "Q4", "value": 89}
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
                 ]
             }
         elif intent == "vision":
             return {
                 "surfaceId": "vision-roadmap",
                 "content": [
-                    {"type": "Text", "props": {"text": "Strategic Roadmap", "variant": "h2"}},
-                    {"type": "Card", "props": {"title": "Phase 1: Foundation"}, "children": [{"type": "Text", "props": {"text": "Laying the global infrastructure for A2UI.", "variant": "body"}}]},
-                    {"type": "Card", "props": {"title": "Phase 2: Scale"}, "children": [{"type": "Text", "props": {"text": "Expanding intelligence to niche industries.", "variant": "body"}}]}
+                    {"type": "Text", "props": {"text": "Sovereign Strategic Roadmap", "variant": "h1"}},
+                    {
+                        "type": "Grid", "props": {"cols": 2},
+                        "children": [
+                            {"type": "Card", "props": {"title": "Phase 1: Foundation", "icon": "security"}, "children": [{"type": "Text", "props": {"text": "Laying the global infrastructure for A2UI.", "variant": "body"}}]},
+                            {"type": "Card", "props": {"title": "Phase 2: Scale", "icon": "performance"}, "children": [{"type": "Text", "props": {"text": "Expanding intelligence to niche industries.", "variant": "body"}}]}
+                        ]
+                    },
+                    {"type": "Visual", "props": {"type": "roi", "data": {"saved": 12480}}}
                 ]
             }
         elif intent == "directory":
             return {
                 "surfaceId": "directory-list",
                 "content": [
-                    {"type": "Text", "props": {"text": "Project Directory", "variant": "h2"}},
-                    {"type": "List", "props": {"title": "Active Items", "items": ["Global Supply Chain", "Healthcare Dashboard", "Fintech Bridge"]}}
+                    {"type": "Text", "props": {"text": "Fleet Directory", "variant": "h2"}},
+                    {"type": "Visual", "props": {"type": "map", "data": {
+                        "agents": [
+                            {"name": "Sales-Bot", "x": 20, "y": 40, "task": "COLD_CALL"},
+                            {"name": "Ops-Pilot", "x": 60, "y": 30, "task": "AUDIT"},
+                            {"name": "Fin-Chief", "x": 80, "y": 70, "task": "ROI_CALC"}
+                        ]
+                    }}},
+                    {"type": "List", "props": {"title": "Managed Agents", "items": ["Global Supply Chain", "Healthcare Dashboard", "Fintech Bridge"]}}
                 ]
             }
         elif intent == "weather":
@@ -146,8 +182,14 @@ Respond ONLY with a valid JSON object.
                 "surfaceId": "weather-widget",
                 "content": [
                     {"type": "Text", "props": {"text": f"Current Weather: {context}", "variant": "h2"}},
-                    {"type": "StatBar", "props": {"label": "Temperature", "value": 72, "color": "#f59e0b"}},
-                    {"type": "StatBar", "props": {"label": "Humidity", "value": 45, "color": "#3b82f6"}}
+                    {
+                        "type": "Grid", "props": {"cols": 2},
+                        "children": [
+                            {"type": "Metric", "props": {"label": "Temperature", "value": "72°F", "trend": "Rising", "trendUp": True}},
+                            {"type": "Metric", "props": {"label": "Humidity", "value": "45%", "trend": "Stable", "trendUp": True}}
+                        ]
+                    },
+                    {"type": "StatBar", "props": {"label": "UV Index", "value": 15, "color": "#f59e0b"}}
                 ]
             }
         elif intent == "stock":
@@ -155,21 +197,30 @@ Respond ONLY with a valid JSON object.
                 "surfaceId": "stock-ticker",
                 "content": [
                     {"type": "Text", "props": {"text": f"Market Data: {context}", "variant": "h2"}},
-                    {"type": "Card", "props": {"title": "GOOGL (Alphabet Inc.)"}, "children": [
-                        {"type": "Text", "props": {"text": "$142.50 (+2.4%)", "variant": "h1"}},
-                        {"type": "StatBar", "props": {"label": "Volume", "value": 85, "color": "#10b981"}}
-                    ]}
+                    {
+                        "type": "Card", "props": {"title": "Asset Analytics", "icon": "cost"},
+                        "children": [
+                            {"type": "Metric", "props": {"label": "GOOGL", "value": "$142.50", "trend": "2.4%", "trendUp": True}},
+                            {"type": "Visual", "props": {"type": "bar", "data": {
+                                "items": [
+                                    {"name": "Open", "value": 138}, {"name": "Close", "value": 142.5, "color": "#10b981"},
+                                    {"name": "High", "value": 145}, {"name": "Low", "value": 137}
+                                ]
+                            }}}
+                        ]
+                    }
                 ]
             }
         elif intent == "time":
             return {
                 "surfaceId": "time-display",
                 "content": [
-                    {"type": "Text", "props": {"text": "System Clock", "variant": "h2"}},
+                    {"type": "Text", "props": {"text": "Sovereign Clock", "variant": "h2"}},
                     {"type": "Card", "children": [
                         {"type": "Text", "props": {"text": "10:14 PM GMT-8", "variant": "h1"}},
                         {"type": "Text", "props": {"text": "Tuesday, Jan 27, 2026", "variant": "body"}}
-                    ]}
+                    ]},
+                    {"type": "Metric", "props": {"label": "Uptime", "value": "99.998%", "trend": "Planetary", "trendUp": True}}
                 ]
             }
         

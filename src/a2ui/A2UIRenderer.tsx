@@ -1,6 +1,6 @@
 import React from 'react';
 import { A2UIComponent } from './types';
-import { Text, Button, Card, Image, List, StatBar } from './components';
+import { Text, Button, Card, Image, List, StatBar, Grid, Metric, Visual } from './components';
 
 const Registry: Record<string, React.FC<any>> = {
   Text,
@@ -9,6 +9,9 @@ const Registry: Record<string, React.FC<any>> = {
   Image,
   List,
   StatBar,
+  Grid,
+  Metric,
+  Visual,
   Container: Card, // Alias for common A2UI convention
 };
 
@@ -28,7 +31,12 @@ export const A2UIRenderer: React.FC<{ component: A2UIComponent }> = ({ component
 
 export const A2UISurfaceRenderer: React.FC<{ surface: any }> = ({ surface }) => {
   return (
-    <div className="a2-surface" id={surface.surfaceId}>
+    <div
+      className="a2-surface"
+      id={surface.surfaceId}
+      data-surface-id={surface.surfaceId}
+      data-a2ui-discovered="true"
+    >
       {surface.content.map((comp: A2UIComponent, i: number) => (
         <A2UIRenderer key={comp.id || i} component={comp} />
       ))}

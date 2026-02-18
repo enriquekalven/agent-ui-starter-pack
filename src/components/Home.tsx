@@ -1,368 +1,335 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
+import { OperationalJourneys } from './OperationalJourneys';
+import {
+  Github, ArrowRight, Zap, Shield,
+  Code, Layout, Rocket, Box,
+  Cpu, Activity, CheckCircle, Globe, Terminal
+} from 'lucide-react';
 
 export function Home() {
   return (
-    <div className="home-container">
-      <header className="home-header">
-        <div className="logo-section">
-          <span className="agent-pulse"></span>
-          <span className="logo-text">Agent UI Starter Pack</span>
-        </div>
-        <nav className="home-nav">
-          <Link to="/docs" className="nav-item">Documentation</Link>
-          <Link to="/playground" className="nav-item">Playground</Link>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <a href="https://github.com/enriquekalven/agent-ui-starter-pack" target="_blank" rel="noopener noreferrer" className="nav-item">GitHub</a>
-            <iframe src="https://ghbtns.com/github-btn.html?user=enriquekalven&repo=agent-ui-starter-pack&type=star&count=true&size=small" frameBorder="0" scrolling="0" width="80" height="20" title="GitHub Stars"></iframe>
+    <div className="home-container bg-slate-950 min-h-screen text-slate-200 selection:bg-blue-500/30">
+      {/* Release Banner */}
+      <div className="bg-blue-600/10 border-b border-blue-500/20 py-2.5 px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="bg-blue-500 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-widest">v2.0.2</span>
+            <span className="text-xs font-bold text-blue-400">AgentOps Cockpit: Sovereign Evolution is now GA.</span>
           </div>
-          <a href="https://pypi.org/project/agentui-starter-pack/" target="_blank" rel="noopener noreferrer" className="nav-item">PyPI</a>
-          <ThemeToggle />
-          <Link to="/docs/getting-started" className="nav-cta">Get Started</Link>
-        </nav>
+          <Link to="/docs/changelog" className="text-xs font-black text-blue-400 hover:text-blue-300 flex items-center gap-1 uppercase tracking-widest">
+            Changelog <ArrowRight size={12} />
+          </Link>
+        </div>
+      </div>
+
+      <header className="home-header sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <div className="absolute -inset-1 bg-blue-500/20 rounded-full blur-sm" />
+              <div className="relative w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center">
+                <Box size={18} className="text-blue-400" />
+              </div>
+            </div>
+            <span className="font-black text-lg tracking-tight text-white">Agent UI Starter Pack</span>
+          </div>
+
+          <nav className="hidden md:flex items-center gap-8">
+            <Link to="/docs" className="text-sm font-bold text-slate-400 hover:text-white transition-colors">Documentation</Link>
+            <Link to="/playground" className="text-sm font-bold text-slate-400 hover:text-white transition-colors">Playground</Link>
+            <div className="h-4 w-px bg-white/10" />
+            <a href="https://github.com/enriquekalven/agent-ui-starter-pack" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+              <Github size={20} />
+            </a>
+            <ThemeToggle />
+            <Link to="/docs/getting-started" className="bg-white text-slate-950 px-5 py-2 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">
+              Initialize
+            </Link>
+          </nav>
+        </div>
       </header>
 
-      <main className="hero-section">
-        <div className="hero-content">
-          <div className="hero-badge">
-            <span className="badge-dot"></span>
-            A2UI Standard Native
-          </div>
-          <h1 className="hero-title">
-            The <span className="highlight-text">High-Fidelity</span> Agent UI.
-          </h1>
-          <p className="hero-subtitle">
-            The professional distribution for building Agent-Driven interfaces on Google Cloud. Focus on reasoning, we handle the rendering.
-          </p>
-          <div className="cta-group">
-            <Link to="/docs/getting-started" className="cta-button primary">
-              Start Building
-            </Link>
-            <Link to="/playground" className="cta-button secondary">
-              Try the Playground
-            </Link>
-          </div>
-          <div className="hero-meta">
-            <p>The universal bridge for <strong>Agentic Ecosystems</strong>.</p>
-            <div className="hero-logos">
-              <span className="logo-pill">Open Source</span>
-              <a href="https://a2ui.org" target="_blank" rel="noopener noreferrer" className="logo-pill link">
-                <img src="https://a2ui.org/favicon.ico" alt="A2UI" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
-                A2UI Standard
-              </a>
-              <a href="https://copilotkit.ai" target="_blank" rel="noopener noreferrer" className="logo-pill link">
-                <img src="https://www.copilotkit.ai/favicon.ico" alt="CopilotKit" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
-                CopilotKit.ai
-              </a>
-              <span className="logo-pill">
-                <img src="https://www.vectorlogo.zone/logos/lit/lit-icon.svg" alt="Lit" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
-                Lit
-              </span>
-              <span className="logo-pill">
-                <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="Flutter" style={{ width: '14px', height: '14px', marginRight: '6px' }} />
-                Flutter
-              </span>
-              <span className="logo-pill">A2A Protocol</span>
-              <span className="logo-pill">AG UI</span>
-            </div>
-          </div>
-        </div>
+      <main>
+        {/* Hero Section */}
+        <section className="relative pt-24 pb-32 px-6 overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] -z-10" />
 
-        <div className="hero-visual-container">
-          <div className="hero-visual-glow"></div>
-          <div className="hero-card main-card">
-            <div className="card-browser-bar">
-              <div className="browser-dot"></div>
-              <div className="browser-dot"></div>
-              <div className="browser-dot"></div>
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div className="text-left">
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 mb-8 fade-in-shimmer">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">A2UI-Standard: Production Native</span>
+              </div>
+
+              <h1 className="text-6xl md:text-7xl font-black text-white tracking-tighter leading-[1.05] mb-8">
+                The <span className="gradient-text">High-Fidelity</span> <br />Agent UI.
+              </h1>
+
+              <p className="text-xl text-slate-400 leading-relaxed mb-10 max-w-xl">
+                The professional distribution for building Agent-Driven interfaces on Google Cloud. Focus on reasoning, we handle the rendering.
+              </p>
+
+              <div className="flex flex-wrap gap-4 mb-16">
+                <Link to="/docs/getting-started" className="bg-blue-600 text-white px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-blue-500 shadow-[0_0_40px_rgba(37,99,235,0.2)] transition-all">
+                  Start Building
+                </Link>
+                <Link to="/playground" className="bg-slate-900 text-white border border-slate-700 px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-slate-800 transition-all">
+                  Try Playground
+                </Link>
+              </div>
+
+              <div className="flex items-center gap-8 pt-8 border-t border-white/5">
+                <div className="flex flex-col gap-1">
+                  <div className="text-2xl font-black text-white tracking-tight">1.2M+</div>
+                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">A2UI Events/Mo</div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="text-2xl font-black text-white tracking-tight">85ms</div>
+                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Median Latency</div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="text-2xl font-black text-white tracking-tight">100%</div>
+                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">GCP Native</div>
+                </div>
+              </div>
             </div>
-            <div className="card-code-content">
-              <pre>
-                <code>{`{
-  "surfaceId": "agent-response",
+
+            <div className="relative">
+              {/* Main Visual: Premium A2UI Code Reveal */}
+              <div className="relative z-10 rounded-[2.5rem] bg-slate-900 p-2 shadow-2xl border border-white/5 overflow-hidden">
+                <div className="bg-slate-950 rounded-[2.25rem] overflow-hidden border border-white/5">
+                  <div className="flex items-center gap-1.5 px-6 py-4 border-b border-white/5 bg-slate-900/50">
+                    <div className="w-3 h-3 rounded-full bg-red-500/20" />
+                    <div className="w-3 h-3 rounded-full bg-amber-500/20" />
+                    <div className="w-3 h-3 rounded-full bg-emerald-500/20" />
+                    <div className="ml-4 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">agent.py {'->'} ui_surface</div>
+                  </div>
+                  <div className="p-8 font-mono text-sm leading-relaxed overflow-x-auto">
+                    <pre className="text-slate-400">
+                      {`{
+  "surfaceId": "market-pulse",
   "content": [
     {
-      "type": "Card",
-      "props": { "title": "AI Insight" },
-      "children": [
-        { "type": "Text", "props": { "text": "Analyzing data..." } }
-      ]
+      "type": "Metric",
+      "props": { 
+        "label": "Asset Value", 
+        "value": "$2,481.20",
+        "trend": "12.4%", "trendUp": true
+      }
+    },
+    {
+      "type": "Visual",
+      "props": { "type": "trend", "data": market_data }
     }
   ]
-}`}</code>
-              </pre>
-            </div>
-          </div>
+}`}
+                    </pre>
+                  </div>
+                </div>
+              </div>
 
-          {/* Restored High-Fidelity Performance Card */}
-          <div className="hero-card sub-card performance-card" style={{ position: 'absolute', bottom: '-20px', left: '-40px', width: '240px', zIndex: 60, padding: '1.5rem', background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(20px)', border: '1px solid white', borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 800, opacity: 0.5 }}>LATENCY</span>
-              <span style={{ fontSize: '0.75rem', color: '#10b981', fontWeight: 800 }}>LIVE</span>
-            </div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '-0.05em' }}>14<span style={{ fontSize: '1rem', opacity: 0.5 }}>ms</span></div>
-            <div style={{ height: '4px', background: '#eee', borderRadius: '2px', overflow: 'hidden' }}>
-              <div style={{ width: '85%', height: '100%', background: '#10b981' }}></div>
-            </div>
-          </div>
+              {/* Floating Cards */}
+              <div className="absolute -bottom-10 -left-10 z-20 bg-slate-900/80 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl w-56 animate-float">
+                <div className="flex justify-between items-center mb-4">
+                  <Activity size={16} className="text-emerald-500" />
+                  <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Latency</span>
+                </div>
+                <div className="text-3xl font-black text-white tracking-tighter mb-2">14<span className="text-sm font-bold text-slate-500">ms</span></div>
+                <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-emerald-500 w-[92%] rounded-full" />
+                </div>
+              </div>
 
-          <div className="hero-card sub-card node-card" style={{ position: 'absolute', top: '40px', right: '-30px', width: '200px', zIndex: 60, padding: '1.25rem', background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(20px)', border: '1px solid #333', borderRadius: '18px', color: 'white' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem' }}>
-              <div className="agent-pulse mini"></div>
-              <span style={{ fontSize: '0.7rem', fontWeight: 800 }}>INTELLIGENCE NODE</span>
-            </div>
-            <div style={{ fontSize: '0.8rem', opacity: 0.8, lineHeight: 1.4 }}>
-              Synthesizing A2UI surface for intent: <strong>analytics</strong>...
+              <div className="absolute -top-10 -right-10 z-20 bg-slate-900/80 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl w-48 animate-float-delayed">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center">
+                    <Shield size={16} className="text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Audit Status</div>
+                    <div className="text-xs font-bold text-white">SECURE</div>
+                  </div>
+                </div>
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-full h-1 bg-blue-500/40 rounded-full" />)}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Ecosystem Logos */}
+        <section className="py-20 border-y border-white/5 bg-slate-900/20">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Universal A2UI Ecosystem Support</span>
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-16 gap-y-10 items-center opacity-40 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 duration-500">
+              <div className="flex items-center gap-3">
+                <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" className="w-6 h-6" alt="Vertex AI" />
+                <span className="font-bold">Vertex AI</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <img src="https://www.vectorlogo.zone/logos/lit/lit-icon.svg" className="w-6 h-6" alt="Lit" />
+                <span className="font-bold">Lit</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" className="w-6 h-6" alt="Flutter" />
+                <span className="font-bold">Flutter</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 bg-white rounded flex items-center justify-center text-slate-900 font-black text-[10px]">A2</div>
+                <span className="font-bold">A2A Protocol</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 bg-[#3b82f6] rounded flex items-center justify-center text-white font-black text-[10px]">LG</div>
+                <span className="font-bold">LangGraph</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Operational Journeys Section */}
+        <section className="py-32">
+          <OperationalJourneys />
+        </section>
+
+        {/* Scalability Banner */}
+        <section className="py-40 bg-blue-600 relative overflow-hidden text-center">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.2)_0%,_transparent_70%)] animate-pulse" />
+          <div className="relative z-10 px-6">
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-8 max-w-4xl mx-auto">
+              Skip the Infrastructure Grind.<br />Focus on the Reasoning.
+            </h2>
+            <div className="flex justify-center gap-6">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-5 rounded-3xl">
+                <div className="text-sm font-black text-white/60 uppercase tracking-widest mb-1">Time to Deploy</div>
+                <div className="text-4xl font-black text-white tracking-tight">60s</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-5 rounded-3xl">
+                <div className="text-sm font-black text-white/60 uppercase tracking-widest mb-1">Operational Cost</div>
+                <div className="text-4xl font-black text-white tracking-tight">-90%</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Architecture Section */}
+        <section className="py-32 px-6">
+          <div className="max-w-7xl mx-auto text-center">
+            <h2 className="text-4xl font-black text-white tracking-tight mb-20">One Stack. <span className="gradient-text">Two Dimensions.</span></h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="p-10 rounded-[2.5rem] bg-slate-900/50 border border-slate-800 text-left hover:border-blue-500/30 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  <Cpu className="text-blue-400" size={28} />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">The Brain (Engine)</h3>
+                <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                  Powered by <strong>Agent Starter Pack</strong>. Optimized for reasoning, tool-use, and Vertex AI orchestration.
+                </p>
+                <div className="bg-black/40 rounded-xl p-4 font-mono text-blue-400 border border-slate-800">
+                  uvx agent-starter-pack create
+                </div>
+              </div>
+
+              <div className="p-10 rounded-[2.5rem] bg-slate-900/50 border border-slate-800 text-left hover:border-emerald-500/30 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  <Layout className="text-emerald-400" size={28} />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">The Face (A2UI)</h3>
+                <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                  Powered by <strong>Agent UI Starter Pack</strong>. Handles high-fidelity rendering and adaptive surfaces.
+                </p>
+                <div className="bg-black/40 rounded-xl p-4 font-mono text-emerald-400 border border-slate-800">
+                  uvx agent-ui-starter-pack create
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Multi-Cloud Comparison Section */}
+        <section className="py-32 bg-slate-900/30 border-y border-white/5">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex justify-between items-end mb-16">
+              <div>
+                <h2 className="text-4xl font-black text-white tracking-tighter mb-4">Architectural <span className="gradient-text">Parity</span></h2>
+                <p className="text-slate-400">Deploy exactly what you need, where you need it.</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { name: "Starter Pack", tag: "Recommended", color: "blue", desc: "Best for building end-to-end apps in minutes." },
+                { name: "A2UI Protocol", tag: "Standard", color: "slate", desc: "Custom renderers for specialized workflows." },
+                { name: "AG UI", tag: "Experimental", color: "purple", desc: "Ultra-lightweight Lit-based components." },
+                { name: "CopilotKit", tag: "Ecosystem", color: "emerald", desc: "Built-in co-pilots for existing SaaS." }
+              ].map((item, i) => (
+                <div key={i} className={`p-8 rounded-[2rem] bg-slate-900 border ${item.name === 'Starter Pack' ? 'border-blue-500/30 ring-1 ring-blue-500/30' : 'border-slate-800'} relative`}>
+                  {item.tag && <div className={`absolute top-4 right-4 text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-widest bg-${item.color}-500/10 text-${item.color}-400 border border-${item.color}-500/20`}>{item.tag}</div>}
+                  <h4 className="text-lg font-bold text-white mb-3">{item.name}</h4>
+                  <p className="text-xs text-slate-500 leading-relaxed mb-6">{item.desc}</p>
+                  <div className="text-xs font-black text-white hover:text-blue-400 transition-colors uppercase tracking-widest flex items-center gap-1 cursor-pointer">
+                    Learn More <ArrowRight size={12} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className="py-32 px-6">
+          <div className="max-w-3xl mx-auto text-center p-16 rounded-[4rem] bg-gradient-to-b from-blue-600/20 to-transparent border border-blue-500/20">
+            <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+              <Rocket className="text-white" size={32} />
+            </div>
+            <h2 className="text-4xl font-black text-white mb-6">Initialize Your Ecosystem.</h2>
+            <p className="text-slate-400 text-lg mb-10">
+              Join 2,000+ engineers building high-fidelity agentic interfaces on Google Cloud.
+            </p>
+            <div className="flex flex-col items-center gap-6">
+              <Link to="/docs/getting-started" className="bg-white text-slate-950 px-10 py-4 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all">
+                Get Started Free
+              </Link>
+              <div className="flex items-center gap-2 text-slate-500 text-xs font-bold font-mono">
+                <Terminal size={14} />
+                make deploy-prod
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <section className="ecosystem-marquee-section" style={{ padding: '3rem 2rem', background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '2.5rem', opacity: 0.5 }}>
-            Native Integration & Support
-          </p>
-          <div className="marquee-wrapper" style={{ display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style={{ width: '20px' }} alt="Vertex AI" />
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>Vertex AI</span>
+      <footer className="py-20 px-6 border-t border-white/5 bg-black/40">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center">
+              <Box size={18} className="text-blue-400" />
             </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <img src="https://www.vectorlogo.zone/logos/lit/lit-icon.svg" style={{ width: '20px' }} alt="Lit" />
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>Lit</span>
-            </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" style={{ width: '20px' }} alt="Flutter" />
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>Flutter</span>
-            </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <img src="https://www.vectorlogo.zone/logos/openai/openai-icon.svg" style={{ width: '20px' }} alt="OpenAI" />
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>OpenAI AgentKit</span>
-            </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <div style={{ width: '20px', height: '20px', background: 'var(--accent-color)', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--bg-color)', fontSize: '10px', fontWeight: 900 }}>A2</div>
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>A2A Protocol</span>
-            </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <div style={{ width: '20px', height: '20px', background: '#ff4b4b', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 900 }}>C</div>
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>CrewAI</span>
-            </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <div style={{ width: '20px', height: '20px', background: '#3b82f6', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 900 }}>LG</div>
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>LangGraph</span>
-            </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <img src="https://www.copilotkit.ai/favicon.ico" style={{ width: '20px' }} alt="CopilotKit" />
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>CopilotKit.ai</span>
-            </div>
-            <div className="ecosystem-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: 0.8 }}>
-              <div style={{ width: '20px', height: '20px', background: '#10b981', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 900 }}>AG</div>
-              <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>AG UI</span>
-            </div>
+            <span className="font-bold text-white">Agent UI Starter Pack</span>
           </div>
-        </div>
-      </section>
-
-      <section className="speed-banner" style={{ padding: '4rem 2rem', background: 'var(--accent-color)', color: 'var(--bg-color)', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem' }}>Skip the 3-Week Infrastructure Grind.</h2>
-        <p style={{ fontSize: '1.1rem', fontWeight: 500, opacity: 0.9 }}>
-          We automate the Auth, the JSON parsing, and the Dynamic Rendering. You focus on the Reasoning.
-        </p>
-      </section>
-
-      <section className="stack-duality-section" style={{ padding: '8rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        <div className="section-header">
-          <h2 className="section-title">One Stack. <span className="gradient-text">Two Dimensions.</span></h2>
-          <p className="section-subtitle">The Agent UI Starter Pack is the frontend "Face" that pairs perfectly with the Agent Starter Pack "Brain".</p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', marginTop: '4rem' }}>
-          <div className="feature-card" style={{ borderLeft: '4px solid #3b82f6' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-              <div className="feature-icon-wrapper blue" style={{ margin: 0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-              </div>
-              <h3 style={{ margin: 0 }}>The Brain (Engine)</h3>
-            </div>
-            <p className="a2-body">Powered by <strong>Agent Starter Pack</strong>. Handles reasoning, tool-use, and Vertex AI orchestration.</p>
-            <div style={{ background: '#f8f9fa', padding: '1rem', borderRadius: '8px', border: '1px solid #eee', marginTop: '1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
-              uvx agent-starter-pack create
-            </div>
+          <p className="text-slate-500 text-sm">© 2026 Agent UI. Native on Google Cloud. MIT Licensed.</p>
+          <div className="flex gap-8">
+            <a href="#" className="text-slate-500 hover:text-white transition-colors"><Globe size={20} /></a>
+            <a href="#" className="text-slate-500 hover:text-white transition-colors"><Github size={20} /></a>
           </div>
-
-          <div className="feature-card" style={{ borderLeft: '4px solid #10b981' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-              <div className="feature-icon-wrapper teal" style={{ margin: 0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" /></svg>
-              </div>
-              <h3 style={{ margin: 0 }}>The Face (A2UI)</h3>
-            </div>
-            <p className="a2-body">Powered by <strong>Agent UI Starter Pack</strong>. Handles high-fidelity rendering and adaptive surfaces.</p>
-            <div style={{ background: '#f8f9fa', padding: '1rem', borderRadius: '8px', border: '1px solid #eee', marginTop: '1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
-              uvx agent-ui-starter-pack create
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="features-section">
-        <div className="section-header">
-          <h2 className="section-title">Built for <span className="gradient-text">Agent Innovation</span></h2>
-          <p className="section-subtitle">A high-fidelity foundation for adaptive agent deployments on Google Cloud.</p>
-        </div>
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon-wrapper blue">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
-            </div>
-            <h3>Structured UI</h3>
-            <p>Define interfaces as JSON. Let our renderer handle the component lifecycle natively.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon-wrapper purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-            </div>
-            <h3>ADK Integrated</h3>
-            <p>Native integration with the Google Cloud Agent Development Kit for Python logic.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon-wrapper teal">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
-            </div>
-            <h3>Cloud Native</h3>
-            <p>Deploy to Cloud Run and Firebase Hosting with a single command.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="comparison-section" style={{ padding: '8rem 4rem', maxWidth: '1400px', margin: '0 auto' }}>
-        <div className="section-header">
-          <h2 className="section-title">Choose Your <span className="gradient-text">Architectural Path</span></h2>
-          <p className="section-subtitle">Selecting the right tool for your Agentic journey.</p>
-        </div>
-
-        <div className="comparison-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
-          <div className="comp-card standout">
-            <div className="comp-tag">Recommended</div>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Agent UI Starter Pack</h3>
-            <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '2rem' }}>The high-fidelity GCP distribution for end-to-end apps.</p>
-            <ul className="comp-list">
-              <li><strong>Use when:</strong> You need to build a professional "Agent Cockpit" on Google Cloud in minutes.</li>
-              <li><strong>Value:</strong> Skips the infrastructure grind. Connects Vertex AI to premium A2UI components out-of-the-box.</li>
-            </ul>
-          </div>
-
-          <div className="comp-card">
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>A2UI Protocol</h3>
-            <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '2rem' }}>The open standard for Agent-Driven Interfaces.</p>
-            <ul className="comp-list">
-              <li><strong>Use when:</strong> You are building a custom renderer from scratch or defining cross-platform agent schemas.</li>
-              <li><strong>Value:</strong> Total control over the communication specification between any AI and any UI.</li>
-            </ul>
-          </div>
-
-          <div className="comp-card">
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>AG UI</h3>
-            <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '2rem' }}>The experimental framework for Lit-based agents.</p>
-            <ul className="comp-list">
-              <li><strong>Use when:</strong> You prefer Web Components (Lit) over React or need ultra-lightweight dynamic embedding.</li>
-              <li><strong>Value:</strong> Framework-agnostic rendering with a focus on performance and raw speed.</li>
-            </ul>
-          </div>
-
-          <div className="comp-card">
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>CopilotKit.ai</h3>
-            <p style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '2rem' }}>The ecosystem for built-in AI copilots.</p>
-            <ul className="comp-list">
-              <li><strong>Use when:</strong> You want to add "Co-pilot" sidebars and "Chat-with-my-data" to existing SaaS applications.</li>
-              <li><strong>Value:</strong> Massive library of pre-built search, document, and dashboard integrations.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="deploy-section" style={{ padding: '8rem 4rem', background: '#0d0d0d', borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a' }}>
-        <div className="section-header" style={{ maxWidth: '1000px', margin: '0 auto 5rem auto' }}>
-          <div className="hero-badge" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981' }}>
-            <span className="badge-dot" style={{ background: '#10b981' }}></span>
-            Production Persistent
-          </div>
-          <h2 className="section-title" style={{ color: 'white' }}>One Command. <span style={{ color: '#10b981' }}>Infinite Scale.</span></h2>
-          <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.6)' }}>
-            We've automated the heavy lifting. Deploy your high-fidelity Agent UI to Firebase and your Intelligent Engine to Cloud Run in a single operation.
-          </p>
-          <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
-            <code style={{ background: '#1a1a1a', padding: '1.5rem 3rem', borderRadius: '12px', border: '1px solid #333', color: '#10b981', fontSize: '1.2rem', fontFamily: 'var(--font-mono)', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
-              make deploy-prod
-            </code>
-          </div>
-        </div>
-
-        <div className="architecture-container" style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <h3 style={{ color: 'white', marginBottom: '3rem', fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '0.2em', opacity: 0.5 }}>Full-Stack Orchestration</h3>
-          <div className="diag-wrapper" style={{ background: 'rgba(255,255,255,0.02)', padding: '4rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', boxShadow: 'inset 0 0 100px rgba(66, 133, 244, 0.05)' }}>
-            <img
-              src="/diagrams/agentic-stack.png"
-              alt="Agentic Stack Architecture"
-              style={{ width: '100%', height: 'auto', borderRadius: '12px', filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.5))' }}
-            />
-          </div>
-        </div>
-      </section>
-
-      <footer className="home-footer">
-        <div className="footer-content">
-          <div className="footer-logo">
-            <span className="agent-pulse"></span>
-            <span>Agent UI Starter Pack</span>
-          </div>
-          <p>© 2026 Agent UI. MIT Licensed.</p>
         </div>
       </footer>
 
       <style>{`
-        .home-container { min-height: 100vh; }
-        .home-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; background: var(--surface-color); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); }
-        .logo-section { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.1rem; }
-        .home-nav { display: flex; align-items: center; gap: 1.5rem; }
-        .home-nav .nav-item { text-decoration: none; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
-        .nav-cta { padding: 0.5rem 1.25rem; background: var(--accent-color); color: var(--bg-color); border-radius: var(--radius-pill); text-decoration: none; font-size: 0.85rem; font-weight: 700; transition: transform 0.2s; }
-        .hero-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 8rem 4rem; max-width: 1400px; margin: 0 auto; align-items: center; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; background: rgba(0, 0, 0, 0.05); border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 700; margin-bottom: 2rem; color: var(--text-secondary); }
-        .badge-dot { width: 6px; height: 6px; background: #3b82f6; border-radius: 50%; }
-        .hero-title { font-size: 4.5rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.05em; margin-bottom: 1.5rem; }
-        .highlight-text { background: linear-gradient(to right, #3b82f6, #8b5cf6, #10b981); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 3rem; max-width: 550px; }
-        .cta-group { display: flex; gap: 1rem; margin-bottom: 4rem; }
-        .cta-button { padding: 1rem 2rem; border-radius: var(--radius-pill); font-weight: 700; text-decoration: none; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); font-size: 1rem; }
-        .cta-button.primary { background: var(--accent-color); color: var(--bg-color); box-shadow: 0 10px 30px var(--accent-glow); }
-        .cta-button.secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); }
-        .features-section { padding: 8rem 4rem; background: rgba(0,0,0,0.02); border-top: 1px solid var(--border-color); }
-        .section-header { text-align: center; margin-bottom: 5rem; }
-        .section-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 1rem; }
-        .gradient-text { background: linear-gradient(to right, #3b82f6, #10b981); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1400px; margin: 0 auto; }
-        .feature-card { background: var(--surface-color); padding: 2.5rem; border-radius: var(--radius-xl); border: 1px solid var(--border-color); transition: transform 0.3s; }
-        .feature-card:hover { transform: translateY(-5px); }
-        .logo-pill.link { text-decoration: none; color: inherit; border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s; }
-        .logo-pill.link:hover { border-color: var(--accent-color); color: var(--accent-color); transform: translateY(-2px); }
-        
-        .hero-visual-container { position: relative; }
-        .hero-visual-glow { position: absolute; top: 10%; right: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(66, 133, 244, 0.2) 0%, transparent 70%); filter: blur(50px); z-index: 1; pointer-events: none; }
-        
-        .hero-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .hero-card:hover { transform: translateY(-10px) scale(1.02); }
-        
-        .comp-card { background: var(--surface-color); padding: 2rem; border-radius: var(--radius-xl); border: 1px solid var(--border-color); display: flex; flex-direction: column; position: relative; }
-        .comp-card.standout { border: 2px solid var(--accent-color); box-shadow: 0 20px 40px rgba(66, 133, 244, 0.1); }
-        .comp-tag { position: absolute; top: -12px; left: 20px; background: var(--accent-color); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
-        .comp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
-        .comp-list li { font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary); }
-        .comp-list li strong { color: var(--text-primary); display: block; margin-bottom: 0.25rem; }
-        
-        .home-footer { padding: 4rem; border-top: 1px solid var(--border-color); }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(-5px); }
+          50% { transform: translateY(5px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 8s ease-in-out infinite; }
       `}</style>
     </div>
   );

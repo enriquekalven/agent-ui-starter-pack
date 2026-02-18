@@ -47,3 +47,26 @@ async def test_intelligence_general_fallback(orchestrator):
         assert result["intent"] == "general"
         assert "Running in fallback mode" in result["text"]
         assert result["status"] == "warning"
+
+@pytest.mark.asyncio
+async def test_intelligence_success(orchestrator):
+    with patch("backend.intelligence.GenerativeModel") as MockModel:
+        mock_instance = MockModel.return_value
+        # Mock the response from Gemini
+        mock_response = MagicMock()
+        mock_response.text = '{"intent": "analytics", "text": "Here are the metrics.", "keywords": "performance"}'
+        mock_instance.generate_content.return_value = mock_response
+        
+        result = await orchestrator.process_query("show performance")
+        
+        assert result["intent"] == "analytics"
+        assert result["text"] == "Here are the metrics."
+        assert "surface" in result
+        assert result["surface"]["surfaceId"] == "analytics-view"
+        assert any(c["type"] == "Grid" for c in result["surface"]["content"])
+
+def test_mock_surface_fallback(orchestrator):
+    # Test the fallback mock surface explicitly
+    surface = orchestrator.get_mock_surface("help me")
+    assert surface["surfaceId"] == "standard-surface"
+    assert "help me" in surface["content"][0]["children"][0]["props"]["text"]
