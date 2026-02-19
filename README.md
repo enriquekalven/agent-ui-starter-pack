@@ -51,6 +51,15 @@ The entire stack is built on the **Agent-Driven User Interface (A2UI)** protocol
 ### 🔄 State Synchronization
 Seamlessly sync agent reasoning steps with frontend state. Build "Human-in-the-loop" workflows where the user can inspect and refine agent actions before they finalize.
 
+### 🖼️ Vision Bridge (Figma-to-A2UI)
+Transform static Figma wireframes into production-grade A2UI surfaces instantly. The Vision Bridge bridge helps developers and designers collaborate by automating the hydration of "Agentic Patterns" directly into the Agent's registry.
+
+### 🎭 SLDS Agentic Experience Patterns
+Native support for high-trust agent patterns inspired by Salesforce SLDS:
+- **ReasoningTrace**: Transparent multi-step agent logic.
+- **Agentic Cards**: Feedback loops and status badges built-in.
+- **Sources & Citations**: Grounding AI responses with verified research.
+
 ![Agentic Stack Architecture](/diagrams/agentic-stack.png)
 
 ---
@@ -68,6 +77,11 @@ uvx agent-ui-starter-pack create my-ui-project
 **To create the Agent Engine (Backend):**
 ```bash
 uvx agent-starter-pack create my-backend-agent
+```
+
+**To hydrate a Figma Blueprint:**
+```bash
+agentops-cockpit hydrate blueprint --figma <link>
 ```
 
 ### Local Development
