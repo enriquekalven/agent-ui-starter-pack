@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agentui-starter-pack"
-version = "0.3.0"
+version = "0.3.2"
 description = "Scaffolding CLI for Optimized Agent Stack"
 readme = "README.md"
 authors = [

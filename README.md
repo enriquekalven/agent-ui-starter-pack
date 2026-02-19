@@ -65,9 +65,9 @@ Create a new project in seconds using our specialized CLIs:
 uvx agent-ui-starter-pack create my-ui-project
 ```
 
-**To create the Agent Engine (Backend):**
+**To hydrate a Figma wireframe into A2UI:**
 ```bash
-uvx agent-starter-pack create my-backend-agent
+uvx agent-ui-starter-pack hydrate <figma-url>
 ```
 
 ### Local Development
