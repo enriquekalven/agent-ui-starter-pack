@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Terminal, Code, Shield, Settings, 
   ChevronRight, Layout, Activity, 
-  Zap, Command, FileText
+  Zap, Command, FileText, Figma, Wand2
 } from 'lucide-react';
 
 const JOURNEYS = [
@@ -78,6 +78,25 @@ Status: SECURE`
 2. Context Caching (90%): -$1,850/mo savings
 🚀 Total Monthly Opportunity: $5,470 (88% reduction)
 ROI Multiplier: 8.2x gain confirmed.`
+  },
+  {
+    id: 'designer',
+    name: 'The Creator',
+    persona: 'UX / Product Designer',
+    icon: <Figma size={20} />,
+    color: '#a855f7',
+    description: 'Transform high-fidelity Figma wireframes into production-grade A2UI surfaces instantly.',
+    docs: [
+      { name: 'Figma to A2UI Pipeline', path: '/docs/ux-to-code' },
+      { name: 'Core Design System', path: '#' },
+      { name: 'Agentic Micro-animations', path: '#' }
+    ],
+    command: 'agentops-cockpit hydrate blueprint --figma <link>',
+    output: `🎨 Initializing Vision Bridge v1.0...
+🔍 Analyzing Figma Patterns: detected 3 'Agentic Cards'
+⚡ Hydrating: reasoning-trace -> ReasoningTrace.tsx
+✨ A2UI Surface successfully registered in Registry.
+Status: READY FOR CODE GEN`
   }
 ];
 
