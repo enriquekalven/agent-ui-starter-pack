@@ -4,21 +4,16 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Cell, PieChart, Pie, RadarChart, PolarGrid, PolarAngleAxis, Radar
 } from 'recharts';
-import {
-  Activity, Shield, TrendingUp, DollarSign, Cpu, AlertTriangle,
-  ThumbsUp, ThumbsDown, Sparkles, ChevronDown, ChevronUp,
-  RefreshCw, ExternalLink, CheckCircle, BrainCircuit
-} from 'lucide-react';
+import { Activity, Shield, TrendingUp, DollarSign, Cpu, AlertTriangle } from 'lucide-react';
 
-export const Text: React.FC<{ text: string; variant?: 'h1' | 'h2' | 'body' | 'caption' | 'error' | 'warning' | 'reasoning' }> = ({ text, variant = 'body' }) => {
+export const Text: React.FC<{ text: string; variant?: 'h1' | 'h2' | 'body' | 'caption' | 'error' | 'warning' }> = ({ text, variant = 'body' }) => {
   const styles = {
     h1: "text-4xl font-extrabold tracking-tight text-white mb-4 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent",
     h2: "text-2xl font-bold text-slate-100 mb-3",
     body: "text-slate-400 leading-relaxed mb-4",
     caption: "text-xs font-medium text-slate-500 uppercase tracking-widest",
     error: "text-red-400 font-semibold",
-    warning: "text-amber-400 font-semibold",
-    reasoning: "text-blue-300 italic text-sm leading-relaxed"
+    warning: "text-amber-400 font-semibold"
   };
 
   const Tag = variant === 'h1' ? 'h1' : variant === 'h2' ? 'h2' : 'p';
@@ -38,123 +33,16 @@ export const Button: React.FC<{ label: string; onClick?: () => void; variant?: '
   );
 };
 
-export const Card: React.FC<{
-  children: React.ReactNode;
-  title?: string;
-  glass?: boolean;
-  icon?: string;
-  badge?: string;
-  hasFeedback?: boolean;
-}> = ({ children, title, glass = true, icon, badge, hasFeedback }) => {
-  const Icon = icon === 'security' ? Shield : icon === 'performance' ? Cpu : icon === 'cost' ? DollarSign : icon === 'risk' ? AlertTriangle : icon === 'agent' ? Sparkles : null;
-  const [feedback, setFeedback] = useState<'up' | 'down' | null>(null);
+export const Card: React.FC<{ children: React.ReactNode; title?: string; glass?: boolean; icon?: string }> = ({ children, title, glass = true, icon }) => {
+  const Icon = icon === 'security' ? Shield : icon === 'performance' ? Cpu : icon === 'cost' ? DollarSign : icon === 'risk' ? AlertTriangle : null;
 
   return (
-    <div className={`p-6 rounded-3xl border transition-all duration-500 relative group/card ${glass ? 'bg-slate-900/40 backdrop-blur-xl border-slate-800/50 hover:border-blue-500/30' : 'bg-slate-900 border-slate-800'}`}>
+    <div className={`p-6 rounded-3xl border transition-all duration-500 ${glass ? 'bg-slate-900/40 backdrop-blur-xl border-slate-800/50 hover:border-blue-500/30' : 'bg-slate-900 border-slate-800'}`}>
       <div className="flex justify-between items-start mb-4">
-        <div className="flex items-center gap-3">
-          {Icon && <div className={`p-2 rounded-lg ${icon === 'agent' ? 'bg-blue-500/10' : 'bg-slate-800'}`}><Icon className={`w-4 h-4 ${icon === 'agent' ? 'text-blue-400' : 'text-slate-600'}`} /></div>}
-          {title && <div className="text-xs font-black text-slate-500 uppercase tracking-widest leading-none">{title}</div>}
-        </div>
-        {badge && (
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-black text-emerald-400 uppercase tracking-tighter">
-            <CheckCircle className="w-3 h-3" />
-            {badge}
-          </div>
-        )}
+        {title && <div className="text-xs font-black text-slate-500 uppercase tracking-widest">{title}</div>}
+        {Icon && <Icon className="w-4 h-4 text-slate-600" />}
       </div>
-
       <div className="a2-card-content">{children}</div>
-
-        {hasFeedback && (
-          <div className="mt-6 pt-4 border-t border-slate-800/50 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setFeedback('up')}
-                className={`p-1.5 rounded-lg transition-colors ${feedback === 'up' ? 'text-emerald-400 bg-emerald-400/10' : 'text-slate-500 hover:text-slate-300'}`}
-              >
-                <ThumbsUp className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setFeedback('down')}
-                className={`p-1.5 rounded-lg transition-colors ${feedback === 'down' ? 'text-red-400 bg-red-400/10' : 'text-slate-500 hover:text-slate-300'}`}
-              >
-                <ThumbsDown className="w-4 h-4" />
-              </button>
-              <button className="p-1.5 rounded-lg text-slate-500 hover:text-blue-400 hover:bg-blue-400/10 transition-colors">
-                <RefreshCw className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest flex items-center gap-2">
-              Agent Observation Module
-              <Sparkles className="w-3 h-3 text-blue-500/50" />
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  };
-
-export const ReasoningTrace: React.FC<{
-  reasoning: string;
-  steps?: string[];
-  initOpen?: boolean;
-}> = ({ reasoning, steps = [], initOpen = false }) => {
-  const [isOpen, setIsOpen] = useState(initOpen);
-
-  return (
-    <div className="mb-6 rounded-2xl bg-blue-500/5 border border-blue-500/10 overflow-hidden">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-4 flex items-center justify-between group/reasoning hover:bg-blue-500/5 transition-colors"
-      >
-        <div className="flex items-center gap-3">
-          <div className="p-1.5 rounded-lg bg-blue-500/10">
-            <BrainCircuit className="w-4 h-4 text-blue-400" />
-          </div>
-          <span className="text-xs font-black text-blue-400 uppercase tracking-widest">Reasoning Logic</span>
-        </div>
-        {isOpen ? <ChevronUp className="w-4 h-4 text-blue-500/50" /> : <ChevronDown className="w-4 h-4 text-blue-500/50" />}
-      </button>
-
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
-        className="overflow-hidden"
-      >
-        <div className="p-4 pt-0 space-y-4">
-          <p className="text-sm text-slate-300 leading-relaxed italic border-l-2 border-blue-500/20 pl-4">{reasoning}</p>
-          {steps.length > 0 && (
-            <div className="space-y-2 mt-4">
-              {steps.map((step, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px] font-black text-slate-500 shrink-0 mt-0.5">{i + 1}</div>
-                  <p className="text-xs text-slate-400">{step}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </motion.div>
-    </div>
-  );
-};
-
-export const Sources: React.FC<{ links: { title: string; url: string }[] }> = ({ links }) => {
-  return (
-    <div className="mt-4 flex flex-wrap gap-2">
-      {links.map((link, i) => (
-        <a
-          key={i}
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500/30 text-[10px] font-bold text-slate-400 hover:text-blue-400 transition-all"
-        >
-          <ExternalLink className="w-3 h-3" />
-          {link.title}
-        </a>
-      ))}
     </div>
   );
 };
@@ -225,27 +113,6 @@ export const Metric: React.FC<{ label: string; value: string; trend?: string; tr
 export const Grid: React.FC<{ children: React.ReactNode; cols?: number }> = ({ children, cols = 2 }) => {
   const colClass = cols === 1 ? 'grid-cols-1' : cols === 2 ? 'grid-cols-1 md:grid-cols-2' : cols === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4';
   return <div className={`grid ${colClass} gap-6`}>{children}</div>;
-};
-
-export const Skeleton: React.FC<{ variant?: 'card' | 'text' | 'item' }> = ({ variant = 'text' }) => {
-  return (
-    <div className="animate-pulse space-y-3">
-      {variant === 'text' && <div className="h-2 bg-slate-800 rounded w-3/4" />}
-      {variant === 'item' && (
-        <div className="flex items-center gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-slate-800" />
-          <div className="h-2 bg-slate-800 rounded w-full" />
-        </div>
-      )}
-      {variant === 'card' && (
-        <div className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800/50">
-          <div className="h-2 bg-slate-800 rounded w-1/4 mb-4" />
-          <div className="h-2 bg-slate-800 rounded w-full mb-2" />
-          <div className="h-2 bg-slate-800 rounded w-2/3" />
-        </div>
-      )}
-    </div>
-  );
 };
 
 const CustomTooltip = ({ active, payload, label }: any) => {

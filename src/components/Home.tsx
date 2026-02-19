@@ -5,9 +5,8 @@ import { OperationalJourneys } from './OperationalJourneys';
 import {
   Github, ArrowRight, Zap, Shield,
   Code, Layout, Rocket, Box,
-  Cpu, Activity, CheckCircle, Globe, Terminal, Figma
+  Cpu, Activity, CheckCircle, Globe, Terminal
 } from 'lucide-react';
-import { FigmaBridge } from './FigmaBridge';
 
 export function Home() {
   return (
@@ -40,12 +39,6 @@ export function Home() {
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/docs" className="text-sm font-bold text-slate-400 hover:text-white transition-colors">Documentation</Link>
             <Link to="/playground" className="text-sm font-bold text-slate-400 hover:text-white transition-colors">Playground</Link>
-            <button
-              onClick={() => document.querySelector('.figma-bridge-container')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors"
-            >
-              Vision Bridge
-            </button>
             <div className="h-4 w-px bg-white/10" />
             <a href="https://github.com/enriquekalven/agent-ui-starter-pack" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
               <Github size={20} />
@@ -165,11 +158,6 @@ export function Home() {
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Figma Bridge Section */}
-        <section className="relative z-20">
-          <FigmaBridge />
         </section>
 
         {/* Ecosystem Logos */}

@@ -121,17 +121,6 @@ Respond ONLY with a valid JSON object.
                 "content": [
                     {"type": "Text", "props": {"text": f"Strategic Analytics: {context}", "variant": "h2"}},
                     {
-                        "type": "ReasoningTrace", 
-                        "props": {
-                            "reasoning": "Analyzing fleet performance across 3 vectors: Efficiency, ROI, and Latent Drift.",
-                            "steps": [
-                                "Aggregating metrics from global sovereign nodes.",
-                                "Calculating ROI velocity using the waterfall model.",
-                                "Optimizing latent drift targets for 2026."
-                            ]
-                        }
-                    },
-                    {
                         "type": "Grid", "props": {"cols": 3},
                         "children": [
                             {"type": "Metric", "props": {"label": "Efficiency", "value": "92.4%", "trend": "2.1%", "trendUp": True}},
@@ -140,13 +129,7 @@ Respond ONLY with a valid JSON object.
                         ]
                     },
                     {
-                        "type": "Card", 
-                        "props": {
-                            "title": "Growth Trajectory", 
-                            "icon": "agent", 
-                            "badge": "Production-Ready",
-                            "hasFeedback": True
-                        },
+                        "type": "Card", "props": {"title": "Growth Trajectory", "icon": "performance"},
                         "children": [
                             {
                                 "type": "Visual", 
@@ -172,20 +155,11 @@ Respond ONLY with a valid JSON object.
                     {
                         "type": "Grid", "props": {"cols": 2},
                         "children": [
-                            {"type": "Card", "props": {"title": "Phase 1: Foundation", "icon": "security", "badge": "Deploying"}, "children": [{"type": "Text", "props": {"text": "Laying the global infrastructure for A2UI.", "variant": "body"}}]},
+                            {"type": "Card", "props": {"title": "Phase 1: Foundation", "icon": "security"}, "children": [{"type": "Text", "props": {"text": "Laying the global infrastructure for A2UI.", "variant": "body"}}]},
                             {"type": "Card", "props": {"title": "Phase 2: Scale", "icon": "performance"}, "children": [{"type": "Text", "props": {"text": "Expanding intelligence to niche industries.", "variant": "body"}}]}
                         ]
                     },
-                    {"type": "Visual", "props": {"type": "roi", "data": {"saved": 12480}}},
-                    {
-                        "type": "Sources", 
-                        "props": {
-                            "links": [
-                                {"title": "Figma SLDS Agentic Patterns", "url": "https://www.figma.com/community/file/1410651139412157582"},
-                                {"title": "Salesforce Agentforce Guide", "url": "https://www.salesforce.com/agentforce/"}
-                            ]
-                        }
-                    }
+                    {"type": "Visual", "props": {"type": "roi", "data": {"saved": 12480}}}
                 ]
             }
         elif intent == "directory":

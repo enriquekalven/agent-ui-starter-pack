@@ -1,9 +1,6 @@
 import React from 'react';
 import { A2UIComponent } from './types';
-import {
-  Text, Button, Card, Image, List, StatBar, Grid, Metric, Visual,
-  ReasoningTrace, Sources, Skeleton
-} from './components';
+import { Text, Button, Card, Image, List, StatBar, Grid, Metric, Visual } from './components';
 
 const Registry: Record<string, React.FC<any>> = {
   Text,
@@ -15,9 +12,6 @@ const Registry: Record<string, React.FC<any>> = {
   Grid,
   Metric,
   Visual,
-  ReasoningTrace,
-  Sources,
-  Skeleton,
   Container: Card, // Alias for common A2UI convention
 };
 

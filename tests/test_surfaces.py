@@ -9,32 +9,21 @@ def test_analytics_surface(orchestrator):
     surface = orchestrator.generate_a2ui_for_intent("analytics", "performance metrics")
     assert surface["surfaceId"] == "analytics-view"
     
-    # Check for ReasoningTrace
-    trace = next(c for c in surface["content"] if c["type"] == "ReasoningTrace")
-    assert "reasoning" in trace["props"]
-    assert len(trace["props"]["steps"]) == 3
-    
     # Check for Grid and Metrics
     grid = next(c for c in surface["content"] if c["type"] == "Grid")
     assert len(grid["children"]) == 3
+    assert grid["children"][0]["type"] == "Metric"
     
-    # Check for Card with Feedback and Badge
+    # Check for Visual
     card = next(c for c in surface["content"] if c["type"] == "Card")
-    assert card["props"]["hasFeedback"] is True
-    assert card["props"]["badge"] == "Production-Ready"
-    
     visual = next(c for c in card["children"] if c["type"] == "Visual")
     assert visual["props"]["type"] == "trend"
+    assert "points" in visual["props"]["data"]
 
 def test_vision_surface(orchestrator):
     surface = orchestrator.generate_a2ui_for_intent("vision", "future roadmap")
     assert surface["surfaceId"] == "vision-roadmap"
     assert any(c["type"] == "Visual" and c["props"]["type"] == "roi" for c in surface["content"])
-    
-    # Check for Sources
-    sources = next(c for c in surface["content"] if c["type"] == "Sources")
-    assert len(sources["props"]["links"]) == 2
-    assert "Figma" in sources["props"]["links"][0]["title"]
 
 def test_directory_surface(orchestrator):
     surface = orchestrator.generate_a2ui_for_intent("directory", "active nodes")
